@@ -6,18 +6,22 @@ Our player is powered up, armed and ready to go.
 2
 00:00:04,774 --> 00:00:07,536
 Let's create some hazards to challenge our player.
+下面让我们来设计小行星挑战我们的玩家
 
 3
 00:00:08,271 --> 00:00:10,648
 We will be creating an asteroid prefab to
+我们要先制作小行星预制件
 
 4
 00:00:10,648 --> 00:00:12,806
 throw at our player and we will use an
+让它们朝玩家飞船飞过来
 
 5
 00:00:12,806 --> 00:00:14,806
 architecture similar to the one we used
+小行星预制件的制作方法
 
 6
 00:00:14,806 --> 00:00:16,806

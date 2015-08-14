@@ -101,38 +101,47 @@ We are going to use the first one.
 21
 00:00:57,851 --> 00:00:59,851
 Select the asteroid model and drag it on
+选定这个小行星模型
 
 22
 00:00:59,851 --> 00:01:02,467
 to the Asteroid parent game object.
+把它拖拽到小行星父对象下
 
 23
 00:01:02,939 --> 00:01:04,939
 When we drop it the Asteroid model will
+当我们拖拽过去后,小行星模型将
 
 24
 00:01:04,939 --> 00:01:07,833
 be a child of the Asteroid game object.
+变成小行星对象的子节点
 
 25
 00:01:09,687 --> 00:01:12,253
 I am going to reset the model's transform.
+我们将模型的变形参数重置一下
 
 26
 00:01:12,253 --> 00:01:14,584
 By resetting the entire transform
+重置模型的位移参数
 
 27
 00:01:14,584 --> 00:01:17,437
 the model will be centred on the parent game object
+会使得模型出现在父对象的中心位置
 
 28
 00:01:17,437 --> 00:01:20,149
 with no relative rotation and a scale of 1
+并且没有相对的旋转
 
 29
 00:01:20,149 --> 00:01:22,149
 relative to the parent game object.
+相对于父对象的比例也为1
 
 30
 00:01:23,519 --> 00:01:25,519

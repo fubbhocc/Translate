@@ -1,0 +1,1614 @@
+1
+00:00:01,202 --> 00:00:03,044
+In this assignment we will setup the camera
+本任务中我们会设定相机
+
+2
+00:00:03,044 --> 00:00:05,323
+and lighting for our game.
+和光线
+
+3
+00:00:05,323 --> 00:00:07,918
+Our game will be a top-down style game
+我们的游戏是俯视类型的游戏
+
+4
+00:00:07,918 --> 00:00:09,918
+where we are looking down on the game area
+我们从固定的位置
+
+5
+00:00:09,918 --> 00:00:12,429
+from a fixed position above the game.
+自上方向下看整个游戏区域
+
+6
+00:00:14,324 --> 00:00:16,324
+If we switch to the Game view we can see
+当我们调整一下游戏的视窗的角度
+
+7
+00:00:16,324 --> 00:00:18,200
+that the camera is in a completely different
+我们发现摄像机的位置完全不在
+
+8
+00:00:18,200 --> 00:00:21,155
+position from where it needs to be for our game
+它应该在的地方
+
+9
+00:00:24,031 --> 00:00:26,627
+When we look at the main camera in the Scene view
+从Scene视图上来看，相机的位置在
+
+10
+00:00:26,627 --> 00:00:28,627
+we can see that it is behind the player
+玩家飞船对象的后方
+
+11
+00:00:28,627 --> 00:00:30,921
+game object and slightly above it.
+略微高于游戏玩家对象一点点
+
+12
+00:00:31,348 --> 00:00:33,224
+This is the default starting position for the
+这个位置是每个新视图的
+
+13
+00:00:33,224 --> 00:00:35,224
+main camera in a new scene.
+相机的默认位置
+
+14
+00:00:35,724 --> 00:00:38,004
+Unity will always include a default main
+Unity 总会为新的场景
+
+15
+00:00:38,004 --> 00:00:41,218
+camera at this position in every new scene.
+在这个位置设置一个相机
+
+16
+00:00:42,353 --> 00:00:44,353
+At this point it's worth noting that in the
+我们还需要了解
+
+17
+00:00:44,353 --> 00:00:47,102
+Scene view, when we have a camera selected
+在Scene视图中，当我们点选了相机
+
+18
+00:00:47,102 --> 00:00:49,102
+we can see a preview for that camera in the
+我们可以在Scene视图右下角看到
+
+19
+00:00:49,102 --> 00:00:51,102
+lower right of the Scene view.
+这个相机的预览效果
+
+20
+00:00:52,776 --> 00:00:54,776
+So we want to move the camera to
+我们想把相机的位置
+
+21
+00:00:54,776 --> 00:00:56,776
+a position above the game area
+移动到游戏区域的顶端
+
+22
+00:00:56,776 --> 00:00:58,776
+where it is looking down on the game.
+并且从上向下看这个游戏
+
+23
+00:00:59,193 --> 00:01:01,193
+Don't forget that the camera is simply a
+不要忘记,这里的相机
+
+24
+00:01:01,193 --> 00:01:03,193
+camera component attached to a game
+只是一个在场景的游戏对象
+
+25
+00:01:03,193 --> 00:01:05,042
+object in our scene.
+它的上面附着了相机的组件
+
+26
+00:01:05,042 --> 00:01:07,042
+We can manipulate the camera in our scene
+我们可以通过改变相机的变形组件
+
+27
+00:01:07,042 --> 00:01:09,796
+by effecting the camera's transform.
+来控制相机
+
+
+28
+00:01:12,119 --> 00:01:14,119
+First let's reset the camera's transform
+首先让我们来重置下相机的变形组件
+
+
+29
+00:01:14,119 --> 00:01:18,004
+by using Reset on the context sensitive gear menu.
+点击Transform组件右上角的齿轮下拉菜单中的Reset
+
+
+30
+00:01:18,504 --> 00:01:20,504
+This will reset the transform values and
+变形组件中的值将被重置
+
+
+31
+00:01:20,504 --> 00:01:22,504
+set the camera to the origin point with
+相机将会被放置在原点
+
+
+32
+00:01:22,504 --> 00:01:24,977
+no rotation and a scale of 1.
+没有旋转,缩放也被置为1
+
+33
+00:01:26,054 --> 00:01:28,191
+With the camera at origin let's rotate it
+我们先将相机旋转一下
+
+
+34
+00:01:28,191 --> 00:01:30,594
+to face down by adjusting the rotation
+使相机视角变成从上而下
+
+
+35
+00:01:30,594 --> 00:01:33,336
+on the X axis to 90 degrees.
+调整旋转将其沿X轴旋转90度
+
+
+36
+00:01:34,724 --> 00:01:36,947
+Next let's grab the transform
+然后我们我们抓住这个箭头来
+
+37
+00:01:36,947 --> 00:01:39,113
+by using the transform handles
+改变变形组件的值
+
+
+38
+00:01:39,113 --> 00:01:41,569
+and lift it up along the Y axis.
+抓着它沿Y轴上移
+
+
+39
+00:01:42,207 --> 00:01:44,429
+We can see how the camera preview is updating
+我们可以看到随着相机位置的变化
+
+
+40
+00:01:44,429 --> 00:01:46,952
+to show what the camera is rendering
+预览图的内容也在逐步变化
+
+
+41
+00:01:49,358 --> 00:01:51,358
+For our game we can simply change
+对我们的游戏而言
+
+
+42
+00:01:51,358 --> 00:01:53,358
+the Y value to 10,
+我们只需把Y值设定为10
+
+
+43
+00:01:53,358 --> 00:01:56,673
+placing the camera 10 units above the player ship.
+把相机放到玩家飞船上方10个单位处
+
+
+44
+00:01:57,902 --> 00:01:59,902
+Now that the camera is in place, let's setup
+现在相机的位置设置好了,下一步设置
+
+
+45
+00:01:59,902 --> 00:02:01,595
+the camera component.
+相机的组件
+
+
+46
+00:02:02,095 --> 00:02:04,095
+The first decision we need to make is about
+首先要决定的是相机的
+
+
+47
+00:02:04,095 --> 00:02:05,819
+the camera type.
+类型
+
+
+48
+00:02:05,819 --> 00:02:09,267
+Will our projection be perspective or orthographic?
+我们的投影是透视还是正交?
+
+
+49
+00:02:09,822 --> 00:02:13,719
+Our game needs to feel like an upright arcade game.
+我们的游戏追求一种自上而下的街机的感觉
+
+
+50
+00:02:13,719 --> 00:02:15,719
+These did not have any perspective
+这里面不需要透视
+(物体有近大远小)
+
+51
+00:02:15,719 --> 00:02:19,504
+so we will choose orthographic as our projection mode.
+所以我们选择正交(物体不受近大远小影响)作为我们的投影模式
+
+
+52
+00:02:20,501 --> 00:02:22,501
+When we are using a perspective camera
+当我们使用投影相机的时候
+
+
+53
+00:02:22,501 --> 00:02:24,501
+if we want to change how much of our game
+如果我们想改变
+
+54
+00:02:24,501 --> 00:02:26,955
+the camera sees we can adjust the
+相机可见部分的大小
+
+
+55
+00:02:26,955 --> 00:02:28,607
+field of view value.
+我们可以通过改变field of view的值来实现
+
+56
+00:02:28,607 --> 00:02:30,373
+This is a lot like changing the zoom on a 
+这个操作有点像操作
+
+57
+00:02:30,373 --> 00:02:32,277
+real world camera.
+真实相机的缩放功能
+
+58
+00:02:32,277 --> 00:02:34,277
+The larger the field of view, the wider
+更大的field of view的值意味着
+
+59
+00:02:34,277 --> 00:02:36,470
+the lens as it were,
+更广的视野
+
+60
+00:02:36,470 --> 00:02:39,042
+and the more our camera can see and render.
+我们可以看到更多物体，同时计算机也需要做更多的渲染
+
+61
+00:02:39,542 --> 00:02:41,820
+When we are using an orthographic camera
+当我们使用正交相机的时候
+
+62
+00:02:41,820 --> 00:02:44,098
+we can adjust how much the camera will see
+我们可以通过改变正交尺寸的大小
+
+63
+00:02:44,098 --> 00:02:46,756
+by changing the orthographic size.
+改变相机的视野大小
+
+64
+00:02:46,756 --> 00:02:49,584
+But what is the correct size for our game?
+但是什么样的视野尺寸是适合我们的游戏的呢?
+
+65
+00:02:49,584 --> 00:02:51,584
+We can see a fairly reasonable representation
+我们可以在预览窗口看到
+
+66
+00:02:51,584 --> 00:02:54,044
+of the camera in the preview window.
+相机的视野的情况
+
+67
+00:02:54,044 --> 00:02:56,044
+But it might be better to do any final 
+但是如果可以在最终的游戏视图上
+
+68
+00:02:56,044 --> 00:02:58,044
+adjustments in the Game view itself.
+调整那样就更好了
+
+69
+00:02:59,621 --> 00:03:01,621
+We will still have control over the component
+我们仍然可以通过Inspector 标签
+
+70
+00:03:01,621 --> 00:03:03,621
+in the Inspector and we can see the
+下的组建进行控制同时我们也可以看到
+
+71
+00:03:03,621 --> 00:03:06,024
+actual camera output full size.
+全尺寸的相机真实输出。
+
+72
+00:03:06,964 --> 00:03:08,964
+It seems that the ship feels right when the
+当正交的尺寸在10左右的时候
+
+73
+00:03:08,964 --> 00:03:11,341
+orthographic size is around 10.
+飞船的大小刚刚好
+
+74
+00:03:11,341 --> 00:03:14,285
+So let's set that value to around 10 exactly.
+所以让我们把这个值设置为10
+
+75
+00:03:15,641 --> 00:03:18,976
+Now the player is in the exact centre of the game area.
+现在玩家飞船在游戏区域的正中央.
+
+76
+00:03:18,976 --> 00:03:20,571
+I feel that the ship should start
+我觉得,飞船在开始的时候
+
+77
+00:03:20,571 --> 00:03:22,751
+near the bottom of the screen.
+位置应该在屏幕的底部
+
+78
+00:03:22,751 --> 00:03:24,877
+What's the best way to do this?
+有什么好方法呢?
+
+79
+00:03:24,877 --> 00:03:27,376
+We could switch back in to the Scene view
+我们先切换回场景视图
+
+80
+00:03:27,376 --> 00:03:28,985
+and move the ship by dragging the ship's
+通过移动飞船的变形手柄来改变
+
+81
+00:03:28,985 --> 00:03:31,853
+transform handles, but we have no good feedback
+飞船的位置,但是我们没法从
+
+82
+00:03:31,853 --> 00:03:33,853
+from the Game view or the camera to know if
+游戏视图或者相机视野得知
+
+83
+00:03:33,853 --> 00:03:35,853
+we have chosen the correct position.
+我们的移动到的位置是否是正确的
+
+84
+00:03:36,684 --> 00:03:38,684
+We could change our layout so we have both
+我们可以改变一下我们的视窗布局
+
+85
+00:03:38,684 --> 00:03:41,607
+the Game and the Scene view open at the same time.
+让游戏视图和场景视图同时打开
+
+86
+00:03:41,607 --> 00:03:43,607
+But we don't need to.
+其实我们并不需要这么做
+
+87
+00:03:43,607 --> 00:03:45,412
+Let's switch back to the Game view
+让我切换回游戏视图
+
+88
+00:03:45,412 --> 00:03:47,775
+and move the ship while we are able to see it
+我们可以在全尺寸游戏视图中
+
+89
+00:03:47,775 --> 00:03:50,401
+in the full sized Game view window.
+移动飞船
+
+90
+00:03:51,560 --> 00:03:53,560
+We will need to move the ship by directly
+我们需要通过直接改变飞船的变形组建
+
+91
+00:03:53,560 --> 00:03:56,257
+manipulating the ship's transform component.
+来移动飞船
+
+92
+00:03:56,840 --> 00:03:59,372
+We want to move the ship along the Z axis,
+我们需要将飞船沿着Z轴移动
+
+93
+00:03:59,372 --> 00:04:01,191
+so click on the Field title,
+所以点击下这个输入栏左侧标题的位置
+
+94
+00:04:01,191 --> 00:04:03,325
+in this case the Z,
+这里我们点击字母Z
+
+95
+00:04:03,325 --> 00:04:05,200
+and drag back and forth until the ship
+然后我们来回拖拽鼠标
+
+96
+00:04:05,200 --> 00:04:07,200
+looks correct in the scene.
+直到找到飞船在场景中的合适位置
+
+97
+00:04:08,708 --> 00:04:10,708
+Now we have a problem.
+这里产生一个问题
+
+98
+00:04:10,708 --> 00:04:12,472
+We really want the player's game object
+如果我们的需要玩家对象
+
+99
+00:04:12,472 --> 00:04:14,361
+to be at origin. 
+所在的位置是原点的话...
+
+100
+00:04:14,361 --> 00:04:16,361
+We want this for 2 reasons.
+这里面有2个原因
+
+101
+00:04:16,361 --> 00:04:18,361
+1, it just feels better to me.
+1,我喜欢这么干
+
+102
+00:04:19,027 --> 00:04:21,290
+And 2, it will make certain steps
+2,这么做会让后续的核心步骤
+
+103
+00:04:21,290 --> 00:04:24,001
+later on in this project easier to manage.
+处理起来更容易一些.
+
+104
+00:04:24,001 --> 00:04:25,769
+Yet I still want to have the player's ship 
+但我仍然希望玩家飞船从
+
+105
+00:04:25,769 --> 00:04:28,468
+start down here at the bottom of the game area.
+游戏区域的下方开始
+
+106
+00:04:29,092 --> 00:04:32,313
+Well as we know, all things are relative.
+我们知道,所有的都是相对的
+
+107
+00:04:32,313 --> 00:04:34,966
+So let's move the camera, not the player.
+因此,我们移动相机的位置,不移动玩家的位置.
+
+108
+00:04:35,632 --> 00:04:38,245
+Reset the ship's transform back to origin
+将玩家飞船的变形组件重置,使飞船回到原点
+
+109
+00:04:38,911 --> 00:04:41,147
+and select the main camera.
+选择主相机
+
+110
+00:04:41,147 --> 00:04:43,508
+Again, by dragging the Field title,
+再拖拽一次输入框的标题
+
+111
+00:04:43,508 --> 00:04:46,193
+move the camera's transform up along the Z axis
+将相机的沿Z轴做变换
+
+112
+00:04:46,193 --> 00:04:48,739
+until the ship is in a good position.
+直到飞船的位置符合我们的需要
+
+113
+00:04:50,033 --> 00:04:52,728
+This feels like a good position for the player's ship.
+目前玩家飞船的位置刚刚好
+
+114
+00:04:53,463 --> 00:04:55,255
+Let's clean up the value for the camera's
+我们调整一下相机的值
+
+115
+00:04:55,255 --> 00:04:57,255
+transform Z axis.
+变换组件Z轴
+
+116
+00:04:57,255 --> 00:04:59,853
+A clean round 5 is good.
+这个值为大约为5
+
+117
+00:05:01,288 --> 00:05:03,933
+Next let's set the camera's background.
+下一步,我们要设定相机的背景
+
+118
+00:05:03,933 --> 00:05:05,933
+Currently we have the default background
+目前是系统默认的背景
+
+119
+00:05:05,933 --> 00:05:07,933
+found in the Clear Flag setting.
+这个是根据Clear Flag设置的
+
+120
+00:05:08,944 --> 00:05:11,166
+This is Skybox.
+现在选定的是Skybox
+
+121
+00:05:11,166 --> 00:05:13,401
+We won't be using a skybox today,
+我们今天将不再使用skybox
+
+122
+00:05:13,401 --> 00:05:15,911
+we simply want a black background.
+我们只想要一个黑色的背景.
+
+123
+00:05:15,911 --> 00:05:18,160
+So let's change the clear flags
+我们改一下clear flags
+
+124
+00:05:18,160 --> 00:05:19,953
+to solid colour.
+改为solid colour(纯色)
+
+125
+00:05:20,577 --> 00:05:22,577
+It's worth noting that if our clear flags
+值得注意的是,如果我们将clear flags
+
+126
+00:05:22,577 --> 00:05:25,331
+is set to Skybox and we have no
+设定为Skybox但是有没配置skybox 
+
+127
+00:05:25,331 --> 00:05:28,229
+skybox assigned clear flags will use the
+clear flags将会使用
+
+128
+00:05:28,229 --> 00:05:30,312
+background colour instead.
+背景颜色替代
+
+129
+00:05:30,312 --> 00:05:33,408
+This is why, even though we have skybox selected,
+这就是我们选择了skybox但是我们看到的仍然是
+
+130
+00:05:33,408 --> 00:05:35,737
+we see the blue from the background colour.
+蓝色的背景颜色的原因.
+
+131
+00:05:37,123 --> 00:05:38,734
+Click on the colour box. 
+点击颜色框
+
+132
+00:05:38,734 --> 00:05:41,081
+This will bring up a colour picker.
+会出现一个颜色选择器.
+
+133
+00:05:41,081 --> 00:05:43,081
+Let's make our background black.
+我们将我们的背景颜色设置成黑色.
+
+134
+00:05:43,081 --> 00:05:45,412
+When we are done we can close the colour picker.
+选择完成后关闭颜色选择器.
+
+135
+00:05:46,852 --> 00:05:48,728
+We have no lights in this scene.
+我们的场景目前没有光
+
+136
+00:05:49,090 --> 00:05:51,327
+Our background is black, yet we can still
+我们的背景也是黑色的,即使这样我们仍然能看到
+
+137
+00:05:51,327 --> 00:05:54,235
+see our player ship. Why is that?
+我们的玩家飞船.这是为什么?
+
+138
+00:05:55,978 --> 00:05:59,232
+If we go to Edit - Render Settings
+我们点选菜单Edit - Render Settings
+
+139
+00:05:59,232 --> 00:06:01,831
+we can see a property called Ambient Light.
+我们看到有一个属性叫做Ambient Light(环境光)
+
+140
+00:06:02,455 --> 00:06:04,455
+Ambient Light is the light from
+Ambient Light不是从固定点光源
+
+141
+00:06:04,455 --> 00:06:06,455
+no fixed point that lights all
+发出的,它会照亮场景中
+
+142
+00:06:06,455 --> 00:06:08,455
+the surfaces in the scene.
+所有的表面.
+
+143
+00:06:08,872 --> 00:06:11,160
+All new scenes have an ambient light set to
+所有的新场景的环境光的值都被设定为
+
+144
+00:06:11,160 --> 00:06:13,781
+(51, 51, 51).
+(51, 51, 51)
+
+145
+00:06:13,781 --> 00:06:15,781
+So every new scene has a very
+所以说每个新的场景都有非常微弱的
+
+146
+00:06:15,781 --> 00:06:19,544
+dim ambient light added to all objects in that scene.
+环境光照射在该场景的全部物体上
+
+147
+00:06:20,099 --> 00:06:22,376
+These values can be adjusted to add
+这个值可以被改为增加单色光
+
+148
+00:06:22,376 --> 00:06:24,583
+a general colour or full white light
+或者增加完全亮度的白光
+
+149
+00:06:24,583 --> 00:06:26,583
+to all objects in the scene.
+覆盖场景中的全部物体
+
+150
+00:06:27,083 --> 00:06:29,083
+However, this light has no directionality
+然而,这个光是无方向的
+
+151
+00:06:29,083 --> 00:06:33,125
+and it can be very unflattering if used incorrectly.
+如果使用不当就会变得很麻烦
+
+152
+00:06:33,625 --> 00:06:36,688
+We will set our ambient light to Black,
+我们将环境光设定为黑色
+
+153
+00:06:36,688 --> 00:06:38,688
+effectively turning it off.
+实际上就是关掉了环境光
+
+154
+00:06:40,514 --> 00:06:42,835
+Now let's light our scene.
+现在让我们自行设置我们场景中的光
+
+155
+00:06:42,835 --> 00:06:45,344
+We will be creating a modified 3 point lighting
+我们会为游戏建立一个改进的3点照明系统
+
+156
+00:06:45,344 --> 00:06:48,999
+system for our game with a main or key light,
+其中一点是主光源或核心光源
+
+157
+00:06:48,999 --> 00:06:51,800
+a fill light and a rim light.
+一个补光光源和一个轮廓光光源
+
+158
+00:06:51,800 --> 00:06:53,800
+These three lights will show off the shapes of
+这个三点照明将会展示出我们物体的外形
+
+159
+00:06:53,800 --> 00:06:55,442
+our objects and give our game a
+给我们的游戏场景烘托
+
+160
+00:06:55,442 --> 00:06:57,051
+good sense of atmosphere.
+很好的氛围
+
+161
+00:06:57,693 --> 00:07:01,589
+Start by selecting Create - Directional Light
+现在开始在Hierarchy视窗中点击Create - Directional Light
+
+162
+00:07:01,589 --> 00:07:04,173
+from the Create menu in the Hierarchy view.
+Create - Directional Light
+
+163
+00:07:04,890 --> 00:07:07,669
+This will add a directional light to our scene
+这个操作会在我们场景中增加一个定向的光源
+
+164
+00:07:08,335 --> 00:07:11,340
+Rename this game object Main Light.
+将这个对象改名为Main Light
+
+165
+00:07:12,158 --> 00:07:14,991
+Next let's reset the light's position.
+下一步,重置光源的位置.
+
+166
+00:07:16,030 --> 00:07:18,112
+This will set the light to origin.
+这个步骤会将光源设置到原点
+
+167
+00:07:18,112 --> 00:07:20,112
+We won't see any change in the lighting
+整个场景的光照似乎没什么变化
+
+168
+00:07:20,112 --> 00:07:22,781
+as directional lights light the entire scene
+因为定向光源会照亮整个场景
+
+169
+00:07:22,781 --> 00:07:25,696
+based on their rotation, not their position.
+只与光照角度有关,与光源位置无关
+
+170
+00:07:26,486 --> 00:07:29,424
+Switching back to the Scene view will show us the light
+切换回场景试图,上面显示了光，
+
+171
+00:07:29,424 --> 00:07:31,424
+and the gizmo will show us it's
+小图标显示了
+
+172
+00:07:31,424 --> 00:07:33,424
+orientation in the scene.
+光在场景中的方向
+
+173
+00:07:34,476 --> 00:07:36,670
+Let's now reset the rotation as well,
+现在我们把旋转的值也重置一下
+
+174
+00:07:36,670 --> 00:07:39,449
+so we can have a clean set of values to start from.
+这样便于我们重新设置初始值
+
+175
+00:07:40,308 --> 00:07:42,308
+This is our main light, so it will be the
+现在设置的这个是主光源,所以是最亮的
+
+176
+00:07:42,308 --> 00:07:44,570
+brightest and most important.
+也是最重要的光源
+
+177
+00:07:44,570 --> 00:07:46,194
+We need to see the light on the ship
+我们希望从玩家上方的主相机中看到
+
+178
+00:07:46,194 --> 00:07:49,423
+from our main camera, which is above the player.
+光照亮飞船
+
+179
+00:07:49,423 --> 00:07:51,423
+So let's tilt the main light down on to
+因此，让我们将主光源倾斜一下
+
+180
+00:07:51,423 --> 00:07:53,423
+the scene, but not too much.
+但是不要倾斜的太多
+
+181
+00:07:53,923 --> 00:07:55,630
+We want to see the shape of the ship,
+我们想看到飞船的形状
+
+182
+00:07:55,630 --> 00:07:57,201
+but not wash it out.
+但是不要太亮
+
+183
+00:07:57,826 --> 00:08:00,843
+That looks good. It's nearly at 20 degrees.
+现在刚刚好.大约20度
+
+184
+00:08:00,843 --> 00:08:02,843
+So let's clean up that value to around
+所以我们将X这个值设定为
+
+185
+00:08:02,843 --> 00:08:05,399
+20 degrees down in to the scene.
+与场景成20度角
+
+186
+00:08:07,594 --> 00:08:10,611
+Now let's rotate the light around on it's Y axis
+现在让我再沿Y轴旋转一下光
+
+187
+00:08:10,611 --> 00:08:12,611
+and bring the light in from the side.
+让光线从侧面照过来
+
+188
+00:08:13,111 --> 00:08:15,321
+Let's pick a good point towards the front
+我们找一个从前方照过来的方向
+
+189
+00:08:15,321 --> 00:08:17,085
+but not directly in front.
+但是不要正前方
+
+190
+00:08:17,585 --> 00:08:19,364
+It feels good about here.
+目前的位置刚刚好
+
+191
+00:08:19,364 --> 00:08:23,479
+Let's clean up these values to around -115.
+这里我们将Y值设定为-115.
+
+192
+00:08:24,334 --> 00:08:26,054
+To see how this light works in our game
+我们切换回游戏视图
+
+193
+00:08:26,054 --> 00:08:28,054
+let's switch back to the Game view.
+看看这个光线效果如何
+
+194
+00:08:29,645 --> 00:08:31,824
+We want the main light to feel like the light
+我们想让主光看起来像是
+
+195
+00:08:31,824 --> 00:08:34,416
+from a nearby sun, so let's increase the
+从附近的太阳照过来的，所以增加光的
+
+196
+00:08:34,416 --> 00:08:37,064
+intensity to 0.75.
+强度到0.75.
+
+197
+00:08:37,564 --> 00:08:39,155
+This gives a nice hot feeling to
+现在给人一种
+
+198
+00:08:39,155 --> 00:08:40,861
+the right side of the ship.
+飞船的右侧很热的感觉
+
+199
+00:08:41,462 --> 00:08:43,462
+We could change the colour, but let's
+我们可以改变光的颜色
+
+200
+00:08:43,462 --> 00:08:46,129
+leave the main light at white for now.
+这里我们暂时还是先使用白光
+
+201
+00:08:47,675 --> 00:08:49,675
+This lighting might seem realistic for some
+这个光线给人一种空间很广很深的真实感
+
+202
+00:08:49,675 --> 00:08:52,229
+deep space environment but the other side
+但是飞船的另一侧
+
+203
+00:08:52,229 --> 00:08:55,205
+of the ship is far too dark for this game.
+在游戏场景中表现的太暗了
+
+204
+00:08:55,205 --> 00:08:58,184
+To light this side of the ship we need another light.
+为了照亮这一侧，我们需要另一个光.
+
+205
+00:08:58,184 --> 00:09:00,611
+This will be our fill light, to fill in the
+这个就是我们的补光,补光的作用是
+
+206
+00:09:00,611 --> 00:09:02,611
+shadows on the far side.
+让我们看清阴影中的部分
+
+207
+00:09:03,111 --> 00:09:06,076
+To build our fill light duplicate the main light.
+我们复制下主光源作为补光
+
+208
+00:09:06,076 --> 00:09:07,923
+Make sure the main light is selected
+先选定主光源
+
+209
+00:09:07,923 --> 00:09:11,222
+and then use Edit - Duplicate
+然后点选Edit - Duplicate
+
+210
+00:09:11,722 --> 00:09:13,722
+or use the hot-key combination.
+或者使用热键组合
+
+211
+00:09:15,562 --> 00:09:18,248
+Rename the duplicate Fill Light.
+将复制出来的对象改名Fill Light(补光).
+
+212
+00:09:20,433 --> 00:09:22,433
+These 2 lights are now doubling up on the same
+这两个光现在叠加照在了
+
+213
+00:09:22,433 --> 00:09:25,015
+surfaces as the lights add together.
+同一个面上
+
+214
+00:09:25,015 --> 00:09:27,432
+Don't worry, we'll soon change this.
+别急,我们现在就改过来
+
+215
+00:09:28,399 --> 00:09:31,807
+First, let's reset the rotation on the fill light
+首先,将补光的旋转重置一下
+
+216
+00:09:31,807 --> 00:09:33,807
+and then switch to the Scene view so we can see
+再切换到场景视图便于观察
+
+217
+00:09:33,807 --> 00:09:35,807
+the gizmo on the light.
+光线方向的那个小图标.
+
+218
+00:09:35,807 --> 00:09:38,888
+We could set this light by eye in the Game view
+我们可以直接在游戏视图中肉眼设定这个光
+
+219
+00:09:38,888 --> 00:09:40,888
+but it can also be helpful to see the light's
+但是通过这个光线的小图标来
+
+220
+00:09:40,888 --> 00:09:42,888
+gizmo when making adjustments.
+做微调也十分有用
+
+221
+00:09:43,844 --> 00:09:45,844
+Let's grab the fill light and rotate it around
+我们抓住补光让它沿Y轴
+
+222
+00:09:45,844 --> 00:09:47,526
+on the Y axis.
+旋转
+
+223
+00:09:48,164 --> 00:09:50,731
+Here we want to light the other side of the ship.
+我们想让补光照到飞船的另一边
+
+224
+00:09:50,731 --> 00:09:52,731
+Also from a direction in front of the ship
+仍然要从靠前的方向照过来
+
+225
+00:09:52,731 --> 00:09:54,731
+to compliment the key light.
+来配合我们的主光源
+
+226
+00:09:55,231 --> 00:09:57,231
+This feels good.
+这个感觉刚好
+
+227
+00:09:58,767 --> 00:10:00,767
+Let's look at the lighting in the Game view.
+让我们看下游戏视图光线的感觉
+
+228
+00:10:01,447 --> 00:10:03,846
+The direction of the fill light looks good
+补光的方向看起来可以了
+
+229
+00:10:03,846 --> 00:10:06,912
+but it's feeling like we now have 2 main lights.
+但是现在看起来像是2个主光的样子
+
+230
+00:10:06,912 --> 00:10:08,759
+We don't need 2 main lights,
+我们不需要2个主光
+
+231
+00:10:08,759 --> 00:10:11,281
+so let's reduce the intensity of the fill light
+所以我们把补光的强度减弱一些
+
+232
+00:10:11,281 --> 00:10:13,435
+down to 0.5.
+减小到0.5.
+
+233
+00:10:13,435 --> 00:10:15,931
+And let's change the colour as well
+同时我们改一下光的颜色
+
+234
+00:10:15,931 --> 00:10:19,549
+A hint of blue will tell us that this is a secondary light.
+偏一点蓝色暗示这个光是一个次等光
+
+235
+00:10:19,549 --> 00:10:22,597
+Let's reduce the red channel to 128
+我们将红色通道的强度减小到128
+
+236
+00:10:23,097 --> 00:10:25,097
+and then let's also reduce the values of
+我们将绿色和蓝色通道的
+
+237
+00:10:25,097 --> 00:10:27,268
+the green and blue channels as well,
+值也减小
+
+238
+00:10:27,268 --> 00:10:29,611
+down to about 192.
+到192
+
+239
+00:10:30,401 --> 00:10:32,746
+Generally darkening our fill colour.
+总体上让我们的补光颜色更暗一些
+
+240
+00:10:33,647 --> 00:10:35,647
+By toggling the fill light we can see how it's
+我们可以通过打开关闭补光的开关
+
+241
+00:10:35,647 --> 00:10:37,647
+lighting that side of the ship.
+来观察飞船另一侧的补光效果
+
+242
+00:10:38,147 --> 00:10:41,192
+Lastly, let's tilt down a little in to the scene,
+最后我们把光线稍微倾斜一些
+
+243
+00:10:41,192 --> 00:10:42,748
+5 degrees is enough,
+5度就够了
+
+244
+00:10:43,358 --> 00:10:45,624
+and let's clean up the rotation on the Y axis,
+我们将沿Y轴旋转的数据
+
+245
+00:10:45,624 --> 00:10:50,035
+making it a nice round 125. That looks good.
+设定在125.看起来还不错.
+
+246
+00:10:51,281 --> 00:10:53,281
+Now let's add the rim light.
+再让我们添加最后的边缘光
+
+247
+00:10:54,375 --> 00:10:58,086
+Duplicate the fill light and rename it Rim Light.
+复制下补光然后重名名为边缘光
+
+248
+00:10:59,760 --> 00:11:01,564
+So we can see our rim light,
+现在我们可以看到我们的边缘光
+
+249
+00:11:01,564 --> 00:11:03,192
+which will be fairly subtle,
+这光看起来有点奇怪
+
+250
+00:11:03,192 --> 00:11:05,053
+let's turn off the fill light.
+我们先关闭补光
+
+251
+00:11:05,553 --> 00:11:08,244
+Now select the rim light and reset the
+选定边缘光然后
+
+252
+00:11:08,244 --> 00:11:10,782
+transform to remove the rotational values.
+重置下变形的参数来消除旋转的值
+
+253
+00:11:11,669 --> 00:11:13,973
+This rim light needs to be fairly clear
+边缘光需要足够的清楚
+
+254
+00:11:13,973 --> 00:11:15,973
+and it needs to stand out when mixing in
+要能够清楚地与补光区分开来
+
+255
+00:11:15,973 --> 00:11:17,973
+with the fill light, so let's change the
+所以将颜色改为
+
+256
+00:11:17,973 --> 00:11:19,973
+colour to pure white.
+纯白色
+
+257
+00:11:20,860 --> 00:11:23,209
+Now we want to light the rear of the ship
+我们想照亮穿的尾部
+
+258
+00:11:23,209 --> 00:11:25,542
+in a way that compliments the fill light.
+这样可以更好的配合补光
+
+259
+00:11:25,542 --> 00:11:27,693
+So let's rotate the light around to catch
+我们旋转光线
+
+260
+00:11:27,693 --> 00:11:29,261
+the rear edges of the ship,
+让它刚好照到尾部的边缘
+
+261
+00:11:29,261 --> 00:11:31,261
+but on the same side as the fill.
+它要与补光在同一侧
+
+262
+00:11:34,096 --> 00:11:35,620
+This looks good.
+这个位置刚好
+
+263
+00:11:35,620 --> 00:11:38,898
+Let's make this value a clean 65 degrees.
+我们将这个Y值设定在65度
+
+264
+00:11:38,898 --> 00:11:40,898
+This shows the edge well, but it's also
+现在边缘清楚了,
+
+265
+00:11:40,898 --> 00:11:43,724
+acting now like a second fill light.
+但是这个看起来像是另一个补光
+
+266
+00:11:44,224 --> 00:11:46,224
+This is mostly due to how much light
+这是因为有些光照到了
+
+267
+00:11:46,224 --> 00:11:48,527
+spills on to the top of the ship.
+船的顶部
+
+268
+00:11:48,527 --> 00:11:51,476
+To fix this let's rotate the light on the X axis
+我们可以通过把光线沿X轴旋转来解决这个问题
+
+269
+00:11:51,476 --> 00:11:53,724
+and come up from below.
+让光线从下往上照
+
+270
+00:11:53,724 --> 00:11:55,932
+Now this may seem counter intuitive,
+这么看似乎违反直觉
+
+271
+00:11:55,932 --> 00:11:58,198
+as we are looking down on the ship,
+好像我们在看穿底部似的
+
+272
+00:11:58,198 --> 00:12:00,198
+but this will keep the light from shining on the top
+但是这么做会让光线照到边缘
+
+273
+00:12:00,198 --> 00:12:02,198
+surface of the ship and it will still
+同时并不会照射到
+
+274
+00:12:02,198 --> 00:12:04,699
+catch the edges that we need to light.
+飞船的上表面
+
+275
+00:12:04,699 --> 00:12:07,279
+-15 degrees seems fine.
+-15度似乎刚好
+
+276
+00:12:09,104 --> 00:12:13,560
+Lastly, let's drop the intensity down to 0.25.
+我们最后还需要把光强度降低到0.25
+
+277
+00:12:14,277 --> 00:12:16,138
+This may seem overly subtle
+这个看起来不怎么自然
+
+278
+00:12:16,138 --> 00:12:18,688
+but when we add the fill light back in
+但是当我们把补光重新打开的时候
+
+279
+00:12:18,688 --> 00:12:20,466
+we can see that they add together to give
+补光和边缘光配合
+
+280
+00:12:20,466 --> 00:12:22,814
+us a good rim light and fill.
+起来给我们非常好的感觉
+
+281
+00:12:27,621 --> 00:12:29,983
+Now that we have added our lights to the hierarchy
+我们在层级视窗中添加了光
+
+282
+00:12:29,983 --> 00:12:31,983
+they are sorted alphabetically and mixed in
+它们和其他的游戏物体
+
+283
+00:12:31,983 --> 00:12:34,483
+with all of the other game objects.
+按照字母顺序混合排在了一起
+
+284
+00:12:34,483 --> 00:12:36,483
+This is not very well organised.
+这个组织结构看起来有点乱
+
+285
+00:12:37,052 --> 00:12:40,681
+If we look in to our Scene view and select our new lights
+如果我们从场景视图看我们新加的光线
+
+286
+00:12:40,681 --> 00:12:42,681
+the gizmos appear right where we are working
+小图标会在场景的正中央
+
+287
+00:12:42,681 --> 00:12:45,463
+on top of our ship in the middle of the scene.
+的飞船上显示出来
+
+288
+00:12:46,847 --> 00:12:49,745
+Let's add some organisation to our scene.
+我们重新组织一下我们的场景
+
+289
+00:12:49,745 --> 00:12:53,802
+We can organise our scene by using empty game object.
+我们可以通过新建空对象的方式来归类我们的对象
+
+290
+00:12:53,802 --> 00:12:57,143
+Add a new empty game object to the scene using the hot-key.
+使用热键增加一个新的空的游戏对象
+
+291
+00:12:57,643 --> 00:13:00,101
+Use shift-command-N on the mac
+苹果电脑上使用shift-command-N
+
+292
+00:13:00,101 --> 00:13:03,009
+and shift-control-N on windows.
+windows电脑上使用shift-control-N on windows
+
+293
+00:13:04,407 --> 00:13:06,407
+Rename this Lighting.
+重命名这个空对象为Lighting
+
+294
+00:13:08,357 --> 00:13:10,510
+Reset the game object's transform.
+重置改对象的变形参数值
+
+295
+00:13:11,010 --> 00:13:13,010
+It's important to note this step
+这步很重要
+
+296
+00:13:13,510 --> 00:13:15,510
+When we are using empty game objects
+我们新建了一个空的游戏对象
+
+297
+00:13:15,510 --> 00:13:17,510
+to organise our hierarchy
+来管理我们的层级视图
+
+298
+00:13:17,510 --> 00:13:20,264
+those game objects should be at origin
+这些空的游戏对象应该在坐标原点
+
+299
+00:13:20,264 --> 00:13:22,802
+with no rotation and a scale of 1.
+没有旋转并且尺寸大小是1
+
+300
+00:13:23,523 --> 00:13:25,190
+This can be accomplished by simply
+这个操作可以由
+
+301
+00:13:25,190 --> 00:13:27,190
+resetting the transform component.
+重置变形插件来完成
+
+302
+00:13:28,367 --> 00:13:30,548
+Now that we have setup our lighting game object
+现在光照游戏对象已经建好了
+
+303
+00:13:30,548 --> 00:13:32,548
+we can drag our lights in to it.
+把我们的光拖拽进去
+
+304
+00:13:32,548 --> 00:13:34,548
+This organises our hierarchy and keeps
+这样我们的层级结构看起来更清晰
+
+305
+00:13:34,548 --> 00:13:36,674
+our lights together.
+我们的光也都被放置到了一起
+
+306
+00:13:36,674 --> 00:13:38,674
+To clean up the gizmos at origin
+如果我们不想看到光线的这些小图标
+
+307
+00:13:38,674 --> 00:13:41,049
+we can move our lighting parent game object
+我们只需要把光照对象这个父类
+
+308
+00:13:41,049 --> 00:13:44,057
+up on the Y axis to get it out of the way.
+沿Y轴上移将它们移出视线
+
+309
+00:13:44,778 --> 00:13:47,372
+Let's move them up by 100 units.
+我们上移100个单位
+
+310
+00:13:48,300 --> 00:13:51,343
+Now, there they are, up there out of the way.
+现在这些小图标已经被上移不再碍眼了
+
+311
+00:13:52,216 --> 00:13:53,675
+We can move these lights like this because
+我们可以这样移动这些光
+
+312
+00:13:53,675 --> 00:13:55,841
+they are directional lights
+因为他们是方向性光源
+
+313
+00:13:55,841 --> 00:13:58,201
+and directional lights light the entire scene
+方向性光源照射进设图
+
+314
+00:13:58,201 --> 00:14:00,090
+based on their transform's rotation
+只与变形的旋转有关
+
+315
+00:14:00,090 --> 00:14:02,090
+not their position.
+与光本身的位置无关
+
+316
+00:14:02,977 --> 00:14:05,699
+This sets up our camera and our lighting.
+我们的相机和光照配置好了
+
+317
+00:14:05,699 --> 00:14:07,344
+In the next assignment we will create
+下一章节,我们将会
+
+318
+00:14:07,344 --> 00:14:09,344
+a background for our game.
+配置游戏背景

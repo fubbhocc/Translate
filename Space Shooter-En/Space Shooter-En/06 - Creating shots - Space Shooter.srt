@@ -1,0 +1,1494 @@
+1
+00:00:01,354 --> 00:00:03,205
+Our player can now move their ship
+我们的玩家现在可以
+
+2
+00:00:03,205 --> 00:00:05,205
+around the game area and it can't
+在游戏区域内移动
+
+3
+00:00:05,205 --> 00:00:07,494
+leave the bounds of the game.
+已经不会跑到游戏区域外面了
+
+4
+00:00:07,494 --> 00:00:09,302
+So now let's create shots
+现在让我们开始制作一些
+
+5
+00:00:09,302 --> 00:00:11,027
+for our player to shoot.
+射击出去的子弹
+
+6
+00:00:11,719 --> 00:00:13,719
+First let's begin by deactivating
+首先让我们把玩家对象
+
+7
+00:00:13,719 --> 00:00:15,397
+our player game object.
+无效化
+
+8
+00:00:15,397 --> 00:00:17,814
+This assignment won't involve the players ship
+因为制作发射子弹的任务不会影响到玩家飞船
+
+9
+00:00:17,814 --> 00:00:19,814
+and again it will simply be in the way.
+玩家飞船的存在只回影响我们观察
+
+10
+00:00:20,880 --> 00:00:23,949
+Next create a new empty game object
+下一步建立一个空的游戏对象
+
+11
+00:00:24,436 --> 00:00:26,909
+Use shift+command+N on the Mac
+Mac上使用shift+command+N
+
+12
+00:00:26,909 --> 00:00:29,623
+and shift+control+N on Windows.
+Windows上使用shift+control+N
+
+13
+00:00:31,131 --> 00:00:33,927
+Rename the new empty game object Bolt.
+将新的空的游戏对象命名为Bolt
+
+14
+00:00:35,311 --> 00:00:37,854
+This will be a parent game object for our shot.
+这个是我们射击子弹的的父对象
+
+15
+00:00:38,699 --> 00:00:40,560
+We are going to separate the game logic
+我们要把游戏逻辑
+
+16
+00:00:40,560 --> 00:00:42,560
+from our visual effect of the shot.
+和视觉特效分开
+
+17
+00:00:43,350 --> 00:00:45,350
+This will allow us to easily make new
+这样我们可以更通过对父对象的复用
+
+18
+00:00:45,350 --> 00:00:47,640
+weapons with different visual effects
+轻松的创建
+
+19
+00:00:47,640 --> 00:00:49,792
+by reusing the parent game object with the
+效果各异的新武器
+
+20
+00:00:49,792 --> 00:00:52,935
+logic and replacing the visual effect layer
+仅需要对特效层面做一个改变
+
+21
+00:00:54,623 --> 00:00:56,497
+Reset the game object's transform to make
+把游戏对象变形插件重置一下
+
+22
+00:00:56,497 --> 00:00:58,497
+sure it is at origin.
+保证其处在原点
+
+23
+00:00:59,522 --> 00:01:01,522
+Now create a quad to hold our
+现在新建一个quad(四边形)来保存我们
+
+24
+00:01:01,522 --> 00:01:03,522
+visual effect image, just like we did
+的特效图像,做法跟我们在背景那章讲
+
+25
+00:01:03,522 --> 00:01:05,008
+for our background.
+的一样
+
+26
+00:01:05,646 --> 00:01:07,646
+Rename the quad VFX
+把quad改名为VFX
+
+27
+00:01:08,422 --> 00:01:10,767
+and reset the quad's transform.
+重置一下quad的变形插件
+
+28
+00:01:12,207 --> 00:01:14,523
+Now add the VFX game object
+把VFX对象作为Bolt
+
+29
+00:01:14,523 --> 00:01:16,523
+as a child of Bolt.
+的子对象进行添加
+
+30
+00:01:19,813 --> 00:01:23,065
+If we switch to the Scene view we can see the quad
+如果我们切回场景视图模式
+
+31
+00:01:23,065 --> 00:01:25,386
+just like the one we used for the background
+quad跟我们之前的背景的情况是一样的
+
+32
+00:01:25,386 --> 00:01:27,386
+is oriented in a way we can't see
+它在原点的角度正好让我们
+
+33
+00:01:27,386 --> 00:01:29,386
+with our game view camera.
+无法从相机中看到它
+
+34
+00:01:29,886 --> 00:01:34,273
+Change the transform rotation X to 90.
+把变形插件rotation X的值设置为90
+
+35
+00:01:34,273 --> 00:01:36,273
+This will rotate the quad to face upwards
+这样就会把quad的表面朝向变成向上
+
+36
+00:01:36,273 --> 00:01:38,273
+towards the game view camera.
+正好面对了相机
+
+37
+00:01:39,162 --> 00:01:41,162
+See, it's perfectly face-on to
+看吧,游戏视图中
+
+38
+00:01:41,162 --> 00:01:43,162
+camera in the game view.
+它正好面对着相机
+
+39
+00:01:45,289 --> 00:01:48,220
+Let's make this shot look like a laser bolt.
+我们把这个射出去的子弹变得像一个激光子弹
+
+40
+00:01:48,220 --> 00:01:50,003
+So next we need to find artwork
+我们需要找到激光子弹
+
+41
+00:01:50,003 --> 00:01:51,586
+for our laser bolt.
+对应的图片
+
+42
+00:01:52,086 --> 00:01:54,014
+Open the Textures folder.
+打开Textures文件夹
+
+43
+00:01:54,014 --> 00:01:58,243
+In the Textures folder find  fx_laser_orange.
+找到文件fx_laser_orange
+
+44
+00:01:59,247 --> 00:02:01,466
+When we created the background
+我们建背景的时候
+
+45
+00:02:01,466 --> 00:02:03,466
+we simply dragged the nebula texture
+我们只是把星云的纹理
+
+46
+00:02:03,466 --> 00:02:05,466
+on to the background quad and allowed
+拖拽到了背景的quad上
+
+47
+00:02:05,466 --> 00:02:08,346
+Unity to make the material for us.
+让Unity自己生成的材料
+
+48
+00:02:08,702 --> 00:02:10,702
+This time let's not drag the texture
+这次我们换种方法
+
+49
+00:02:10,702 --> 00:02:12,702
+on to the quad, but let's create
+我们自己创建并指定
+
+50
+00:02:12,702 --> 00:02:15,225
+and assign the material ourselves.
+材料
+
+51
+00:02:16,625 --> 00:02:18,374
+We want to create a new material
+我们将在Materials文件夹新建
+
+52
+00:02:18,374 --> 00:02:20,080
+in the Materials folder.
+一种新材料
+
+53
+00:02:20,584 --> 00:02:22,430
+When we create a new asset
+当我们新建一个资源的时候
+
+54
+00:02:22,430 --> 00:02:24,346
+Unity will create that asset in the
+Unity 会在我们当前察看的
+
+55
+00:02:24,346 --> 00:02:26,346
+folder we have focused or in the
+文件夹中新建
+
+56
+00:02:26,346 --> 00:02:30,007
+same folder as the asset we are currently inspecting.
+资源
+
+57
+00:02:30,507 --> 00:02:32,507
+Select the Materials folder in the
+在Assets的跟层级目录选定
+
+58
+00:02:32,507 --> 00:02:34,507
+root level of Assets.
+Materials文件夹
+
+59
+00:02:35,504 --> 00:02:37,504
+With the Materials folder selected click on
+选定Materials文件夹后点击
+
+60
+00:02:37,504 --> 00:02:39,935
+the Create menu in the Project view
+Project(项目)视图中的Create菜单
+
+61
+00:02:39,935 --> 00:02:42,101
+and select Material.
+选择Material
+
+62
+00:02:42,101 --> 00:02:44,019
+This creates a new material
+这样就在Materials 文件夹中
+
+63
+00:02:44,019 --> 00:02:45,758
+in the Materials folder.
+创建了一个新的材料
+
+64
+00:02:46,201 --> 00:02:49,034
+The new material is ready for a new name.
+新的材料需要一个新名字
+
+65
+00:02:49,034 --> 00:02:53,624
+So let's rename the material fx_bolt_orange.
+我们命名为fx_bolt_orange
+
+66
+00:02:54,400 --> 00:02:56,373
+We want to add our texture
+我们需要增加我们的纹理
+
+67
+00:02:56,373 --> 00:03:00,142
+fx_laser_orange to our material, but how?
+把fx_laser_orange贴到材料上,但是怎么做呢
+
+68
+00:03:01,056 --> 00:03:03,964
+If we can't inspect the details of a material
+如果我们不能查看材料的细节
+
+69
+00:03:03,964 --> 00:03:05,964
+it's inspector may be collapsed.
+那么这个查看器可能是已经崩溃了
+
+70
+00:03:06,630 --> 00:03:08,630
+Click on the Materials header to expand the
+如果材料查看器面板关闭了
+
+71
+00:03:08,630 --> 00:03:11,015
+Materials Inspector panel if it's closed.
+就点一下材料的标题栏
+
+72
+00:03:11,641 --> 00:03:13,503
+We can now see all of the fields
+我们现在可以看到当前材料的全部
+
+73
+00:03:13,503 --> 00:03:15,503
+for this material.
+字段
+
+74
+00:03:16,293 --> 00:03:18,293
+There are 2 ways we can associate
+这里有2种方法来
+
+75
+00:03:18,293 --> 00:03:20,044
+a texture with this material.
+把材料和纹理关联起来
+
+76
+00:03:20,544 --> 00:03:22,724
+The first is, in the Materials
+第一种方法是,点击材料的主纹理
+
+77
+00:03:22,724 --> 00:03:26,388
+main texture field we can click on Select
+方框,这时会弹出一个
+
+78
+00:03:26,388 --> 00:03:28,722
+and this will bring up an Asset Picker.
+资源选择器
+
+79
+00:03:29,233 --> 00:03:31,386
+At the top of the asset picker is a search
+资源选择器的顶端是
+
+80
+00:03:31,386 --> 00:03:34,163
+field to refine the contents of the picker.
+帮助我们查找或筛选内容的时使用的搜索域
+
+81
+00:03:34,163 --> 00:03:36,163
+Otherwise we will get every possible object
+另外在当前项目中所有可能
+
+82
+00:03:36,163 --> 00:03:38,936
+in the project that can go in to this field.
+被作为纹理的文件都显示在了这个资源选择器中
+
+83
+00:03:40,113 --> 00:03:42,113
+To associate a texture we simply
+单击那个纹理的文件
+
+84
+00:03:42,113 --> 00:03:44,389
+click on the texture we want.
+就可以将当前材料指定纹理
+
+85
+00:03:44,389 --> 00:03:47,681
+In this case fx_laser_orange.
+这里是文件fx_laser_orange
+
+86
+00:03:48,803 --> 00:03:50,803
+If there is already an existing texture
+如果想要将当前材料
+
+87
+00:03:50,803 --> 00:03:53,446
+associated with this field, and we want to remove it
+已经选定的纹理去掉
+
+88
+00:03:53,446 --> 00:03:55,446
+we can select None.
+我们只需要选择None
+
+89
+00:03:56,402 --> 00:03:58,402
+The other way is to simply drag and drop
+另一种方式就是拖拽选取
+
+90
+00:03:58,402 --> 00:04:00,402
+a texture in to this field.
+把纹理图片拖到点选选择的位置
+
+91
+00:04:00,792 --> 00:04:03,998
+Select Textures in the root of Assets
+先在资源的根层级选择纹理
+
+92
+00:04:03,998 --> 00:04:07,221
+and drag fx_laser_orange on to our
+把fx_laser_orange拖拽到
+
+93
+00:04:07,221 --> 00:04:09,748
+fx_bolt_orange material.
+fx_bolt_orange材料上
+
+94
+00:04:09,748 --> 00:04:12,816
+and drop it in to the main texture field.
+把它放到主纹理区域上
+
+95
+00:04:13,426 --> 00:04:16,549
+Both ways associate a texture to a material.
+以上两种方法都可以将纹理与材料连接起来
+
+96
+00:04:17,146 --> 00:04:19,840
+If we look below the material in the Inspector
+看一下Inspector视窗下方的的
+
+97
+00:04:19,840 --> 00:04:22,367
+we see a preview window where we can get
+材料预览窗口
+
+98
+00:04:22,367 --> 00:04:24,083
+a sense of how this material will
+我们可以大致了解到这个材质的
+
+99
+00:04:24,083 --> 00:04:26,083
+behave in our scene.
+效果
+
+100
+00:04:26,776 --> 00:04:28,887
+Now to associate the material
+现在要把材料连接到
+
+101
+00:04:28,887 --> 00:04:30,887
+with the VFX quad
+VFX quad上去
+
+102
+00:04:30,887 --> 00:04:34,045
+we can simply drag the material on to the quad.
+我们同样使用拖拽的方式把材料连接到quad上
+
+103
+00:04:36,009 --> 00:04:38,857
+Now if we look at the VFX game object
+如果我们现在再看一眼VFX这个游戏对象
+
+104
+00:04:38,857 --> 00:04:41,368
+and inspect the mesh renderer
+在网格渲染器这个组件中
+
+105
+00:04:41,368 --> 00:04:44,257
+we can see the fx_bolt_orange material
+我们可以看到材料fx_bolt_orange
+
+106
+00:04:44,257 --> 00:04:47,693
+has been added to the top slot of the materials array.
+在材料队列的顶部
+
+107
+00:04:48,442 --> 00:04:50,442
+Another way of associating the material
+或者我们直接手动把需要连接的材料
+
+108
+00:04:50,442 --> 00:04:52,442
+with this game object is to populate
+拖拽到当前游戏对象的
+
+109
+00:04:52,442 --> 00:04:55,952
+these slots in the materials array by hand.
+材料队列的槽内
+
+110
+00:04:55,952 --> 00:04:57,952
+We can simply drag and drop a material
+我们可以把材料拖拽到我们
+
+111
+00:04:57,952 --> 00:04:59,952
+in to the slots we need.
+需要的槽孔内
+
+112
+00:05:01,433 --> 00:05:03,433
+If we swap to the game view however our
+如果我们切回游戏视图
+
+113
+00:05:03,433 --> 00:05:05,790
+laser bolt looks like a dull streak
+激光子弹看起来就像
+
+114
+00:05:05,790 --> 00:05:07,790
+in the middle of a big black square.
+一个黑色方块中的一条平淡的条文
+
+115
+00:05:08,483 --> 00:05:10,007
+Not very flashy.
+一点都不炫酷
+
+116
+00:05:10,555 --> 00:05:12,555
+What we need to do in this case is change
+这里我们需要该一下
+
+117
+00:05:12,555 --> 00:05:14,555
+the shader we are using.
+着色器
+
+118
+00:05:15,055 --> 00:05:17,580
+Just like when we created our background
+就像我们当初改背景的那样
+
+119
+00:05:17,580 --> 00:05:19,580
+diffuse is not the best shader
+默认的散射着色器对我们的武器来说
+
+120
+00:05:19,580 --> 00:05:21,358
+choice for our weapon.
+并不是一个好的着色器
+
+121
+00:05:21,358 --> 00:05:24,024
+For our weapon we want the bright parts to
+对于我们的武器来说,我们希望
+
+122
+00:05:24,024 --> 00:05:26,024
+add on top of the scene and the black parts
+线的部分足够亮
+
+123
+00:05:26,024 --> 00:05:27,647
+to vanish.
+黑的部分都消失掉
+
+124
+00:05:27,647 --> 00:05:29,925
+When looking at the VFX game object
+让我们再看一眼VFX这个游戏对象
+
+125
+00:05:29,925 --> 00:05:31,925
+we can change the shader on the material.
+我们把这个材料的着色器换一下
+
+126
+00:05:32,674 --> 00:05:35,430
+Choose Particles - Additive.
+选Particles - Additive
+
+127
+00:05:36,013 --> 00:05:38,013
+With this shader black has a value
+这个着色器里面黑色的值就是0
+
+128
+00:05:38,013 --> 00:05:41,447
+of 0 and will add nothing to the scene.
+因此看起来黑色的部分就不见了
+
+129
+00:05:41,447 --> 00:05:44,328
+And white has a value of 255
+白色的值是255
+
+130
+00:05:44,328 --> 00:05:46,328
+on all channels and will add
+所有通道的值都是255
+
+131
+00:05:46,328 --> 00:05:48,090
+full white to the scene.
+在场景内生成的是纯白色
+
+132
+00:05:48,662 --> 00:05:50,326
+All of the other colours will be added
+所有的其他颜色是叠加在
+
+133
+00:05:50,326 --> 00:05:52,326
+on top of the existing background.
+现有的背景颜色之上的
+
+134
+00:05:53,240 --> 00:05:56,539
+This will give us a strong, hot laser bolt.
+这样我们就看到了一个闪亮炙热的镭射子弹了
+
+135
+00:05:57,688 --> 00:06:00,992
+We can also try mobile particles additive.
+我们也可以试试mobile particles additive
+
+136
+00:06:02,984 --> 00:06:04,984
+For our game I don't see any noticeable issues
+对于我们的游戏来说
+
+137
+00:06:04,984 --> 00:06:07,151
+with using the mobile shader.
+使用手机着色器个并没有什么显著改变
+
+138
+00:06:07,151 --> 00:06:09,809
+It looks just fine when we look in the game view.
+我们在游戏场景看的效果还可以
+
+139
+00:06:10,226 --> 00:06:12,743
+In many cases mobile shaders can be used
+多数情况手机着色器
+
+140
+00:06:12,743 --> 00:06:15,632
+effectively in non-mobile games.
+在非手机游戏中的效果也都不错
+
+141
+00:06:16,436 --> 00:06:18,730
+In general the mobile shaders will
+整体上来说手机着色器
+
+142
+00:06:18,730 --> 00:06:21,931
+be more efficient with our game's resource budget,
+在资源有限的情况下更有效一些
+
+143
+00:06:21,931 --> 00:06:23,931
+but in some cases may sacrifice either
+但有些情况下手机着色器会牺牲掉质量
+
+144
+00:06:23,931 --> 00:06:25,766
+quality or control.
+和不可控来保证效果
+
+145
+00:06:26,334 --> 00:06:28,334
+The main control that we will lose
+当前游戏如果我们使用手机着色器
+
+146
+00:06:28,334 --> 00:06:30,334
+by using this mobile shader
+我们将失去对
+
+147
+00:06:30,334 --> 00:06:32,709
+is the ability to change the tint colour,
+tint colour这个选项的控制
+
+148
+00:06:32,709 --> 00:06:34,983
+which we don't need on our laser bolt.
+这个选项对我们的镭射子弹来说没什么用
+
+149
+00:06:38,855 --> 00:06:40,855
+With our visual effects setup let's move
+我们的视觉效果设定完了
+
+150
+00:06:40,855 --> 00:06:42,855
+on to setting up our logic.
+让我们继续设定射击逻辑
+
+151
+00:06:43,880 --> 00:06:46,529
+If we look at our Bolt parent game object
+察看一下子弹的父类
+
+152
+00:06:46,529 --> 00:06:48,336
+we can see that it has no components,
+发现除了变形组建外
+
+153
+00:06:48,336 --> 00:06:50,809
+beyond the default transform component.
+父类并没有什么组建
+
+154
+00:06:52,756 --> 00:06:55,488
+We will be moving these shots with physics
+我们让这些射出的子弹按照物理法则运动
+
+155
+00:06:55,488 --> 00:06:57,778
+and, almost more importantly
+更重要的是
+
+156
+00:06:57,778 --> 00:07:00,423
+we will be moving a collider in our game.
+我们需要为这个子弹添加碰撞检测机
+
+157
+00:07:00,423 --> 00:07:03,416
+Both require the rigidbody component
+以上两点都需要刚体组件
+
+158
+00:07:03,416 --> 00:07:05,857
+so let's click on Add Component.
+因此我们点击Add Component
+
+159
+00:07:05,857 --> 00:07:09,905
+and select Physics - Rigidbody
+选择Physics - Rigidbody
+
+160
+00:07:09,905 --> 00:07:13,369
+to add a rigidbody component to the Bolt game object.
+为自弹游戏对象增加刚体组件
+
+161
+00:07:14,366 --> 00:07:17,421
+Deselect Use Gravity as we don't want our shots
+把Use Gravity的钩选去掉
+
+162
+00:07:17,421 --> 00:07:19,866
+falling down off of the game plane.
+我们并不想让我们的子弹从游戏平面掉下去
+
+163
+00:07:20,711 --> 00:07:22,711
+Next we need a collider to participate
+然后我们需要一个碰撞检测机
+
+164
+00:07:22,711 --> 00:07:24,490
+in collisions.
+来检测碰撞
+
+165
+00:07:24,490 --> 00:07:26,490
+Before we add one however we want
+在添加新的碰撞检测机之前
+
+166
+00:07:26,490 --> 00:07:28,253
+to remove one.
+我们先去除些没用的东西
+
+167
+00:07:28,253 --> 00:07:31,035
+Click on VFX to show our quad.
+点击VFX看一下quad(四边形)
+
+168
+00:07:31,632 --> 00:07:33,323
+The stock quad is created with a
+我们子弹的这个quad在创建的时候
+
+169
+00:07:33,323 --> 00:07:34,978
+mesh collider on it.
+自带了一个网格碰撞检测机
+
+170
+00:07:35,726 --> 00:07:37,726
+We can disable the mesh renderer to see
+我们先停用一下网格渲染
+
+171
+00:07:37,726 --> 00:07:39,726
+the green lines of this mesh collider.
+这个绿色的线就是网格碰撞检测机
+
+172
+00:07:40,419 --> 00:07:42,419
+We don't need 2 colliders in this game
+统一个游戏对象中不需要两个碰撞监测机
+
+173
+00:07:42,419 --> 00:07:45,154
+object family, but more importantly
+更重要的是
+
+174
+00:07:45,154 --> 00:07:47,154
+we don't want a collider that sticks out
+我们不需要一个范围如此大
+
+175
+00:07:47,154 --> 00:07:49,154
+so far to the sides
+的碰撞检测机
+
+176
+00:07:49,154 --> 00:07:51,154
+beyond the image of our laser bolt.
+它跟我们镭射子弹的图像外形差距太大了
+
+177
+00:07:52,041 --> 00:07:54,568
+This would mean what looks like a near miss
+这意味着一个看起来并没有的碰撞
+
+178
+00:07:54,568 --> 00:07:56,568
+could cause a collision.
+可能导致碰撞
+
+179
+00:07:57,469 --> 00:07:59,469
+One the mesh collider component
+在网格碰撞检测机组件(英文字幕错了这里是On不是One)
+
+180
+00:07:59,469 --> 00:08:02,136
+use the context sensitive gear menu
+点选右上角的小齿轮
+
+181
+00:08:02,136 --> 00:08:04,136
+and click on Remove Component.
+点击Remove Component
+
+182
+00:08:04,898 --> 00:08:07,275
+This will remove the mesh collider component
+这样网格碰撞检测机就被从
+
+183
+00:08:07,275 --> 00:08:09,275
+from the VFX game object.
+VFX游戏对象中移除了
+
+184
+00:08:10,355 --> 00:08:11,940
+Now let's add the collider component
+我们现在再给我们的游戏
+
+185
+00:08:11,940 --> 00:08:13,940
+we want for our game.
+加一个我们需要的碰撞检测机
+
+186
+00:08:13,940 --> 00:08:17,100
+Click on the parent Bolt game object
+点击子弹父类的游戏对象
+
+187
+00:08:17,100 --> 00:08:19,100
+and click on Add Component.
+点击Add Component
+
+188
+00:08:19,697 --> 00:08:23,447
+Select Physics - Capsule Collider.
+选择Physics - Capsule Collider
+
+189
+00:08:25,038 --> 00:08:27,038
+Now this looks like a sphere but it is
+现在这个看起来是个球形
+
+190
+00:08:27,038 --> 00:08:29,424
+not, it is a capsule.
+但它不是球形是胶囊形
+
+191
+00:08:29,424 --> 00:08:31,424
+A capsule is defined by 2 spheres
+胶囊形是由2个球形或椭圆形和
+
+192
+00:08:31,424 --> 00:08:34,211
+or hemispheres, one at each end.
+他们中间的空间定义的
+
+193
+00:08:34,211 --> 00:08:35,945
+and the space in between.
+球形在胶囊的两端每端一个
+
+194
+00:08:36,528 --> 00:08:38,528
+We are looking at a capsule that is
+我们需要的胶囊形状
+
+195
+00:08:38,528 --> 00:08:40,528
+as compact as possible, and there's no
+是要足够的紧凑
+
+196
+00:08:40,528 --> 00:08:42,928
+space between the 2 end caps.
+两端的球体半径要足够的小
+
+197
+00:08:43,608 --> 00:08:46,420
+So let's adjust the size of the capsule.
+让我们改一下胶囊的尺寸
+
+198
+00:08:46,920 --> 00:08:49,441
+We can reduce the radius dramatically
+我们可以把半径减小一些
+
+199
+00:08:49,441 --> 00:08:51,663
+as our bolt is long and thin.
+因为我们的子弹是又细又长的
+
+200
+00:08:52,564 --> 00:08:54,564
+When we do we can see that the
+我们发现
+
+201
+00:08:54,564 --> 00:08:57,771
+capsule is oriented differently from our bolt.
+胶囊的方向与我们子弹的方向不一致
+
+202
+00:08:58,713 --> 00:09:01,831
+The default orientation, or direction of a capsule
+胶囊默认的方向是沿着
+
+203
+00:09:01,831 --> 00:09:04,009
+is along the Y axis
+Y轴的
+
+204
+00:09:04,009 --> 00:09:06,523
+to accommodate humanoid characters.
+这是为了适应人形的角色
+
+205
+00:09:07,144 --> 00:09:10,745
+Let's change the direction to the Z axis.
+我们把方向改成沿着Z轴
+
+206
+00:09:11,867 --> 00:09:14,709
+Now it's oriented with our Bolt VFX.
+现在它的方向跟我们子弹VFX的方向是一致的了
+
+207
+00:09:15,402 --> 00:09:18,057
+Let's move in to a top-down position.
+让我们再从上往下看看
+
+208
+00:09:18,557 --> 00:09:20,557
+This view will help us size the collider
+这样我们可以从视觉上更好的
+
+209
+00:09:20,557 --> 00:09:22,944
+correctly to our visual effect.
+调整我们碰撞检测机的大小
+
+210
+00:09:24,148 --> 00:09:27,189
+Let's pick a radius that best matches our image.
+让我们选一个能恰好合适我们图像的半径
+
+211
+00:09:28,670 --> 00:09:30,670
+0.03 looks good.
+0.03看起来挺合适
+
+212
+00:09:31,584 --> 00:09:33,584
+Now let's reduce the height to fit
+现在我们在把长度减小一点
+
+213
+00:09:33,584 --> 00:09:35,584
+our image as well.
+刚好符合图像的大小
+
+214
+00:09:37,424 --> 00:09:39,229
+0.5 looks good.
+0.5不错
+
+215
+00:09:39,689 --> 00:09:41,689
+We don't need the outer glow to have any
+我们不想让我们外围的光晕也有
+
+216
+00:09:41,689 --> 00:09:43,689
+physical effect in our game
+这些物理效果
+
+217
+00:09:43,689 --> 00:09:46,214
+just the hot core of our laser bolt.
+仅仅是最热的中心部分的镭射子弹就好了
+
+218
+00:09:47,294 --> 00:09:49,294
+Before we leave this collider component
+在我们完成这个碰撞检测机之前
+
+219
+00:09:49,294 --> 00:09:51,294
+we need to set one other property.
+我们需要设定一个别的属性
+
+220
+00:09:51,932 --> 00:09:54,387
+We need to select Is Trigger
+我们需要钩选Is Trigger
+
+221
+00:09:54,387 --> 00:09:57,197
+to make this collider a trigger collider.
+确保这个碰撞检测机是一个带触发器的碰撞检测机
+
+222
+00:09:57,697 --> 00:10:00,522
+For more information on triggers and colliders
+更多关于触发器和碰撞检测机的信息请
+
+223
+00:10:00,522 --> 00:10:02,522
+please see the lesson linked below.
+参考下方课程的连接
+
+224
+00:10:04,638 --> 00:10:06,638
+With the basic component setup
+基本的组件已经设定好了
+
+225
+00:10:06,638 --> 00:10:09,097
+we now need to write our custom logic.
+我们现在需要设定我们的个性化的逻辑代码
+
+226
+00:10:09,690 --> 00:10:11,815
+With the Bolt game object selected
+我们选定子弹这个游戏对象
+
+227
+00:10:11,815 --> 00:10:13,815
+click on Add Component
+点击Add Component
+
+228
+00:10:13,815 --> 00:10:17,010
+and choose New Script.
+选择New Script
+
+229
+00:10:17,745 --> 00:10:20,219
+Name this script Mover.
+把这个脚本命名为Mover
+
+230
+00:10:21,824 --> 00:10:24,651
+Confirm this choice to add it to Bolt.
+确认后把这个脚本加到了Bolt中
+
+231
+00:10:26,698 --> 00:10:29,763
+Let's file Mover in to the Scripts folder
+我们吧Mover移动到Scripts文件加
+
+232
+00:10:31,244 --> 00:10:33,244
+and open it for editing.
+然后点击open打开编辑它
+
+233
+00:10:34,379 --> 00:10:36,379
+Again, let's remove the sample code.
+我们还是要把自动添加好的代码删掉
+
+234
+00:10:37,804 --> 00:10:39,735
+So what do we need to write?
+我们需要写什么呢?
+
+235
+00:10:39,735 --> 00:10:41,735
+That depends upon what we want our laser
+这取决于我们想让我们的镭射子弹
+
+236
+00:10:41,735 --> 00:10:43,735
+bolt to do.
+做什么
+
+237
+00:10:43,735 --> 00:10:45,735
+We want it to move automatically when
+我们需要子弹在进入场景以后
+
+238
+00:10:45,735 --> 00:10:47,735
+it's added to the scene.
+可以自动移动
+
+239
+00:10:47,735 --> 00:10:50,299
+We want the laser bolt to have it's own velocity,
+镭射子弹要有自己的速度
+
+240
+00:10:50,299 --> 00:10:52,702
+which we can set through the rigidbody.
+这个我们可以通过刚体组件来设定
+
+241
+00:10:53,202 --> 00:10:55,982
+So let's write void Start.
+所以我们写下void Start
+
+242
+00:10:56,675 --> 00:10:59,594
+With Start the code we will write
+使用Start的话我们的代码
+
+243
+00:10:59,594 --> 00:11:01,594
+will be executed on the very first frame
+在对象实例化的时候就会
+
+244
+00:11:01,594 --> 00:11:03,594
+the object is instantiated.
+开始执行了
+
+245
+00:11:04,508 --> 00:11:09,163
+Let's continue with rigidbody.velocity =
+接下来我们写rigidbody.velocity = 
+
+246
+00:11:09,663 --> 00:11:11,183
+Well what?
+等于什么呢?
+
+247
+00:11:11,942 --> 00:11:13,942
+We want the laser bolt to travel along
+我们想要镭射子弹
+
+248
+00:11:13,942 --> 00:11:15,942
+the Z axis towards the
+沿着Z周运动
+
+249
+00:11:15,942 --> 00:11:17,942
+oncoming hazards the game will
+来迎击小行星之类朝着玩家
+
+250
+00:11:17,942 --> 00:11:19,942
+throw at our player.
+飞船飞过来的危险
+
+251
+00:11:19,942 --> 00:11:21,942
+The local Z axis of an object is
+一个对象自身的Z轴也被
+
+252
+00:11:21,942 --> 00:11:25,284
+also known as it's transform forward.
+称作它的transform forward(移动方向)
+
+253
+00:11:25,784 --> 00:11:29,694
+So let's finish with transform.forward.
+所以我们在这写上代码transform.forward
+
+254
+00:11:30,387 --> 00:11:32,387
+We will want some control over how
+我们需要控制
+
+255
+00:11:32,387 --> 00:11:35,120
+fast our laser bolt moves in our game
+镭射子弹的速度
+
+256
+00:11:35,120 --> 00:11:39,720
+so let's add public float speed.
+我们增加一个公共浮点形参数speed
+
+257
+00:11:40,220 --> 00:11:44,544
+and let's multiply transform.forward by speed.
+我们将transform.forward与speed相乘
+
+258
+00:11:45,141 --> 00:11:47,714
+That's it. It's a very simple script.
+完成了,这个脚本很简单
+
+259
+00:11:48,670 --> 00:11:51,580
+Save this script and return to Unity.
+保存脚本回到Unity
+
+260
+00:11:53,491 --> 00:11:56,875
+We can see Bolt now has Speed as part of
+我们可以看到Bolt对象的Mover组件
+
+261
+00:11:56,875 --> 00:11:59,300
+the Mover component we have just written
+有了我们刚写的Speed属性
+
+262
+00:12:00,491 --> 00:12:02,491
+Our player is going to shoot many copies
+我们的玩家将发射很多这种子弹的
+
+263
+00:12:02,491 --> 00:12:05,495
+or clones of this shot, so let's save this
+副本或者克隆
+
+264
+00:12:05,495 --> 00:12:07,495
+game object as a prefab.
+所以让我们把这个对象保存成预制件
+
+265
+00:12:08,216 --> 00:12:10,216
+The easiest way to do this is to drag
+最简单的方法是把这个子弹
+
+266
+00:12:10,216 --> 00:12:13,174
+the Bolt game object from the Hierarchy view
+从层级视图拖拽到
+
+267
+00:12:13,174 --> 00:12:16,070
+in to the Prefabs folder in Assets.
+资源的Prefabs文件夹中
+
+268
+00:12:17,357 --> 00:12:20,841
+Click on Prefabs so we can see our Bolt prefab.
+点击Prefabs文件夹我们可以看到子弹的预制件
+
+269
+00:12:21,963 --> 00:12:23,798
+Currently we have full access to the
+目前我们对这个预制件有完全访问的权限
+
+270
+00:12:23,798 --> 00:12:26,347
+components on this prefab, but note that the
+但是请注意一下,右侧的预览
+
+271
+00:12:26,347 --> 00:12:27,958
+preview window is open.
+窗口是打开的
+
+272
+00:12:28,543 --> 00:12:30,238
+Even though we can scroll to see all of the
+虽然我们仍然可以使用滚动条来看到
+
+273
+00:12:30,238 --> 00:12:31,851
+components on a game object.
+对象的全部组件
+
+274
+00:12:31,851 --> 00:12:34,537
+If this preview window gets in the way
+如果我们觉得这个预览窗口碍事
+
+275
+00:12:34,537 --> 00:12:36,537
+it can simply be dragged down and closed
+我们可以把它拖到
+
+276
+00:12:36,537 --> 00:12:38,054
+against the bottom.
+屏幕最底端就可以了
+
+277
+00:12:38,692 --> 00:12:41,137
+Let's set the speed value for our bolt.
+我们现在为子弹设置一下速度
+
+278
+00:12:41,731 --> 00:12:43,593
+How fast was our ship travelling?
+飞船的速度是多少来的?
+
+279
+00:12:43,593 --> 00:12:44,571
+10?
+10?
+
+280
+00:12:45,071 --> 00:12:47,683
+Our shots need to go faster than our ship
+子弹肯定比飞船快
+
+281
+00:12:47,683 --> 00:12:50,484
+so let's try a speed value of 20.
+所以我们先试试子弹速度为20
+
+282
+00:12:51,053 --> 00:12:53,053
+Lastly we only want an instance of
+最后一点需要注意的是
+
+283
+00:12:53,053 --> 00:12:55,443
+the Bolt game object in our scene
+只有飞船开火了以后
+
+284
+00:12:55,443 --> 00:12:57,676
+when our player fires it's weapon.
+子弹才会产生
+
+285
+00:12:58,081 --> 00:12:59,910
+So let's delete our working instance
+所以我们把我们正在研究的这个
+
+286
+00:12:59,910 --> 00:13:01,663
+of Bolt from the scene.
+子弹从视图上删除
+
+287
+00:13:02,355 --> 00:13:04,026
+So save the scene.
+保存一下视图
+
+288
+00:13:04,648 --> 00:13:06,648
+Turn off Maximise On Play
+如果按钮Maximise On Play
+
+289
+00:13:06,648 --> 00:13:09,163
+if it's on and enter Play mode.
+是打开的就把它关了,然后运行
+
+290
+00:13:10,156 --> 00:13:13,288
+To test the bolt, as we don't have any shooting code
+我们没开火的代码,如何测试子弹
+
+291
+00:13:13,288 --> 00:13:15,288
+we can simply drag copies of the prefab
+我们把子弹的预制件拖拽到
+
+292
+00:13:15,288 --> 00:13:16,903
+in to the hierarchy window
+正在运行的游戏的
+
+293
+00:13:16,903 --> 00:13:18,541
+while the game is running.
+层级视图的视窗上就行了
+
+294
+00:13:19,154 --> 00:13:21,154
+And they work as we expected.
+子弹运行的跟我们计划的一样
+
+295
+00:13:21,154 --> 00:13:23,624
+Of they go towards the top of the screen.
+它们飞向了屏幕的顶端
+
+296
+00:13:24,206 --> 00:13:26,206
+These are our shots with their VFX
+这就是我们使用了VFX和我们设定的逻辑
+
+297
+00:13:26,206 --> 00:13:28,012
+and their logic.
+的子弹
+
+298
+00:13:28,012 --> 00:13:30,012
+In the next assignment we will write the code
+在下一章节我们将编写
+
+299
+00:13:30,012 --> 00:13:32,772
+for our player to fire these in the game.
+游戏中飞船发射子弹的代码

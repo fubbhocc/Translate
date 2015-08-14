@@ -1,0 +1,855 @@
+1
+00:00:01,160 --> 00:00:03,709
+In this assignment we will create a new project,
+在这个任务中,我们会建立一个新项目
+
+2
+00:00:03,709 --> 00:00:06,207
+import our assets, save our main scene
+导入资源,保存主场景
+
+3
+00:00:06,207 --> 00:00:08,880
+and set up the basic foundations for our game.
+做一些游戏中的基础设定.
+
+4
+00:00:09,477 --> 00:00:12,370
+Let's begin by creating a brand new project.
+我们先从建立一个全新的项目开始.
+
+5
+00:00:12,370 --> 00:00:16,215
+We can do this by selecting File - New Project.
+单击File -> New Project.
+
+6
+00:00:17,116 --> 00:00:19,116
+This opens the Project Wizard.
+项目指引会被打开.
+
+7
+00:00:19,116 --> 00:00:21,199
+In the Project Wizard we can open an existing
+在项目指引中,我们可以打开一个已有的项目
+
+8
+00:00:21,199 --> 00:00:23,800
+project or create a new one.
+或者建立一个新的项目.
+
+9
+00:00:23,800 --> 00:00:26,121
+We will be creating a new project.
+现在我们建立一个新项目
+
+10
+00:00:26,121 --> 00:00:29,461
+First we need to set a location for our new project.
+首先,我们要设定新项目的存放位置
+
+11
+00:00:29,461 --> 00:00:32,419
+We can do this by selecting the Set button,
+单击Set按钮选择
+
+12
+00:00:32,878 --> 00:00:35,790
+which brings up a Save As dialogue box.
+会出现另存为对话框
+
+13
+00:00:36,290 --> 00:00:39,018
+I'm going to put this new project on my desktop.
+这里将新项目放在我的桌面
+
+14
+00:00:39,018 --> 00:00:41,018
+I will call it Space Shooter.
+命名为太空射击
+
+15
+00:00:42,084 --> 00:00:44,789
+Save this and return to the wizard.
+保存然后回到项目指引界面
+
+16
+00:00:44,789 --> 00:00:46,969
+Now if we look at the desktop
+如果现在查看桌面
+
+17
+00:00:46,969 --> 00:00:49,411
+we will see that no files have been created.
+我们并不会看到新建的文件
+
+18
+00:00:50,312 --> 00:00:52,312
+We have simply set the path to the location
+我们只是设置了
+
+19
+00:00:52,312 --> 00:00:55,514
+where Unity will build the new project.
+Unity建新项目的路径
+
+20
+00:00:56,401 --> 00:00:58,680
+At this stage we have the choice to import
+下一步是选择
+
+21
+00:00:58,680 --> 00:01:01,081
+packages of assets we have on our computer
+我们电脑上将要要导入的资源包
+
+22
+00:01:01,484 --> 00:01:03,250
+These could be packages that came from the 
+这些资源包可能来自于
+
+23
+00:01:03,250 --> 00:01:06,457
+original install, packages from the asset store
+原始安装,asset store(资源商城)
+
+24
+00:01:06,457 --> 00:01:09,139
+or packages that we have saved ourselves.
+或者我们自己保存的资源.
+
+25
+00:01:09,139 --> 00:01:11,139
+For this assignment we want a new clean
+目前这个任务需要一个
+
+26
+00:01:11,139 --> 00:01:13,139
+empty project, so we won't select
+全新的空的项目,所以我们
+
+27
+00:01:13,139 --> 00:01:14,876
+any packages to import.
+选择不导入任何资源包.
+
+28
+00:01:15,639 --> 00:01:19,068
+Click on Create Project to create this new project.
+单击Create Project来建立这个新项目
+
+29
+00:01:19,775 --> 00:01:22,276
+Unity will close the existing project,
+Unity会关闭当前项目,
+
+30
+00:01:22,276 --> 00:01:24,429
+build the project files and open the new
+建立项目文件然后
+
+31
+00:01:24,429 --> 00:01:26,152
+project in the Editor.
+在编辑器中将其打开.
+
+32
+00:01:26,152 --> 00:01:28,152
+Now we are ready to go.
+现在我们准备好了.
+
+33
+00:01:29,204 --> 00:01:31,204
+The next step is to import the 
+下一步
+
+34
+00:01:31,204 --> 00:01:32,997
+assets for this project.
+导入项目所需资源
+
+35
+00:01:32,997 --> 00:01:34,997
+Most likely you will download these from the
+最便捷的方式是从Unity教学网站和asset store
+
+36
+00:01:34,997 --> 00:01:37,263
+learn site and asset store.
+和asset store(资源商城)下载
+
+37
+00:01:37,263 --> 00:01:38,455
+When your import is ready
+资源导入完毕后
+
+38
+00:01:38,455 --> 00:01:40,757
+you will see a window like this one.
+你将看到这样的窗口.
+
+39
+00:01:40,757 --> 00:01:43,499
+These are all the files we need for this project.
+这些是我们这个项目需要的文件.
+
+40
+00:01:43,499 --> 00:01:45,499
+Make sure they are all selected.
+确保所有文件都被选中.
+
+41
+00:01:47,297 --> 00:01:50,240
+If not click the All button in the bottom left,
+如果有文件没被选中,单击底部左侧的All按钮,
+
+42
+00:01:50,240 --> 00:01:53,253
+then select Import to import these assets.
+然后选择Import按钮导入资源.
+
+43
+00:01:53,891 --> 00:01:56,696
+Unity will copy these files to our new project
+Unity 会将这些文件都拷贝到我们的项目中
+
+44
+00:01:56,696 --> 00:02:00,277
+compile any scripts and import all of the assets.
+编译全部脚本倒入所有的素材资源
+
+45
+00:02:04,410 --> 00:02:06,647
+We will be creating this project from scratch
+我们将使用已有的资源
+
+46
+00:02:06,647 --> 00:02:08,468
+using the assets provided.
+从头创建这个项目
+
+47
+00:02:09,078 --> 00:02:11,590
+If however you are confused by any step
+如果某步骤不清楚
+
+48
+00:02:11,590 --> 00:02:14,486
+this project does include a Done folder
+本项目还包含了一个Done文件夹
+
+49
+00:02:14,486 --> 00:02:17,944
+which contains the entire project in finished form.
+里面包含了已经完成的整个项目.
+
+50
+00:02:17,944 --> 00:02:21,018
+There is a final scene, Done_Main,
+包含最终场景,Done_Main
+
+51
+00:02:21,018 --> 00:02:24,703
+final scripts, final prefabs and more.
+最终的脚本,最终的预制件和其他
+
+52
+00:02:26,046 --> 00:02:28,046
+Now that we have our assets let's save
+现在我们已经有资源了,
+
+53
+00:02:28,046 --> 00:02:30,478
+the scene that we will be working in.
+先保存下工作场景
+
+54
+00:02:30,478 --> 00:02:32,443
+When working in Unity we will always
+Unity的工作界面总有个
+
+55
+00:02:32,443 --> 00:02:34,068
+have a scene open.
+打开的场景
+
+56
+00:02:34,068 --> 00:02:36,068
+Unity opened a default scene for us
+在项目开始的时候
+
+57
+00:02:36,068 --> 00:02:38,246
+when we started the project.
+Unity 会打开一个默认的场景
+
+58
+00:02:38,246 --> 00:02:40,246
+Our current scene is unsaved.
+我们现在的场景还没保存过
+
+59
+00:02:40,746 --> 00:02:42,953
+We get a hint to remind us if our scene
+标题栏会提示我们
+
+60
+00:02:42,953 --> 00:02:45,494
+has been saved if we read the header bar.
+目前的场景是否被保存了
+
+61
+00:02:45,839 --> 00:02:48,239
+The header bar always lists the scene,
+标题栏总是显示场景
+
+62
+00:02:48,239 --> 00:02:50,239
+project name and build target.
+项目名称和编译目标
+
+63
+00:02:50,739 --> 00:02:52,739
+Our header bar shows Untitled
+我们的标题栏显示的未命名
+
+64
+00:02:52,739 --> 00:02:54,739
+which is our unsaved scene.
+就是我们当前这个没保存的场景
+
+65
+00:02:54,739 --> 00:02:57,566
+Space Shooter, our current project
+太空射击,我们目前的项目
+
+66
+00:02:57,566 --> 00:03:00,185
+and PC, Mac and Linux Standalone
+编译目标
+
+67
+00:03:00,185 --> 00:03:02,185
+which is our build target.
+PC, Mac and Linux独立程序
+
+68
+00:03:02,185 --> 00:03:04,688
+We will discuss build targets in a moment.
+我们过一会讲解下编译目标
+
+69
+00:03:05,395 --> 00:03:09,285
+To save our scene select File - Save Scene,
+保存我们的场景,选择File -> Save Scene
+
+70
+00:03:09,285 --> 00:03:11,285
+or use the hot-key combination.
+或者使用热键组合
+
+71
+00:03:12,130 --> 00:03:14,741
+Scenes need to be saved in our Assets directory.
+我们把场景保存在Assets目录下
+
+72
+00:03:14,741 --> 00:03:18,051
+They can be in any directory within the Assets directory.
+的任何一个子目录
+
+73
+00:03:18,051 --> 00:03:20,051
+I'm going to create a new directory to hold
+我这里将新建一个目录来保存场景
+
+74
+00:03:20,051 --> 00:03:23,061
+my scene, I will call this new directory
+新目录命名为
+
+75
+00:03:23,061 --> 00:03:25,394
+_Scenes.
+_Scenes.
+
+76
+00:03:25,394 --> 00:03:28,011
+The underscore is not necessary but I like it
+下划线不是必须的，但是我喜欢这么做
+
+77
+00:03:28,011 --> 00:03:30,011
+as it will sort this directory to the top of
+因为它会把文件夹排在
+
+78
+00:03:30,011 --> 00:03:32,823
+my project view where it will be easy to find.
+项目视图的最顶端，这样容易找到它
+
+79
+00:03:33,392 --> 00:03:36,083
+Next I will name this scene Main
+下一步,命名这个场景Main(主要的)
+
+80
+00:03:37,149 --> 00:03:39,149
+and hit Save to save it.
+点击Save键保存.
+
+81
+00:03:39,649 --> 00:03:41,926
+We can see that we now have a directory called
+我们可以看到现在有了个目录
+
+82
+00:03:41,926 --> 00:03:45,359
+_Scenes and a scene file called Main.
+名叫_Scenes和一个场景名叫Main
+
+83
+00:03:45,359 --> 00:03:47,359
+We can also see Main as the
+标题栏也已经变成了
+
+84
+00:03:47,359 --> 00:03:49,359
+scene listed in the header bar.
+场景Main
+
+85
+00:03:49,983 --> 00:03:51,983
+Now that we have imported our assets and
+我们已经导入了资源
+
+86
+00:03:51,983 --> 00:03:55,299
+saved our scene we need to set our build target.
+保存了场景,现在我们要设置编译目标
+
+87
+00:03:55,299 --> 00:03:57,299
+Whenever we are working on a project we are
+当我们做一个项目的时候
+
+88
+00:03:57,299 --> 00:03:59,299
+always working with a build target.
+我们总有一个编译目标
+
+89
+00:03:59,799 --> 00:04:02,047
+Our current build target is the default
+我们目前的编译目标是默认的
+
+90
+00:04:02,047 --> 00:04:04,747
+PC, Mac and Linux Standalone.
+PC, Mac and Linux 独立程序
+
+91
+00:04:04,747 --> 00:04:07,306
+All of our assets will be imported for this target
+我们所有的资源将被导入到这个目标
+
+92
+00:04:07,306 --> 00:04:09,306
+and all of our scripts will be compiled
+我们所有的脚本将会被编译
+
+93
+00:04:09,306 --> 00:04:11,893
+for this target, so it's important to have our
+所以为计划的目标平台
+
+94
+00:04:11,893 --> 00:04:15,441
+build settings set to the intended target platform.
+设定好相关的设置非常重要
+
+95
+00:04:16,107 --> 00:04:18,107
+Don't forget Unity can have one project
+Unity 可以一个项目
+
+96
+00:04:18,107 --> 00:04:20,948
+and one codebase for all of our build targets
+和一个代码库来完成所有的编译目标
+
+97
+00:04:20,948 --> 00:04:22,563
+and most of what we develop will work
+我们开发的绝大多数程序
+
+98
+00:04:22,563 --> 00:04:25,485
+for all platforms, but we will be developing
+所有平台都适用,但是开发中
+
+99
+00:04:25,485 --> 00:04:27,875
+for only one platform at a time.
+每次只选择一个平台
+
+100
+00:04:29,131 --> 00:04:31,422
+To set our build target we can select
+我们可以这样设定编译目标
+
+101
+00:04:31,422 --> 00:04:35,208
+File - Build Settings, or use the hot-key combination.
+File -> Build Settings 或者使用热键
+
+102
+00:04:36,551 --> 00:04:38,551
+This will bring up the Build Settings window.
+这时Build Settings 窗口会弹出
+
+103
+00:04:39,161 --> 00:04:41,534
+Here we can set the details of our build
+这里我们可以设定详细的编译信息
+
+104
+00:04:41,534 --> 00:04:44,651
+and select the scenes we want to build in to our game.
+选择需要编译到游戏中的场景
+
+105
+00:04:45,745 --> 00:04:47,745
+We want to change the build target to
+我们想将编译目标改为Web Player
+
+106
+00:04:47,745 --> 00:04:49,745
+Web Player, as we will be building and
+我们将会将这个项目发布到
+
+107
+00:04:49,745 --> 00:04:52,104
+deploying this project to the web.
+网页上
+
+108
+00:04:52,104 --> 00:04:56,052
+Click on Web Player to select the web player build target.
+选择Web Player选项后网页播放器将作为构建目标
+
+109
+00:04:56,052 --> 00:04:59,535
+The blue highlight indicates we have selected the Web Player.
+蓝色的突出标记意味着我们已经选定了Web Player
+
+110
+00:04:59,535 --> 00:05:02,414
+We can see the details on the right change,
+我们可以在右侧看到变化的细节
+
+111
+00:05:02,414 --> 00:05:05,142
+but we have not changed the build target.
+但是我们的编译目标并没有改变
+
+112
+00:05:05,142 --> 00:05:07,142
+Our current build target is indicated by the
+我们目前的编译目标由
+
+113
+00:05:07,142 --> 00:05:10,569
+Unity logo and is shown in the header bar.
+Unity的图标标识并且在标题栏也有提示 
+
+114
+00:05:12,450 --> 00:05:14,450
+To change build targets select the
+点选你需要的编译目标
+
+115
+00:05:14,450 --> 00:05:17,781
+platform you want and click Switch Platform.
+然后单击Switch Platform来更换你的编译目标
+
+116
+00:05:19,110 --> 00:05:21,110
+Now the Unity logo is associated with 
+现在Unity图标已经转移到了
+
+117
+00:05:21,110 --> 00:05:23,774
+our new build target, and that new build
+新的编译目标后面了, 
+
+118
+00:05:23,774 --> 00:05:25,774
+target is listed in the header.
+标题栏的编译目标也发生了变化
+
+119
+00:05:26,799 --> 00:05:29,267
+Now that we have set our build target we need to set
+现在编译目标已经设定好了
+
+120
+00:05:29,267 --> 00:05:31,267
+the build details for our game.
+下面我们来设置下编译目标的细节
+
+121
+00:05:31,767 --> 00:05:33,767
+We can do this from the Build Settings window
+这个可以通过Build Settings窗口来设定
+
+122
+00:05:33,767 --> 00:05:36,572
+by selecting Player Settings.
+单击Player Settings按钮
+
+123
+00:05:36,572 --> 00:05:40,033
+This allows us to inspect and change our player settings.
+这让我们可以设置和改变我们的玩家设置
+
+124
+00:05:40,533 --> 00:05:42,533
+If we want to change our player settings and the
+在Build Settings窗口未开启的情况下
+
+125
+00:05:42,533 --> 00:05:45,003
+build window is not open we can select
+我们可以选择
+
+126
+00:05:45,003 --> 00:05:47,806
+Edit - Project Settings - Player.
+Edit -> Project Settings -> Player
+
+127
+00:05:49,466 --> 00:05:52,110
+With Player Settings open in the Inspector
+Player Setting会在编译器窗口中打开
+
+128
+00:05:52,110 --> 00:05:54,412
+we can change both project-wide settings
+这里可以配置项目的通用设定(平台无关)
+
+129
+00:05:54,412 --> 00:05:56,412
+and platform-specific settings.
+或者项目的针对某平台的具体细节
+
+130
+00:05:56,912 --> 00:05:58,912
+For more information on player settings
+更多的关于Player Setting的信息
+
+131
+00:05:58,912 --> 00:06:00,912
+see the details linked below.
+请参考下方的网页连接
+
+132
+00:06:01,716 --> 00:06:03,716
+For this project we can leave everything at
+对当前项目来说所有设定都保持默
+
+
+133
+00:06:03,716 --> 00:06:06,316
+default except Resolution.
+除了分辨率
+
+134
+00:06:06,316 --> 00:06:08,316
+I would like this Space Shooter game to have
+我希望这个太空射击项目
+
+135
+00:06:08,316 --> 00:06:10,815
+the feeling of an upright arcade game,
+有一种自上而下街机式的感觉
+
+136
+00:06:10,815 --> 00:06:13,118
+portrait rather than landscape,
+纵向而非横向的
+
+137
+00:06:13,118 --> 00:06:19,403
+so let's change the resolution to 600 by 900.
+所以让我们把分辨率设为宽600高900
+
+138
+00:06:21,630 --> 00:06:23,630
+So that we can see an accurate representation
+这样可以更好的展示游戏场景
+
+139
+00:06:23,630 --> 00:06:25,630
+of our game let's make sure that
+同时,我们还可以通过Game view
+
+140
+00:06:25,630 --> 00:06:28,129
+the aspect ratio in the Game view
+中的长宽比来确认我们的分辨率设置
+
+141
+00:06:28,129 --> 00:06:30,018
+is set to Web.
+并且设置是Web
+
+142
+00:06:30,018 --> 00:06:32,018
+This will use the 600 by 900 
+将使用宽600高900的分辨率
+
+143
+00:06:32,018 --> 00:06:34,018
+size and aspect ratio.
+和长宽比
+
+144
+00:06:35,209 --> 00:06:37,722
+With this size and aspect ratio however
+但是从左下方的游戏视图看
+
+145
+00:06:37,722 --> 00:06:39,722
+I do notice that the game view looks cramped
+视图又窄又小
+
+146
+00:06:39,722 --> 00:06:41,997
+and small in it's window.
+并不太适合我们编辑
+
+147
+00:06:41,997 --> 00:06:43,997
+I'm not sure this is how I want to view my game
+我并不想使用这样的游戏视图
+
+148
+00:06:43,997 --> 00:06:45,552
+as I develop.
+来做开发
+
+149
+00:06:46,052 --> 00:06:49,001
+The solution to this is easy, change the layout.
+解决方法很简单，改变布局就好了
+
+150
+00:06:49,611 --> 00:06:51,611
+I'm going to grab the Game view tab and drag
+把Game视图选项卡抓起来,
+
+151
+00:06:51,611 --> 00:06:54,994
+it up to the top between the Scene view and Console.
+拖到最上面Scene 视图选项卡和Console选项卡之间
+
+152
+00:06:55,494 --> 00:06:57,494
+This will give me a big easy to read view
+现在视图变得又大又好看了
+
+153
+00:06:57,494 --> 00:07:01,240
+of my scene, game and console.
+同时scene, game, console中的东西也都变大了
+
+154
+00:07:01,740 --> 00:07:04,083
+Undoubtedly you will have a different layout.
+也许你的视窗布局与我的不同
+
+155
+00:07:04,083 --> 00:07:06,997
+but be aware that changing the layout is easy
+但是你已经知道了改变视窗布局很简单
+
+156
+00:07:07,746 --> 00:07:10,765
+Now that I've changed the layout let's save it.
+我已经把我的视窗布局改好了，让我保存一下
+
+157
+00:07:11,417 --> 00:07:13,750
+If we don't save our layouts and we reselect
+如果不保存视窗布局
+
+158
+00:07:13,750 --> 00:07:16,346
+the current layout our layout will return
+当我们再次打开当前的视窗布局时
+
+159
+00:07:16,346 --> 00:07:18,968
+to the last saved configuration.
+视窗布局会恢复到之保存的布局的样子
+
+160
+00:07:19,371 --> 00:07:22,771
+To save the layout select Layout and choose
+保存视窗布局,点击Layout然后选择
+
+161
+00:07:22,771 --> 00:07:24,285
+Save Layout.
+Save Layout(保存视窗布局)
+
+162
+00:07:24,815 --> 00:07:27,679
+Either save over the current layout to update it
+可以覆盖当前的视窗布局文件
+
+163
+00:07:27,679 --> 00:07:30,372
+or choose a new name for a new layout.
+或者给当前视窗布局起个新名字
+
+164
+00:07:30,897 --> 00:07:32,897
+I'm going to create a new layout and I'm going to
+这里我将建一个新的视窗布局
+
+165
+00:07:32,897 --> 00:07:34,897
+call it Space Shooter.
+并且命名它为Space Shooter(太空射击)
+
+166
+00:07:37,303 --> 00:07:39,303
+Now that I've changed my layout I can return to
+假设我改变了现有的视窗布局，
+
+167
+00:07:39,303 --> 00:07:41,303
+this one by simply selecting it from the
+我可以通过点击Layout 的下拉菜单
+
+168
+00:07:41,303 --> 00:07:43,303
+Layout pull-down menu.
+重新选择Space Shooter来恢复布局
+
+169
+00:07:43,303 --> 00:07:45,303
+That's it for setting up this project.
+这就是关于项目设置相关的内容
+
+170
+00:07:45,983 --> 00:07:47,983
+Now that we've setup the project, in the next
+现在我们已经配置好了项目
+
+171
+00:07:47,983 --> 00:07:51,321
+assignment we will setup the main player game object.
+下一个任务设定最主要的玩家对象

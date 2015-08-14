@@ -1,0 +1,2114 @@
+1
+00:00:01,616 --> 00:00:04,123
+Now that we have our environment fully setup
+现在我们的环境已经配置完毕
+
+2
+00:00:04,123 --> 00:00:07,410
+let's get the player ship moving under our control.
+下面让我们的飞船按照我们的控制飞行吧
+
+3
+00:00:07,410 --> 00:00:10,383
+To do this we need to write some very simply code.
+我们需要写一些简单的代码
+
+4
+00:00:10,383 --> 00:00:12,960
+We will be writing in C#, which is one of the
+代码用C#编写,它是Unity支持的
+
+5
+00:00:12,960 --> 00:00:15,562
+3 scripting languages supported by Unity.
+3种脚本语言之一
+
+6
+00:00:16,220 --> 00:00:18,220
+To stay organised we need somewhere in our
+为了结构清晰,我们需要建立一个文件夹
+
+7
+00:00:18,220 --> 00:00:20,220
+project to store our new scripts.
+来保存我们的新脚本
+
+8
+00:00:20,720 --> 00:00:22,720
+Let's add a new folder to the root level
+我们在Assets目录里的根目录
+
+9
+00:00:22,720 --> 00:00:24,886
+of our Assets folder.
+建立一个新文件夹
+
+10
+00:00:24,886 --> 00:00:27,221
+It's worth noting that this folder could be placed
+这个目录在Assets目录下的什么位置
+
+11
+00:00:27,221 --> 00:00:29,841
+anywhere within our Assets folder to work
+其实都可以正常运行
+
+12
+00:00:29,841 --> 00:00:31,841
+but for clarity it would seem that the root
+但是为了清晰明了
+
+13
+00:00:31,841 --> 00:00:33,841
+level is the best location for such
+根目录是放这种重要文件夹
+
+14
+00:00:33,841 --> 00:00:35,491
+an important folder.
+最好的位置
+
+15
+00:00:35,491 --> 00:00:37,491
+Select Assets to make sure that we
+单击选择Assets文件夹
+
+16
+00:00:37,491 --> 00:00:39,657
+build this folder on the root level
+确定我们的新文件夹的确在Assets文件夹的根目录下
+
+17
+00:00:39,657 --> 00:00:41,272
+otherwise we will have to move it after
+否则我们就要把刚建好的新文件夹
+
+18
+00:00:41,272 --> 00:00:42,981
+we have created it.
+移过来
+
+19
+00:00:43,688 --> 00:00:46,106
+Use the Create menu in the Project view
+使用Project视窗的Create菜单
+
+20
+00:00:46,106 --> 00:00:48,106
+and select Folder.
+选择Folder
+
+21
+00:00:49,034 --> 00:00:51,826
+This will create a new folder in Assets.
+这样会在Assets目录下新建一个文件夹
+
+22
+00:00:52,326 --> 00:00:54,326
+This new folder will automatically make
+这个文件夹的
+
+23
+00:00:54,326 --> 00:00:55,983
+itself ready to edit.
+名称会自动变为可编辑模式
+
+24
+00:00:55,983 --> 00:00:58,511
+Let's change the name to Scripts,
+让我们把名字改为Scripts
+
+25
+00:00:58,953 --> 00:01:00,953
+and hit Enter or Return to accept
+敲击Enter或者Return
+
+26
+00:01:00,953 --> 00:01:02,953
+the change of the name.
+来确认变更的文件夹名称
+
+27
+00:01:03,923 --> 00:01:05,923
+Now let's create and add a new script
+现在让我们为我们的玩家飞船
+
+28
+00:01:05,923 --> 00:01:07,853
+to our player ship.
+新建一个脚本
+
+29
+00:01:07,853 --> 00:01:09,853
+I'm going to quickly reduce the view of these
+让我们先把我们玩家对象显示
+
+30
+00:01:09,853 --> 00:01:11,853
+referenced materials shown at the bottom of
+出来的菜单缩短,
+
+31
+00:01:11,853 --> 00:01:13,701
+the player game object by clicking on
+就这样点击他们的标题栏
+
+32
+00:01:13,701 --> 00:01:15,564
+the header bars.
+就可以把他们最小化
+
+33
+00:01:15,564 --> 00:01:17,564
+This will make it easier to view and access
+这样我们可以让视图看起来简单些
+
+34
+00:01:17,564 --> 00:01:20,396
+the Add Component button without scrolling.
+不用滚动条就能看到Add Component按钮
+
+35
+00:01:20,896 --> 00:01:23,855
+Next let's click on Add Component
+我们来点击一下Add Component按钮
+
+36
+00:01:24,584 --> 00:01:26,584
+and select New Script.
+选New Script
+
+37
+00:01:26,974 --> 00:01:29,558
+This will allow us to create and add a new script
+这会产生一个新的脚本
+
+38
+00:01:29,558 --> 00:01:32,169
+directly on to our player game object.
+这个脚本是玩家对象的脚本
+
+39
+00:01:33,011 --> 00:01:35,742
+Now let's set the name of the script to
+我们将这个脚本命名为
+
+40
+00:01:35,742 --> 00:01:37,742
+PlayerController.
+PlayerController
+
+41
+00:01:37,742 --> 00:01:39,742
+I feel it's best that we follow the convention of
+我们最好遵守一下命名规范
+
+42
+00:01:39,742 --> 00:01:42,251
+capitalisation shown here, with a capital
+大写字母
+
+43
+00:01:42,251 --> 00:01:44,502
+P and a capital C.
+P和C
+
+44
+00:01:44,502 --> 00:01:47,311
+Script names should start with a capital letter
+脚本的名称应该首字母大写
+
+45
+00:01:47,311 --> 00:01:49,311
+and the capitalisation of the name with the
+名称中单词的首字母也要大写
+
+46
+00:01:49,311 --> 00:01:52,234
+capital C makes the name easier to read.
+这样读起来容易一些
+
+47
+00:01:52,734 --> 00:01:54,734
+Once we have chosen a name we can click on
+名字决定好了
+
+48
+00:01:54,734 --> 00:01:57,440
+Create and Add, or we can simply hit Return
+就点击Create and Add或者敲击
+
+49
+00:01:57,440 --> 00:01:59,879
+or Enter to create and add this script.
+Return或者Enter键来添加这个脚本
+
+50
+00:02:01,335 --> 00:02:03,335
+When we create a script in this manner the script
+当我们按照这个步骤新建脚本的时候
+
+51
+00:02:03,335 --> 00:02:06,470
+will be created on the root level of our project.
+自动生成的脚本会建立在项目的根目录下
+
+52
+00:02:06,470 --> 00:02:08,470
+We need to drag and drop it on to the Scripts folder
+我们需要把这个新生成的脚本拖拽到Scripts文件夹下
+
+53
+00:02:08,470 --> 00:02:10,470
+to file it away properly.
+这样便于对文件的管理
+
+54
+00:02:10,970 --> 00:02:13,891
+Now open the scripts folder to view the script.
+现在打开脚本文件夹看看脚本
+
+55
+00:02:15,220 --> 00:02:17,026
+Let's open the script for editing.
+我们需要开始编辑脚本
+
+56
+00:02:17,026 --> 00:02:19,569
+We can do this in a number of ways.
+打开编辑脚本的方法有很多种
+
+57
+00:02:19,569 --> 00:02:21,569
+1 way is to select the script
+其中一种方法是点选这个脚本
+
+58
+00:02:21,569 --> 00:02:23,569
+and in the Inspector choose Open.
+在Inspector视窗中选择Open
+
+59
+00:02:24,207 --> 00:02:26,580
+This will open the script in MonoDevelop.
+这样脚本会在MonoDevelop中打开
+
+60
+00:02:27,273 --> 00:02:29,273
+MonoDevelop is a companion application
+MonoDevelop是Unity自带的一个
+
+61
+00:02:29,273 --> 00:02:31,177
+that is bundled with Unity.
+编译程序
+
+62
+00:02:31,177 --> 00:02:33,177
+This is the default script editor that comes
+这个编译器是Unity默认的编辑器
+
+63
+00:02:33,177 --> 00:02:35,177
+with Unity, but you can use different
+但是我们也可以使用
+
+64
+00:02:35,177 --> 00:02:37,288
+script editors if you choose.
+别的脚本编辑器
+
+65
+00:02:37,288 --> 00:02:39,288
+For more information please see the details on
+更多详细信息请参考下方的
+
+66
+00:02:39,288 --> 00:02:42,028
+using Unity with other editors linked below.
+Unity使用其它编辑器的相关链接.
+
+67
+00:02:42,915 --> 00:02:46,265
+Before we start I'm going to remove the sample code.
+在开始之前我们先把自动生成的代码删除
+
+68
+00:02:46,917 --> 00:02:50,343
+We will be moving our player ship using physics.
+我们飞船的移动是遵循物理法则的
+
+69
+00:02:50,343 --> 00:02:53,548
+So we will need to use the FixedUpdate function.
+所以我们要使用FixedUpdate函数
+
+70
+00:02:54,048 --> 00:02:56,048
+For more information on both Update and
+更多关于Update和FixedUpdate
+
+71
+00:02:56,048 --> 00:02:58,048
+FixedUpdate and how to use them
+的详细信息和使用方法
+
+72
+00:02:58,048 --> 00:03:00,048
+see the information linked below.
+请参考下方连接
+
+73
+00:03:01,128 --> 00:03:03,389
+So now let's write some code.
+现在我们开始写代码
+
+74
+00:03:03,389 --> 00:03:06,291
+Write void FixedUpdate
+写void FixedUpdate
+
+75
+00:03:08,145 --> 00:03:10,145
+FixedUpdate will be called automatically
+在每一个固定的物理步骤之前
+
+76
+00:03:10,145 --> 00:03:13,172
+by Unity just before each fixed physics step.
+FixedUpdate都会被Unity自动调用
+
+77
+00:03:13,769 --> 00:03:15,795
+All the code we put inside the fixedUpdate
+我们放入fixedUpdate函数中的代码
+
+78
+00:03:15,795 --> 00:03:18,431
+function will be executed once per physics step
+在每一个物理步骤执行的时候都会被调用
+
+79
+00:03:19,056 --> 00:03:20,293
+so write
+所以写
+
+80
+00:03:20,293 --> 00:03:27,793
+float moveHorizontal = input.GetAxis ("Horizontal")
+float moveHorizontal = input.GetAxis ("Horizontal")
+
+81
+00:03:27,793 --> 00:03:28,487
+and
+和
+
+82
+00:03:28,487 --> 00:03:34,421
+float moveVertical = input.GetAxis ("Vertical")
+float moveVertical = input.GetAxis ("Vertical")
+
+83
+00:03:35,170 --> 00:03:38,006
+This code grabs the input from the player.
+这段代码抓取玩家的输入
+
+84
+00:03:38,506 --> 00:03:41,297
+The axis horizontal and vertical are default
+水平和竖直轴这些设定都是在
+
+85
+00:03:41,297 --> 00:03:43,992
+axis that are preset in the input manager.
+input manager(输入管理器)中已经预置好的
+
+86
+00:03:44,492 --> 00:03:46,492
+Next we need to apply that input
+下一步是将这个输入应用于
+
+87
+00:03:46,492 --> 00:03:48,492
+to the player game object.
+玩家游戏对象
+
+88
+00:03:49,296 --> 00:03:51,296
+We are going to move the player game object
+我们将按照物理法则移动玩家游戏对象
+
+89
+00:03:51,296 --> 00:03:53,667
+using physics, and we are going to do this
+我们靠控制玩家对象的速度
+
+90
+00:03:53,667 --> 00:03:56,979
+by affecting the velocity of the game object directly.
+来实现对对象的操作
+
+91
+00:03:56,979 --> 00:03:58,979
+Now this will result in non-realistic
+这个会导致有些行为不怎么符合
+
+92
+00:03:58,979 --> 00:04:01,426
+physics behaviour, by hey, that's alright,
+物理定律,记住我们只是
+
+93
+00:04:01,426 --> 00:04:03,674
+we are making an arcade game.
+在做一个街机游戏,不必如此较真
+
+94
+00:04:03,674 --> 00:04:05,674
+If we want to make a game that works properly
+如果我们要做一个完全按照牛顿物理法则执行
+
+95
+00:04:05,674 --> 00:04:07,563
+with Newtonian physics we would have
+的游戏,那么这个代码的写法
+
+96
+00:04:07,563 --> 00:04:09,563
+approached this code differently.
+就是完全不同的了
+
+97
+00:04:10,823 --> 00:04:13,017
+The rigidbody component which we attached
+我们在建立玩家游戏对象的时候
+
+98
+00:04:13,017 --> 00:04:15,017
+when we set up the player game object
+给该对象添加了一个刚体的组建
+
+99
+00:04:15,017 --> 00:04:17,910
+is how we work with the built in physics engine.
+这个组建是与内置的物理引擎协同工作的
+
+100
+00:04:17,910 --> 00:04:19,910
+The rigidbody includes properties
+刚体插件本身包含的属性有
+
+101
+00:04:19,910 --> 00:04:22,734
+like UseGravity, Mass and  Drag
+UseGravity(使用重力),Mass(块)和Drag(拖拉)
+
+102
+00:04:22,734 --> 00:04:25,530
+that we can pole, affect and manipulate.
+我们可以点选,改变和操作
+
+103
+00:04:25,530 --> 00:04:27,946
+So if we want to change the physics velocity
+所以如果我们想改变游戏对象的
+
+104
+00:04:27,946 --> 00:04:30,417
+of the player game object we do this
+物理速度
+
+105
+00:04:30,417 --> 00:04:33,034
+by addressing the rigidbody component.
+我们需要指定这个刚体组件
+
+106
+00:04:33,911 --> 00:04:38,278
+So let's write rigidbody.velocity
+让我敲下代码rigidbody.velocity
+
+107
+00:04:39,151 --> 00:04:42,722
+Now rigidbody.velocity uses a Vector3 value.
+rigidbody.velocity使用Vector3()值
+
+108
+00:04:42,722 --> 00:04:44,942
+This gives us the direction we are travelling,
+Vector3()值给出了运动的方向和
+
+109
+00:04:44,942 --> 00:04:46,942
+and how fast we are travelling
+运动的快慢
+
+110
+00:04:46,942 --> 00:04:49,950
+as a vector and it's magnitude.
+快慢由向量的标量决定
+
+111
+00:04:50,712 --> 00:04:52,712
+For more information on the Vector3 class
+关于Vector3类及向量的运算
+
+112
+00:04:52,712 --> 00:04:54,712
+and vector maths please see the
+的更多详细信息
+
+113
+00:04:54,712 --> 00:04:56,152
+details linked below.
+请参考下方连接
+
+114
+00:04:57,295 --> 00:04:59,295
+So our rigidbody velocity will be equal
+因此我们的刚体的运动速度等于
+
+115
+00:04:59,295 --> 00:05:02,174
+some vector3 value.
+vector3的值
+
+116
+00:05:02,591 --> 00:05:03,710
+But what?
+但是是哪个vector3值呢?
+
+117
+00:05:04,210 --> 00:05:06,585
+Well, as we know, a vector3 is made out of
+恩,我们知道vector3是由3个浮点数组成的
+
+118
+00:05:06,585 --> 00:05:11,026
+3 float numbers, an X, a Y and a Z value.
+X,Y和Z
+
+119
+00:05:11,733 --> 00:05:15,041
+Well, what do we put in these 3 float values?
+这三个数字中存放一些什么值呢?
+
+120
+00:05:15,541 --> 00:05:17,834
+We want to use our player input.
+应该把玩家的输入放到里面.
+
+121
+00:05:18,386 --> 00:05:21,070
+Let's walk through this one step at a time.
+我们来一步步做一下这件事
+
+122
+00:05:21,070 --> 00:05:24,101
+How much do we want to move on the Y axis?
+我们想在Y方向上移动多少呢?
+
+123
+00:05:24,101 --> 00:05:25,698
+Or up and down?
+或者说想上下移动么?
+
+124
+00:05:26,198 --> 00:05:27,702
+Well, none.
+应该不需要
+
+125
+00:05:28,202 --> 00:05:32,819
+So Y equals 0.0f
+因此我们把Y值设定成0.0f
+
+126
+00:05:33,126 --> 00:05:36,087
+and if we write it this way, 0.0,
+如果我们写成0.0
+
+127
+00:05:36,087 --> 00:05:38,768
+we need the f to indicate to Unity that
+我们需要在结尾添加f来告诉Unity
+
+128
+00:05:38,768 --> 00:05:41,894
+this decimal value is a floating point number.
+这个数字是浮点型数据类型
+
+129
+00:05:42,477 --> 00:05:44,477
+How much do we want to move left to right?
+我们需要左右移动么?
+
+130
+00:05:45,516 --> 00:05:48,283
+Well, that's our moveHorizontal.
+是的,这是我们的参数moveHorizontal(水平移动)
+
+131
+00:05:48,798 --> 00:05:50,798
+Copy moveHorizontal and paste
+我们拷贝一下moveHorizontal
+
+132
+00:05:50,798 --> 00:05:52,798
+it over the X value.
+然后用它替换X值
+
+133
+00:05:55,467 --> 00:05:57,467
+And forward and back?
+前后方向呢?
+
+134
+00:05:58,561 --> 00:06:01,798
+That's the value from moveVertical.
+参数moveVertical(垂直移动)
+
+135
+00:06:02,298 --> 00:06:04,726
+Copy and paste moveVertical
+用moveVertical覆盖Z值
+
+136
+00:06:06,138 --> 00:06:08,138
+So how can we use this vector3
+我们该如何使用这个
+
+137
+00:06:08,138 --> 00:06:09,804
+now that we've made it?
+刚建好的vector3值呢
+
+138
+00:06:10,304 --> 00:06:13,898
+One way is to create a vector3 variable,
+一种方是建立一个vector3的变量
+
+139
+00:06:13,898 --> 00:06:15,814
+let's call it Movement,
+我们起名叫Movement
+
+140
+00:06:16,231 --> 00:06:18,231
+and movement is equal to a
+这个参数等于一个新的
+
+141
+00:06:18,231 --> 00:06:24,558
+new vector3 moveHorizontal, 0.0f, moveVertical.
+由moveHorizontal, 0.0f, moveVertical组成的vector3值
+
+142
+00:06:25,058 --> 00:06:27,058
+In C# we must remember to use
+在C#中我们必须要使用
+
+143
+00:06:27,058 --> 00:06:29,058
+the keyword here.
+new这个关键词(英文字幕少了个new)
+
+144
+00:06:29,848 --> 00:06:34,309
+and our rigidbody velocity is equal to movement.
+我们刚体的速度等于movement这个变量
+
+145
+00:06:37,861 --> 00:06:41,154
+Now let's save this script and return to Unity.
+现在我们保存一下脚本然后返回Unity
+
+146
+00:06:41,916 --> 00:06:44,653
+The first thing we check is the console,
+我们要先检查一下console(控制台)
+
+147
+00:06:44,653 --> 00:06:46,653
+to make sure that there are no errors
+查看一下是否有报错
+
+148
+00:06:46,653 --> 00:06:49,554
+and that everything we wrote has compiled properly.
+并且我们刚写的代码页已经正确编译了
+
+149
+00:06:50,054 --> 00:06:52,054
+If there were an error we would also see
+如果代码有错误
+
+150
+00:06:52,054 --> 00:06:54,842
+this error in the footer, as our most recent error
+报错会出现在页脚
+
+151
+00:06:54,842 --> 00:06:58,065
+or message will always be shown in the footer.
+我们的最新报错或者信息总是会出现在页脚
+
+152
+00:06:59,048 --> 00:07:00,578
+Let's test our code.
+让我们测试一下代码
+
+153
+00:07:01,106 --> 00:07:03,985
+Save the scene and enter Play mode.
+我们保存一下场景然后进入运行模式
+
+154
+00:07:06,087 --> 00:07:07,683
+We can move our ship,
+我们可以移动飞船
+
+155
+00:07:07,683 --> 00:07:10,527
+but it's moving very very slowly.
+不过飞船移动的有点慢
+
+156
+00:07:10,527 --> 00:07:13,000
+This is because inputGetAxis only returns
+这是因为inputGetAxis这个函数只会返回
+
+157
+00:07:13,000 --> 00:07:15,292
+a number between 0 and 1.
+一个0,1之间的数
+
+158
+00:07:15,292 --> 00:07:17,292
+So our ship's movement with this code
+所以我们代码里面的移动效果
+
+159
+00:07:17,292 --> 00:07:20,272
+will never be more than 1 unit per second.
+永远也不会超过每秒1个单位
+
+160
+00:07:21,394 --> 00:07:23,394
+Let's exit Play mode and return to our
+让我们退出运行模式
+
+161
+00:07:23,394 --> 00:07:25,394
+PlayerController script.
+打开PlayerController脚本
+
+162
+00:07:26,115 --> 00:07:28,582
+We need control over our speed.
+我们得控制一下飞船的移动速度
+
+163
+00:07:29,165 --> 00:07:31,165
+So let's create a new public 
+让我们建立一个新的public的
+
+164
+00:07:31,165 --> 00:07:33,933
+float variable called Speed.
+浮点型参数命名为Speed
+
+165
+00:07:34,618 --> 00:07:36,618
+This variable will hold a value we can
+我们使用这个参数乘以
+
+166
+00:07:36,618 --> 00:07:39,198
+use to multiply our input with
+我们的输入
+
+167
+00:07:39,198 --> 00:07:42,626
+as our input will only be a value of 0 to 1.
+(我们的输入值在0,1之间)
+
+168
+00:07:42,626 --> 00:07:45,276
+By multiplying our input by Speed
+作为我们的速度
+
+169
+00:07:45,276 --> 00:07:47,276
+we will be able to move our ship from
+我们可以将飞船的速度限定
+
+170
+00:07:47,276 --> 00:07:50,714
+0 up to a maximum of our Speed value.
+在0到Speed参数值之间的值
+
+171
+00:07:52,526 --> 00:07:56,759
+Now, multiply our movement value by Speed.
+现在将我们的movement值与Speed值相乘
+
+172
+00:07:58,723 --> 00:08:00,723
+Let's return to Unity.
+回到Unity
+
+173
+00:08:01,720 --> 00:08:04,917
+We did not assign a value to Speed in our script.
+我们在脚本中并没有给Speed参数赋值
+
+174
+00:08:06,494 --> 00:08:09,151
+Because we made Speed a public variable
+因为我们将Speed设置为public variable(公共变量)
+
+175
+00:08:09,151 --> 00:08:11,151
+we can see it, we can set it and 
+我们可以看到并设定这个值
+
+176
+00:08:11,151 --> 00:08:13,890
+we can change it value in Unity.
+我们在Unity中也可以修改这个值
+
+177
+00:08:14,694 --> 00:08:17,189
+Let's look at our player controller component.
+我们先看一下player controller这个组件
+
+178
+00:08:17,189 --> 00:08:20,818
+We can now see an editable property called Speed.
+我们看到一个可编辑的属性叫Speed
+
+179
+00:08:22,477 --> 00:08:25,149
+Let's change it's value to 10.
+我们把这个值设定为10
+
+180
+00:08:25,149 --> 00:08:28,148
+Now we save and play,
+保存并运行一下
+
+181
+00:08:29,352 --> 00:08:32,346
+and now we can move much faster around the game area.
+现在我们的移动速度已经快多了
+
+182
+00:08:32,346 --> 00:08:34,732
+10 times faster as a matter of fact,
+10倍的原始速度
+
+183
+00:08:34,732 --> 00:08:36,871
+but we have a problem,
+但是有个新问题
+
+184
+00:08:36,871 --> 00:08:38,968
+and that problem is our player ship
+我们的玩家飞船
+
+185
+00:08:38,968 --> 00:08:40,968
+can leave the game area.
+会从游戏区域离开
+
+186
+00:08:41,620 --> 00:08:43,886
+We have no idea where the ship has gone,
+我们不知道飞船去哪了
+
+187
+00:08:43,886 --> 00:08:45,886
+and it would be very easy to completely
+这样很容易彻底把飞船搞丢了
+
+188
+00:08:45,886 --> 00:08:47,886
+loose track of where our ship is.
+没办法跟踪飞船的位置
+
+189
+00:08:48,717 --> 00:08:50,897
+We need to constrain the ship
+我们需要限制一下飞船
+
+190
+00:08:50,897 --> 00:08:52,897
+within the game area.
+让它只能在游戏区域里面
+
+191
+00:08:53,300 --> 00:08:55,300
+So leave Play mode and return
+让我们停下运行模式
+
+192
+00:08:55,300 --> 00:08:57,663
+to our PlayerController script.
+切回PlayerController脚本的编辑
+
+193
+00:08:59,254 --> 00:09:01,254
+We are moving our ship by setting
+我们移动飞船是靠
+
+194
+00:09:01,254 --> 00:09:03,254
+the rigidbody's velocity.
+设定它的刚体的速度
+
+195
+00:09:03,920 --> 00:09:05,920
+We can constrain the ship
+我们也可以通过飞船的位置
+
+196
+00:09:05,920 --> 00:09:09,294
+by setting the value of the rigidbody's position.
+来约束飞船的不让它飞出游戏区域
+
+197
+00:09:09,794 --> 00:09:11,794
+Again, this won't give us realistic
+再强调一次,这个会造成物理运动不真实的
+
+198
+00:09:11,794 --> 00:09:13,794
+physics behaviour, but in our
+感觉,但是就我们当前这个项目来说
+
+199
+00:09:13,794 --> 00:09:15,794
+case it's not necessary.
+真实物理运动的感觉并不重要
+
+200
+00:09:16,722 --> 00:09:18,722
+Unity executes our code within a given
+Unity执行我们给定的函数的时候
+
+201
+00:09:18,722 --> 00:09:22,329
+function 1 line at a time from top to bottom.
+是按照从顶端到底端一行行执行的
+
+202
+00:09:22,829 --> 00:09:26,068
+The code we have written moves our player ship.
+我们刚写的代码可以让我们的飞船移动
+
+203
+00:09:26,068 --> 00:09:28,068
+We will write code that will come after
+我们会在这部分移动飞船
+
+204
+00:09:28,068 --> 00:09:30,012
+the code that moves our ship
+的代码下面添加新代码
+
+205
+00:09:30,012 --> 00:09:32,712
+and if we have moved outside of the game
+来实现如果我们飞船飞出游戏区域
+
+206
+00:09:32,712 --> 00:09:34,712
+the code will set the player's position
+就把飞船的位置重新置回游戏区域
+
+207
+00:09:34,712 --> 00:09:36,712
+back to the edge of the game area.
+边缘这个功能
+
+208
+00:09:37,433 --> 00:09:39,737
+Because Unity will read and execute
+因为Unity会在更新每帧图像前
+
+209
+00:09:39,737 --> 00:09:42,316
+all of the code in our relevant function
+读取并执行
+
+210
+00:09:42,316 --> 00:09:44,316
+before updating the frame
+函数的所有的相关代码
+
+211
+00:09:44,316 --> 00:09:47,234
+the ship itself will never leave the game area.
+因此飞船永远也离不开游戏区域
+
+212
+00:09:48,231 --> 00:09:49,566
+So let's write
+所以让我们写一下
+
+213
+00:09:49,566 --> 00:09:52,454
+rigidbody.position
+rigidbody.position
+
+214
+00:09:52,454 --> 00:09:54,928
+and this is the property we want to set,
+这是我们想要设定的属性
+
+215
+00:09:55,538 --> 00:09:57,068
+and then write
+然后敲
+
+216
+00:09:57,068 --> 00:10:02,116
+new vector3 (X,Y, Z)
+new vector3 (X,Y, Z)
+
+217
+00:10:02,116 --> 00:10:05,184
+and this is the value we want to set it to.
+我们需要在这个里面设定值
+
+218
+00:10:06,306 --> 00:10:08,306
+The code we are going to write next
+我们接下来要写的代码
+
+219
+00:10:08,306 --> 00:10:10,734
+will make 1 very long line.
+会是很长的一行代码
+
+220
+00:10:10,734 --> 00:10:12,734
+So I'm going to break this code over
+我将把这行代码切成
+
+221
+00:10:12,734 --> 00:10:14,734
+several lines vertically.
+几行并竖直对应好
+
+222
+00:10:14,734 --> 00:10:17,838
+This will all be the same instruction to the compiler.
+这对于编译器来说跟写在一行上没什么区别
+
+223
+00:10:18,338 --> 00:10:20,338
+I'm going to follow the same indenting and
+我将保持我们之前使用的
+
+224
+00:10:20,338 --> 00:10:22,589
+bracket conventions that we are already using
+代码结构和缩进格式
+
+225
+00:10:22,589 --> 00:10:24,589
+for organisation and readability.
+这样可以使得代码看起来清晰易读
+
+226
+00:10:26,069 --> 00:10:27,315
+Let's think about how much we want
+让我们考虑一下需要把移动
+
+227
+00:10:27,315 --> 00:10:28,839
+to limit our movement.
+限制在什么范围
+
+228
+00:10:29,387 --> 00:10:32,068
+How much margin do we want up and down?
+上下方向需要限制范围么?
+
+229
+00:10:32,068 --> 00:10:32,985
+None.
+不用
+
+230
+00:10:32,985 --> 00:10:34,985
+Our player game object should never leave
+我们的玩家飞船从来都不会离开
+
+231
+00:10:34,985 --> 00:10:36,985
+the plane of the game.
+游戏的这个平面
+
+232
+00:10:36,985 --> 00:10:39,991
+The Y value, let's set this to 0.
+所以Y方向的值设定成0就好了
+
+233
+00:10:40,532 --> 00:10:43,558
+But what about left/right and forward/back?
+但是上下左右方向呢
+
+234
+00:10:43,558 --> 00:10:46,200
+The ship is moving along the X/Z plane
+我们在X轴和Z轴组成的这个平面上运动
+
+235
+00:10:46,590 --> 00:10:49,090
+and we want to clamp it within the game area.
+我们需要把飞船限制在游戏区域中
+
+236
+00:10:50,405 --> 00:10:54,274
+The ship starts at origin, or (0, 0, 0)
+飞船的起始点是原点或者说(0, 0, 0)
+
+237
+00:10:54,274 --> 00:10:57,258
+so we want to set limits on all 4 directions
+我们需要在X/Z平面的
+
+238
+00:10:57,258 --> 00:10:59,258
+along the X/Z plane.
+四个方向上都做限制
+
+239
+00:11:01,291 --> 00:11:03,291
+Let's return to our script.,
+我们切回脚本编辑器
+
+240
+00:11:06,111 --> 00:11:08,735
+So write Mathf.
+敲一下Mathf
+
+241
+00:11:09,884 --> 00:11:11,357
+What is Mathf?
+什么是Mathf?
+
+242
+00:11:11,857 --> 00:11:14,229
+Well let's look this up in the documentation.
+让我们看一下文档
+
+243
+00:11:14,909 --> 00:11:16,909
+And remember the shortcut to Unity's
+Unity搜索文档
+
+244
+00:11:16,909 --> 00:11:19,634
+scripting reference in the documentation is
+有个快捷键
+
+245
+00:11:19,634 --> 00:11:22,474
+command+' on the mac
+mac机器上是command+'
+
+246
+00:11:22,474 --> 00:11:25,460
+and control+' on windows.
+windows机器上是control+'
+
+247
+00:11:27,977 --> 00:11:30,668
+Mathf is well worth remembering.
+Mathf绝对值得你记住
+
+248
+00:11:30,668 --> 00:11:32,668
+It is a collection of really useful
+它是很多简单易用
+
+249
+00:11:32,668 --> 00:11:34,543
+easy to use math functions.
+的数学方法的集合体
+
+250
+00:11:35,113 --> 00:11:37,322
+These include variables like Epsilon
+(数学常量)其中包含Epsilon
+
+251
+00:11:37,322 --> 00:11:39,322
+Infinity and Pi,
+Infinity(无穷),Pi
+
+252
+00:11:39,322 --> 00:11:42,637
+and functions like Sine, Cosine, Tangent,
+函数包括Sine, Cosine, Tangent,
+
+253
+00:11:42,637 --> 00:11:45,531
+Square Root, Power, PingPong, Repeat,
+Square Root(开方), Power(次方), PingPong(参见文档), Repeat(参见文档),
+
+254
+00:11:45,531 --> 00:11:48,029
+and even Perlin Noise Generation.
+甚至还有柏林噪声生成器
+
+255
+00:11:48,709 --> 00:11:52,359
+What we are looking for is a function called Clamp.
+我们要找的函数是Clamp
+
+256
+00:11:54,586 --> 00:11:56,792
+Clamp will clamp any given value
+Clamp会把数据限制在
+
+257
+00:11:56,792 --> 00:11:59,218
+between a minimum and a maximum value.
+最大最小值之间
+
+258
+00:11:59,218 --> 00:12:01,218
+We will use this to clamp the position of
+我们用它来限制玩家飞船的位置
+
+259
+00:12:01,218 --> 00:12:04,028
+our player's ship in to our game area.
+让玩家飞船始终在游戏区域中
+
+260
+00:12:04,597 --> 00:12:07,321
+Returning to our script let's write
+切回我们的脚本，敲下代码
+
+261
+00:12:07,321 --> 00:12:15,598
+Clamp (rigibody.position.x, xMin, xMax)
+Clamp (rigibody.position.x, xMin, xMax)
+
+262
+00:12:15,598 --> 00:12:17,846
+and for Z let's write
+Z让我们这么写
+
+263
+00:12:17,846 --> 00:12:25,826
+Mathf.Clamp (rigidbody.position.z, xMin xMax)
+Mathf.Clamp (rigidbody.position.z, zMin zMax)(这里英文字幕又写错了)
+
+264
+00:12:26,519 --> 00:12:28,991
+This will effectively clamp our position
+这就会有效的限定我们玩家飞船的位置
+
+265
+00:12:28,991 --> 00:12:30,991
+between the values we set for our min
+让它在我们指定的X轴和Z轴
+
+266
+00:12:30,991 --> 00:12:34,147
+and our max on the X and Z axis.
+的区间运动
+
+267
+00:12:35,711 --> 00:12:39,493
+Now we need to declare our min and max values.
+现在我们需要声明一下min和max变量
+
+268
+00:12:39,493 --> 00:12:41,801
+At the top of our script write
+在脚本开头写下
+
+269
+00:12:41,801 --> 00:12:49,099
+public float xMin, xMax, ZMin, zMax
+public float xMin, xMax, zMin, zMax(英文字幕z要小写)
+
+270
+00:12:49,571 --> 00:12:52,390
+and using this format we can define
+我们用这个格式
+
+271
+00:12:52,390 --> 00:12:56,253
+all 4 float variables on 1 line of code.
+用一行代码完成4个浮点型的参数的声明
+
+272
+00:12:57,665 --> 00:13:00,387
+Save the script and return to Unity.
+保存脚本回到Unity
+
+273
+00:13:01,799 --> 00:13:03,799
+Let's look at our player controller component
+让我们看一下玩家对象的
+
+274
+00:13:03,799 --> 00:13:05,620
+on the player game object.
+player controller组件
+
+275
+00:13:05,872 --> 00:13:07,721
+We can see these new properties
+我们可以看到这些属性了
+
+276
+00:13:07,721 --> 00:13:09,721
+but to me they seem to take up a large
+但是在我看来这些属性占据了
+
+277
+00:13:09,721 --> 00:13:11,555
+amount of space in the Inspector.
+Inspector视图好大一块位置
+
+278
+00:13:12,097 --> 00:13:14,358
+Moreover, these properties can
+更过分的是,这些属性仅能在当前
+
+279
+00:13:14,358 --> 00:13:16,358
+only be used by this script.
+脚本中使用
+
+280
+00:13:16,927 --> 00:13:18,982
+There is a way that we can both clean up
+我们想让这些代码简洁一些
+
+281
+00:13:18,982 --> 00:13:21,522
+this code and make it reusable.
+并且可以复用
+
+282
+00:13:22,159 --> 00:13:23,855
+That is to put these in to a separate
+那就是把这些代码放到一个单独
+
+283
+00:13:23,855 --> 00:13:25,589
+class of their own.
+的类当中
+
+284
+00:13:26,424 --> 00:13:28,424
+Let's return to our script
+我们先退回到脚本编辑器
+
+285
+00:13:28,424 --> 00:13:30,922
+and let's move these in to their own class.
+我们为这些代码建立一个新的类
+
+286
+00:13:31,615 --> 00:13:35,042
+We start by defining a new class with
+先定义一个新的
+
+287
+00:13:35,042 --> 00:13:36,986
+public class
+公共类
+
+288
+00:13:36,986 --> 00:13:39,848
+and then we will name our class Boundary.
+这个类命名为Boundary
+
+289
+00:13:40,348 --> 00:13:43,332
+We will follow these with brackets to hold our code.
+我们用大括号把代码括起来
+
+290
+00:13:43,832 --> 00:13:45,832
+It's worth noting that this class
+需要注意的是
+
+291
+00:13:45,832 --> 00:13:47,832
+will not inherit from anything
+这个类与PlayerController不同
+
+292
+00:13:47,832 --> 00:13:50,485
+like our PlayerController class does.
+它不需要从父类继承
+
+293
+00:13:51,095 --> 00:13:55,443
+The : MonoBehaviour that comes after the class name
+写在类名字后面的: MonoBehaviour
+
+294
+00:13:55,443 --> 00:13:58,360
+in our PlayerController class indicates that
+告诉我们PlayerController这个类是继承了
+
+295
+00:13:58,360 --> 00:14:02,131
+this class is inheriting from MonoBehaviour.
+MonoBehaviour这个类
+
+296
+00:14:02,686 --> 00:14:04,686
+For more information on classes
+更多关于类的继承和
+
+297
+00:14:04,686 --> 00:14:07,140
+inheritance and monobehaviour
+monobehaviour类
+
+298
+00:14:07,140 --> 00:14:09,554
+please see the information linked below.
+的信息请参考下方连接
+
+299
+00:14:10,814 --> 00:14:14,167
+Next, let's move our variable definitions from
+下一步是把变量的定义从
+
+300
+00:14:14,167 --> 00:14:17,238
+PlayerController to Boundary.
+PlayerController类移动到Boundary类
+
+301
+00:14:18,898 --> 00:14:22,004
+So how do we use this new Boundary class?
+Boundary类该如何用呢?
+
+302
+00:14:22,711 --> 00:14:24,711
+First we need to make an instance of it
+首先在PlayerController类中
+
+303
+00:14:24,711 --> 00:14:26,711
+in our PlayerController.
+建立一个Boundary类的实例
+
+304
+00:14:26,711 --> 00:14:32,195
+So write public Boundary boundary;
+代码是Boundary boundary
+
+305
+00:14:32,195 --> 00:14:34,195
+and note the capitalisation.
+注意一下大小写
+
+306
+00:14:35,109 --> 00:14:37,442
+Boundary with a capital B is our type
+Boundary大写了首字母B
+
+307
+00:14:37,442 --> 00:14:39,635
+as defined by the class name.
+定义的是类名称
+
+308
+00:14:39,635 --> 00:14:41,635
+Boundary with a lowercase b is
+boundary小写了首字母b
+
+309
+00:14:41,635 --> 00:14:44,193
+the name for our reference in the same way
+是实例名称对应了那4个变量
+
+310
+00:14:44,193 --> 00:14:46,923
+that Speed is the name for our float variable.
+就像Speed的用法一样
+
+311
+00:14:48,183 --> 00:14:50,183
+Next we need to update our Clamp code
+然后，我们Clamp里面的代码也得更新一下
+
+312
+00:14:50,183 --> 00:14:52,937
+to reflect the changes that we have just made.
+因为我们改了前面的代码
+
+313
+00:14:52,937 --> 00:14:55,895
+xMin is now part of our Boundary class,
+xMin现在是Boundary类里面的一员了
+
+314
+00:14:55,895 --> 00:14:58,132
+which we access through the reference
+我们可以通过引用的实例来
+
+315
+00:14:58,132 --> 00:15:00,312
+that we made to our instance
+使用这个参数
+
+316
+00:15:00,312 --> 00:15:03,133
+by using Boundary.xMin.
+代码是Boundary.xMin
+
+317
+00:15:03,633 --> 00:15:06,297
+This is true for xMax, 
+同样的操作xMax
+
+318
+00:15:07,791 --> 00:15:09,234
+zMin,
+zMin,
+
+319
+00:15:09,775 --> 00:15:11,775
+and zMax as well.
+和zMax
+
+320
+00:15:12,537 --> 00:15:14,025
+Let's make our code neat and tidy
+我们对齐缩进一下
+
+321
+00:15:14,025 --> 00:15:16,025
+by aligning our indents.
+让代码看起来更整洁
+
+322
+00:15:16,525 --> 00:15:18,859
+Save the script, switch back to Unity
+保存一下代码,然后切换回Unity
+
+323
+00:15:18,859 --> 00:15:21,287
+and let's look at the updated component.
+让我们看一下组件的变化
+
+324
+00:15:23,099 --> 00:15:25,099
+Hmm, now we can't see our new updated
+嗯,刚更新的属性
+
+325
+00:15:25,099 --> 00:15:26,946
+properties at all.
+已经连看都看不到了
+
+326
+00:15:27,446 --> 00:15:29,006
+This is because the new class
+这是因为
+
+327
+00:15:29,006 --> 00:15:32,033
+that we have created is unknown to
+我们刚新建的类
+
+328
+00:15:32,033 --> 00:15:34,894
+and is therefore not serialised.
+系统并不知道它的存在因此没有序列化
+
+329
+00:15:35,670 --> 00:15:37,670
+Serialising is a way of storing 
+序列化是存储和传送
+
+330
+00:15:37,670 --> 00:15:39,808
+and transferring information
+信息的方法
+
+331
+00:15:39,808 --> 00:15:42,715
+Serialisation is a complicated issue.
+序列化是很复杂的
+
+332
+00:15:42,715 --> 00:15:45,322
+At this point, just understanding
+目前我们只需要知道
+
+333
+00:15:45,322 --> 00:15:47,599
+that Unity needs to have properties
+Unity的Inspector视图中的属性
+
+334
+00:15:47,599 --> 00:15:50,097
+serialised to view them in the Inspector
+是需要先被序列化后才能看到的
+
+335
+00:15:50,597 --> 00:15:53,029
+So let's switch back to our script.
+我们再回到脚本编辑
+
+336
+00:15:53,626 --> 00:15:56,491
+To serialise our new class we need to use
+要序列化我们的类我们需要代码
+
+337
+00:15:56,491 --> 00:15:59,075
+[system.serializable]
+[system.serializable]
+
+338
+00:15:59,075 --> 00:16:01,075
+in square brackets on the line before
+在类声明前一行使用这句方括号
+
+339
+00:16:01,075 --> 00:16:03,075
+we declare our class to make sure
+这样刚声明的类
+
+340
+00:16:03,075 --> 00:16:05,270
+that the class is serialised
+就是可以被序列化的
+
+341
+00:16:05,270 --> 00:16:07,842
+and therefore visible in the Inspector.
+这样Inspector视图中就可以见到它了
+
+342
+00:16:09,234 --> 00:16:12,009
+Save the script and return to Unity.
+保存脚本后切换回Unity
+
+343
+00:16:13,255 --> 00:16:16,023
+Now if we look back at our Player Controller
+现在我们再看眼Player Controller组件
+
+344
+00:16:16,023 --> 00:16:18,023
+we can see Boundary.
+我们可以看到Boundary属性了
+
+345
+00:16:18,023 --> 00:16:20,023
+Turn down the gizmo and we can now see our
+点左侧的小三角图标
+
+346
+00:16:20,023 --> 00:16:22,176
+properties in an easy to use
+这样属性就会展开
+
+347
+00:16:22,176 --> 00:16:24,176
+but very tidy container.
+这么做整体看起来既小又方便
+
+348
+00:16:24,676 --> 00:16:26,676
+We can also use this class in
+而且这个类也可以在
+
+349
+00:16:26,676 --> 00:16:28,396
+other places in our game.
+游戏的其他地方使用
+
+350
+00:16:28,910 --> 00:16:31,694
+Now that we have our properties available to us
+现在属性已经有了
+
+351
+00:16:31,694 --> 00:16:33,347
+let's set their values.
+我们给他们赋值吧
+
+352
+00:16:33,945 --> 00:16:36,843
+Make sure that we have the player ship selected.
+首先确定玩家飞船已经选定
+
+353
+00:16:36,843 --> 00:16:38,691
+So what values do we need to set
+xMin 和 xMax 该设定
+
+354
+00:16:38,691 --> 00:16:40,691
+for xMin and xMax?
+什么值呢?
+
+355
+00:16:41,191 --> 00:16:43,915
+Simply drag the ship to the edge of the game area
+把飞船拖到游戏区域的边界上看看
+
+356
+00:16:43,915 --> 00:16:46,855
+and note the values on the X axis.
+注意一下X轴的值
+
+357
+00:16:46,855 --> 00:16:51,030
+These seem to be about -6 and 6.
+差不多是-6 到 6
+
+358
+00:16:51,502 --> 00:16:53,723
+So let's set these values to a good round
+我们把这个值设定为
+
+359
+00:16:53,723 --> 00:16:55,723
+-6 and 6.
+-6 到 6
+
+360
+00:16:58,750 --> 00:17:01,234
+Doing the same thing along the Z axis,
+Z轴也这么做
+
+361
+00:17:01,234 --> 00:17:04,326
+that's about -4 along the bottom
+底部是-4
+
+362
+00:17:04,826 --> 00:17:07,143
+but along the top edge we don't really
+对于顶部来说
+
+363
+00:17:07,143 --> 00:17:08,768
+want to give our player access to the
+我们并不想让玩家达到屏幕的
+
+364
+00:17:08,768 --> 00:17:10,768
+entire upper game area.
+最顶端
+
+365
+00:17:10,768 --> 00:17:13,257
+We will need to give the hazards in our game
+我们需要给我们的小行星碎片留出
+
+366
+00:17:13,257 --> 00:17:16,363
+some room to be able to enter the game area.
+一定空间来进入游戏场景
+
+367
+00:17:16,363 --> 00:17:18,363
+So let's back off a little bit
+所以让我们把飞船后退一点
+
+368
+00:17:18,363 --> 00:17:21,460
+say about 7 or 8.
+差不多7或者8的样子
+
+369
+00:17:22,872 --> 00:17:27,606
+Let's make zMin and zMax -4 and 8.
+让我们设定zMin 为-4 然后 zMax 为8
+
+370
+00:17:28,106 --> 00:17:30,106
+This will give us a square playable area
+这下飞船的移动空间是一个
+
+371
+00:17:30,106 --> 00:17:32,603
+in our game and reserve
+方形空间
+
+372
+00:17:32,603 --> 00:17:34,982
+a little room for hazards at the top.
+顶端给小行星预留了位置
+
+373
+00:17:36,117 --> 00:17:38,821
+Now let's reset the player's transform
+我们把玩家飞船的变形组件重置一下
+
+374
+00:17:38,821 --> 00:17:40,419
+and let's test.
+然后测试一下效果
+
+375
+00:17:41,045 --> 00:17:43,045
+Enter Play mode,
+运行游戏
+
+376
+00:17:44,180 --> 00:17:45,833
+and we can see that we are now clamped
+现在我们的运动区域限定在
+
+377
+00:17:45,833 --> 00:17:47,833
+inside the game area.
+游戏区域内了
+
+378
+00:17:51,979 --> 00:17:53,606
+Exit Play mode.
+退出运行模式
+
+379
+00:17:53,606 --> 00:17:55,454
+Now we are essentially done with our 
+现在我们玩家对象算是处理完毕了
+
+380
+00:17:55,454 --> 00:17:57,817
+player game object, but I think it's worth
+不过让我们在进行下一步之前
+
+381
+00:17:57,817 --> 00:18:00,888
+adding 1 bit of fun to it before we move on.
+再加点好玩的东西
+
+382
+00:18:01,319 --> 00:18:03,738
+Let's add some bank, or tilt to the
+让我们把飞船沿X轴飞行时
+
+383
+00:18:03,738 --> 00:18:06,030
+player ship when we move from side
+增加以一下飞船
+
+384
+00:18:06,030 --> 00:18:08,030
+to side along the X axis.
+的倾斜
+
+385
+00:18:08,972 --> 00:18:11,483
+Switch to our script and let's create
+先切回脚本编辑模式
+
+386
+00:18:11,483 --> 00:18:14,599
+a new variable to hold our tilt value.
+建一个新的参数用来保存倾斜的数据
+
+387
+00:18:16,466 --> 00:18:18,797
+Next, after the code we have written
+然后在我们写的代码的后面
+
+388
+00:18:18,797 --> 00:18:21,810
+but still in FixedUpdate write
+仍然在FixedUpdate里面
+
+389
+00:18:21,810 --> 00:18:26,805
+rigidbody.rotation = Quaternion.Euler.
+写代码rigidbody.rotation = Quaternion.Euler
+
+390
+00:18:27,236 --> 00:18:29,236
+And yes, it is pronounced oiler,
+是的这个东西发音是oiler
+
+391
+00:18:30,026 --> 00:18:33,547
+which is also an X, Y and Z value.
+这个也包含了X, Y 和 Z的值
+
+392
+00:18:35,152 --> 00:18:37,152
+For more information on Quaternions and
+更多关于Quaternions和Quaternion.Euler
+
+393
+00:18:37,152 --> 00:18:39,733
+Quaternion.Euler see the links below.
+的详细信息请参考下方连接
+
+394
+00:18:41,352 --> 00:18:43,352
+We only want to tilt, or bank,
+我们只需要沿Z方向
+
+395
+00:18:43,352 --> 00:18:45,352
+along the Z axis
+倾斜飞行
+
+396
+00:18:45,352 --> 00:18:48,540
+so X and Y are set to 0.
+所以X和Y值设定成0
+
+397
+00:18:49,233 --> 00:18:50,815
+And Z?
+Z方向怎么设定呢?
+
+398
+00:18:50,815 --> 00:18:52,815
+We want the tilt along the Z axis to
+Z方向倾斜的情况应该取决于
+
+399
+00:18:52,815 --> 00:18:54,815
+be related to how fast we are moving
+我们左右移动的速度
+
+400
+00:18:54,815 --> 00:18:58,136
+left to right, so our rotation on the Z axis
+所以Z应该等于
+
+401
+00:18:58,136 --> 00:19:04,498
+is equal to our rigidbody.velocity X
+rigidbody.velocity中的X
+
+402
+00:19:05,163 --> 00:19:07,749
+which is our velocity from left to right
+这个值是我们左右移动的速度
+
+403
+00:19:07,749 --> 00:19:10,948
+multiplied by our tilt factor.
+然后乘我们的tilt参数
+
+404
+00:19:10,948 --> 00:19:13,859
+So we can control the maximum amount of bank.
+这样我们可以控制最大的倾斜角度
+
+405
+00:19:14,356 --> 00:19:17,223
+The only correction we need to make this code is
+这里唯一需要我们改的地方时
+
+406
+00:19:17,223 --> 00:19:20,267
+to multiply by negative tilt.
+乘负的tilt
+
+407
+00:19:20,267 --> 00:19:22,267
+Otherwise our ship will tilt in the opposite
+否则我们fe1飞船倾斜的方向
+
+408
+00:19:22,267 --> 00:19:24,267
+direction to what we want.
+会与我们预计的方向相反
+
+409
+00:19:25,112 --> 00:19:27,708
+Save the script and return to Unity
+保存脚本回到Unity
+
+410
+00:19:28,816 --> 00:19:30,816
+and let's set the tilt value.
+让我们设定以下tilt的值
+
+411
+00:19:31,606 --> 00:19:33,606
+Let's try 3.
+先试一下3
+
+412
+00:19:37,310 --> 00:19:39,310
+If we feel it needs to tilt more
+如果我们需要更大角度的倾斜
+
+413
+00:19:39,310 --> 00:19:41,310
+we can simply adjust the tilt property
+简单增大以下下这个
+
+414
+00:19:41,310 --> 00:19:43,199
+with a higher value.
+参数就好了
+
+415
+00:19:43,199 --> 00:19:45,199
+Let's try 4.
+试下4
+
+416
+00:19:49,801 --> 00:19:51,345
+4 feels good.
+4更好点
+
+417
+00:19:51,749 --> 00:19:54,644
+Incidentally, when the ship is banked over
+顺便提一句,当船倾斜得时候
+
+418
+00:19:54,644 --> 00:19:56,644
+it picks up a good combination
+补光和边远光在右侧的组合
+
+419
+00:19:56,644 --> 00:19:59,349
+of our fill and rim lights on the left side.
+看起来很不错
+
+420
+00:20:02,528 --> 00:20:05,756
+That completes the code for moving our player ship.
+现在我们玩家飞船的代码写完了
+
+421
+00:20:05,756 --> 00:20:07,756
+In the next assignment we will continue with
+下一个目标是编辑出
+
+422
+00:20:07,756 --> 00:20:09,922
+our game play by creating shots
+让我们的玩家飞船可以
+
+423
+00:20:09,922 --> 00:20:11,922
+for our player to shoot.
+发射子弹

@@ -1,0 +1,994 @@
+1
+00:00:01,250 --> 00:00:03,480
+Now that our project is setup and ready
+现在我们的项目已经配置好了
+
+2
+00:00:03,480 --> 00:00:05,480
+to go let's setup the player game object.
+下面我们来配置玩家对象
+
+3
+00:00:06,956 --> 00:00:09,380
+First I'm going to make sure that I'm in the Scene view
+首先确认自己在Scene视图
+
+4
+00:00:09,380 --> 00:00:12,086
+for the best view of the scene we are working with.
+这个视图可以给让我们在场景中更好地工作
+
+5
+00:00:12,086 --> 00:00:15,432
+Next I'm going to add the player's ship model.
+然后我将添加玩家的太空船模型
+
+6
+00:00:15,432 --> 00:00:17,765
+We can find the player ship in the Assets
+船的模型在Assets文件夹
+
+7
+00:00:17,765 --> 00:00:20,566
+folder in the Models directory.
+的Models目录下
+
+8
+00:00:21,845 --> 00:00:24,450
+Drag the vehicle_playerShip
+将vehicle_playerShip
+
+9
+00:00:24,450 --> 00:00:27,185
+from the Models directory in to the Hierarchy view.
+从Models目录拖拽到Hierarchy视窗
+
+10
+00:00:28,902 --> 00:00:30,902
+We can also drag this model directly in to the
+我们也可以把这个模型直接
+
+11
+00:00:30,902 --> 00:00:32,718
+Scene view if we choose to.
+拖拽到Scene视图中
+
+12
+00:00:32,718 --> 00:00:34,718
+Either way is correct.
+以上两种方法都可以
+
+13
+00:00:35,458 --> 00:00:38,290
+Let's get a better view of the model in our scene.
+让我把模型看的更清楚一点
+
+14
+00:00:38,290 --> 00:00:40,612
+To do this we want to focus, or frame the
+我们想让Scene视图的相机
+
+15
+00:00:40,612 --> 00:00:43,805
+selected game object with the Scene view camera.
+聚焦于游戏中的某个对象,或者让该对象占满整个Scene视图
+
+16
+00:00:43,805 --> 00:00:48,118
+We can do this by either choosing Edit - Frame Selected
+我们可以点击Edit -> Frame Selected
+
+17
+00:00:48,643 --> 00:00:50,560
+or by using the hot-key F
+或者使用热键F
+
+18
+00:00:50,560 --> 00:00:52,560
+while the pointer is in the Scene view.
+如果指针在Scene视图中的时候
+
+19
+00:00:53,099 --> 00:00:55,782
+Double clicking on the game object in the Hierarchy view
+我们也可以通过双击Hierarchy(层级)视图中的对象
+
+20
+00:00:55,782 --> 00:00:58,217
+will also focus the Scene view camera.
+达到聚焦于某个游戏对象的目的.
+
+21
+00:00:59,862 --> 00:01:01,917
+There's our player ship.
+这就是我们的玩家船只
+
+22
+00:01:01,917 --> 00:01:03,917
+Now that she's in the scene, let's rename her
+我们来将场景中的玩家船只重命名
+
+23
+00:01:03,917 --> 00:01:07,559
+in the Hierarchy. Click on the game object in the hierarchy and
+单击Hierarchy视图中的游戏对象
+
+24
+00:01:07,559 --> 00:01:10,981
+type either the Return or Enter key to enable editing.
+然后敲击退格或者回车键编辑游戏对象的名称
+
+25
+00:01:11,706 --> 00:01:13,605
+We can also click on the game object
+我们也可以通过缓慢单击这个对象
+
+26
+00:01:13,605 --> 00:01:16,465
+twice, slowly, to enable editing as well.
+两次来启动对这个对象名称的编辑
+
+27
+00:01:17,541 --> 00:01:19,541
+Name the game object Player
+把这个游戏对象命名为Player(玩家)
+
+28
+00:01:20,605 --> 00:01:23,836
+and then hit Enter or Return to confirm that change.
+然后我们再敲击回车键确认名称
+
+29
+00:01:24,947 --> 00:01:27,296
+We want our player ship to be at origin.
+我们希望玩家船只在原点
+
+30
+00:01:27,772 --> 00:01:31,133
+Origin is the centre of our 3 dimensional scene
+原点时我们三维视图的中心
+
+31
+00:01:31,133 --> 00:01:35,060
+where the X, Y and Z coordinates are (0, 0, 0).
+X, Y and Z 坐标是 (0, 0, 0)
+
+32
+00:01:35,748 --> 00:01:38,245
+Let's use the context sensitive gear menu
+我们在Transform(变形) 插件
+
+33
+00:01:38,245 --> 00:01:40,777
+in the upper right of the Transform component
+右上角的齿轮下拉菜单中
+
+34
+00:01:40,777 --> 00:01:42,416
+and select Reset.
+选择Reset
+
+35
+00:01:42,901 --> 00:01:44,901
+This will reset the transform's position,
+这个操作会将变换的位置,
+
+36
+00:01:44,901 --> 00:01:46,901
+rotation and scale.
+旋转和缩放的信息重置
+
+37
+00:01:47,632 --> 00:01:49,430
+Now we have guaranteed that the model is
+现在我们可以保证模型
+
+38
+00:01:49,430 --> 00:01:51,430
+placed perfectly at origin.
+已经完美的放在原点了
+
+39
+00:01:52,713 --> 00:01:55,314
+We want this ship to fly around, fight enemies
+我们希望敌我双方的飞船都可以飞
+
+40
+00:01:55,314 --> 00:01:57,656
+yet be vulnerable enough that we can be destroyed
+我们可以驾驶玩家飞船轻松击落
+
+41
+00:01:57,656 --> 00:01:59,656
+if we're not careful as we pilot our ship.
+敌方飞船
+
+42
+00:02:00,252 --> 00:02:02,547
+We currently have nothing more than a mesh model
+我们现在仅仅只有一个
+
+43
+00:02:02,547 --> 00:02:04,777
+that represents the player in our scene.
+在场景中展示玩家飞船的模型
+
+44
+00:02:05,931 --> 00:02:07,931
+The game object that holds our ship
+飞船这个对象
+
+45
+00:02:07,931 --> 00:02:09,931
+has a number of components that define
+由很多组件定义而成
+
+46
+00:02:09,931 --> 00:02:12,803
+what our ship is and where it is in the game.
+例如飞船是什么样子,在游戏中的什么位置
+
+47
+00:02:13,543 --> 00:02:15,846
+The game object uses a mesh filter
+游戏的对象使用网格过滤器组件
+
+48
+00:02:15,846 --> 00:02:17,551
+to hold our mesh model
+保存我们的模型
+
+49
+00:02:17,551 --> 00:02:19,293
+and a mesh renderer to render the ship
+使用网格渲染组件在场景中
+
+50
+00:02:19,293 --> 00:02:20,620
+in our scene.
+渲染飞船
+
+51
+00:02:21,399 --> 00:02:23,731
+The renderer references 2 materials,
+渲染组件引用了2个材质
+
+52
+00:02:23,731 --> 00:02:26,378
+shown here at the bottom for our convenience.
+他们都在渲染组件的下方,便于我们查看
+
+53
+00:02:27,507 --> 00:02:29,507
+The game object uses the information in
+游戏对象在
+
+54
+00:02:29,507 --> 00:02:31,387
+the transform component to know where the
+变形插件负责记录模型的位置
+
+55
+00:02:31,387 --> 00:02:34,546
+model is in the game, what direction it is facing
+模型的方向
+
+56
+00:02:34,546 --> 00:02:36,967
+and what scale it currently is.
+模型的缩放信息
+
+57
+00:02:38,430 --> 00:02:40,430
+To set up our player game object we will
+现在我们来设置我们自己的游戏对象
+
+58
+00:02:40,430 --> 00:02:42,430
+be adding more components that perform
+我们需要在此基础上增加更多的组建
+
+59
+00:02:42,430 --> 00:02:44,957
+specialised functions, and we will be creating
+自定义功能，使用简单的脚本
+
+60
+00:02:44,957 --> 00:02:47,509
+our own components using simple scripting.
+来增加我们自定义组件
+
+61
+00:02:48,790 --> 00:02:51,295
+We will be moving our ship using physics,
+我们将在飞船的移动中应用物理法则(这里指移动中的倾斜)
+
+62
+00:02:51,295 --> 00:02:53,295
+though with an arcade style
+街机风格中也是这样应用的
+
+63
+00:02:53,295 --> 00:02:55,295
+and we need physics to detect our collisions
+同时我们也需要检测场景中
+
+64
+00:02:55,295 --> 00:02:57,187
+between the player and other game objects
+玩家和其他对象之间的
+
+65
+00:02:57,187 --> 00:02:58,714
+in the scene.
+物理碰撞
+
+66
+00:02:58,714 --> 00:03:02,926
+To use physics we need to add a rigid body component.
+我们需要增加刚体组件来使用物理法则
+
+67
+00:03:04,222 --> 00:03:06,222
+I'm going to quickly reduce the view of these
+先点击标题栏
+
+68
+00:03:06,222 --> 00:03:08,222
+referenced materials by clicking on
+将材质栏信息简化
+
+69
+00:03:08,222 --> 00:03:10,222
+the header bars so that it's easier to
+这样我们不使用滚动条也能轻松找到
+
+70
+00:03:10,222 --> 00:03:12,222
+see and access the Add Component
+Add Component
+
+71
+00:03:12,222 --> 00:03:14,094
+button without scrolling.
+按键
+
+72
+00:03:14,758 --> 00:03:17,459
+Now let's click on Add Component
+现在点击 Add Component
+
+73
+00:03:17,459 --> 00:03:21,921
+and select Physics - Rigid Body.
+选择Physics -> Rigid Body
+
+74
+00:03:23,837 --> 00:03:25,837
+This attaches a rigid body component
+为当前游戏对象
+
+75
+00:03:25,837 --> 00:03:28,020
+to our game object.
+增加一个刚体组件
+
+76
+00:03:28,020 --> 00:03:30,020
+By default the rigid body assumes
+刚体默认我们
+
+77
+00:03:30,020 --> 00:03:33,475
+we want to use gravity, and well, we're in space
+使用重力，但是这是在太空，
+
+78
+00:03:33,475 --> 00:03:35,475
+and we don't want to fall out of the game
+我可不想让掉到游戏外面去
+
+79
+00:03:35,475 --> 00:03:38,511
+so let's deselect Use Gravity.
+所以让我们把Use Gravity的前面的钩选去掉
+
+80
+00:03:39,375 --> 00:03:41,375
+With the rigid body attached our game object
+我们的游戏对象已经增加了刚体组件
+
+81
+00:03:41,375 --> 00:03:43,897
+now uses the built in physics engine.
+现在我们可以使用内置的物理引擎了
+
+82
+00:03:43,897 --> 00:03:46,361
+To detect collisions the physics engine
+为了使用物理引擎检测
+
+83
+00:03:46,361 --> 00:03:48,232
+through the rigid body, needs to know the
+刚体对象的碰撞
+
+84
+00:03:48,232 --> 00:03:50,232
+volume of our objects.
+我们需要知道对象的大小
+
+85
+00:03:50,232 --> 00:03:52,232
+We need to know how much space these objects
+我们需要知道这个对象在空间中所占的体积
+
+86
+00:03:52,232 --> 00:03:55,523
+take up in our game to calculate the collisions.
+来计算游戏中发生的碰撞
+
+87
+00:03:55,523 --> 00:03:57,523
+We give this information to the rigid body by
+我们使用一个笼子包住我们的游戏对象
+
+88
+00:03:57,523 --> 00:04:01,096
+using a cage that we wrap around our game objects.
+把这个笼子的信息作为刚体信息的一部分
+
+89
+00:04:01,096 --> 00:04:04,236
+This cage defines the volume of that object.
+这个笼子定义了物体的大小
+
+90
+00:04:04,236 --> 00:04:06,774
+The cage is called a Collider.
+这个笼子叫做Collider(碰撞检测机)
+
+91
+00:04:06,774 --> 00:04:09,548
+Let's use the Add Component button again.
+让我们再用一次Add Component按钮
+
+92
+00:04:09,548 --> 00:04:14,691
+This time select Physics - Capsule Collider.
+这次我们选择 Physics -> Capsule Collider(胶囊碰撞检测机)
+
+93
+00:04:15,907 --> 00:04:19,552
+This puts a simple cage around our player game object.
+这会将我们的玩家对象套上个简单的笼子
+
+94
+00:04:19,552 --> 00:04:21,944
+This looks like a sphere but that's because
+它看起来像个球,没错
+
+95
+00:04:21,944 --> 00:04:24,623
+a capsule collider is defined by 2 spheres
+因为胶囊形状的碰撞检测机是由2个球体
+
+96
+00:04:24,623 --> 00:04:26,623
+and the space in between them,
+和球体之间的空间一起定义的
+
+97
+00:04:26,623 --> 00:04:30,117
+and we are seeing both spheres in the same place.
+现在的情况是两个球面重合在了一起
+
+98
+00:04:30,117 --> 00:04:33,376
+Let's change the capsule collider's size.
+现在改变下胶囊碰撞检测机的形状
+
+99
+00:04:33,376 --> 00:04:36,362
+The default orientation for a capsule collider
+默认的胶囊碰撞检测机的方向是
+
+100
+00:04:36,362 --> 00:04:39,317
+is up and down or along the Y axis.
+沿Y轴上下方向上的
+
+101
+00:04:39,317 --> 00:04:41,844
+This is to fit a humanoid object.
+这是为了适应类似人形的对象
+
+102
+00:04:41,844 --> 00:04:44,594
+Our ship is longest along the Z axis
+我们的飞船在Z的方向上最长
+
+103
+00:04:44,594 --> 00:04:47,881
+so let's change the direction to Z
+所以我们将碰撞检测机的方向调整为沿Z轴
+
+104
+00:04:47,881 --> 00:04:50,984
+and reduce the radius and increase the height.
+然后减小半径并增加长度
+
+105
+00:04:52,952 --> 00:04:55,987
+For a better view let's change our orientation.
+为了看的更清楚,我们改变下视角方向
+
+106
+00:04:55,987 --> 00:04:58,328
+For a top-down view let's click on the
+我们想自上而下的看
+
+107
+00:04:58,328 --> 00:05:02,317
+Scene view gizmo and click on the Y arm.
+我们点击Scene视图右上角的小图标上的Y
+
+108
+00:05:03,163 --> 00:05:06,448
+In this view it's easier to fine tune the shape.
+这个视角让我们更容易调整好形状
+
+109
+00:05:06,448 --> 00:05:08,517
+We simply need to choose the values
+我们只需要选择碰撞检测机
+
+110
+00:05:08,517 --> 00:05:11,046
+for radius and height that comfortably fit
+的长度和半径使其刚好
+
+111
+00:05:11,046 --> 00:05:13,046
+the collider to our model.
+套住我们的模型
+
+112
+00:05:14,497 --> 00:05:16,820
+Now for the purposes of this game,
+对于当前这个游戏而言
+
+113
+00:05:16,820 --> 00:05:20,946
+which is fairly simple, the capsule collider is sufficient.
+简单的胶囊碰撞检测机已经足够用了
+
+114
+00:05:20,946 --> 00:05:23,808
+There are other alternatives however.
+当然还有很多种其它的碰撞检测机
+
+115
+00:05:23,808 --> 00:05:26,339
+Let's click on the Add Component button again
+让我们再点击一次Add Component按钮.
+
+116
+00:05:26,339 --> 00:05:28,339
+and select Physics.
+选择Physics
+
+117
+00:05:28,887 --> 00:05:32,524
+There is the Box Collider and Sphere Collider as well.
+这里有Box Collider(盒子形状碰撞检测机)和Sphere Collider(球形碰撞检测机)
+
+118
+00:05:32,524 --> 00:05:34,524
+The box collider and sphere colliders are
+上述两种碰撞检测机
+
+119
+00:05:34,524 --> 00:05:36,524
+2 other primitive colliders like the
+与胶囊形碰撞检测机一样都是
+
+120
+00:05:36,524 --> 00:05:39,338
+capsule collider, but there is a more complex
+最简单的原始碰撞检测机,还有一种复杂的碰撞检测机
+
+121
+00:05:39,338 --> 00:05:41,838
+collider called a Mesh Collider
+叫做Mesh Collider(网格碰撞检测机)
+
+122
+00:05:41,838 --> 00:05:45,001
+where we can supply the collision mesh ourselves.
+我们可以自己提供碰撞网格模型
+
+123
+00:05:45,641 --> 00:05:48,303
+For more information see the documentation
+更多信息请参阅碰撞检测机相关
+
+124
+00:05:48,303 --> 00:05:50,046
+on colliders and the lesson on
+文档或者参阅下方连接的
+
+125
+00:05:50,046 --> 00:05:52,285
+colliders linked below.
+碰撞检测机课程
+
+126
+00:05:52,285 --> 00:05:54,887
+At this point I think it's important to note
+必须强调
+
+127
+00:05:54,887 --> 00:05:56,887
+that the primitive colliders, the box,
+盒形,球形,胶囊形这些原始碰撞检测机的效率
+
+128
+00:05:56,887 --> 00:05:59,665
+sphere and capsule are far more performant
+要远比网格碰撞检测机高
+
+129
+00:05:59,665 --> 00:06:01,316
+and should be used whenever possible
+因此，如果可能，请尽量使用
+
+130
+00:06:01,316 --> 00:06:03,150
+over the mesh collider.
+简单的碰撞检测机
+
+131
+00:06:03,150 --> 00:06:05,150
+For more information please see the
+更详细信息
+
+132
+00:06:05,150 --> 00:06:06,929
+Compound Colliders section of the
+请参阅Rigid Body文档的
+
+133
+00:06:06,929 --> 00:06:09,739
+Rigid Body documentation linked below.
+Compound Colliders章节
+
+134
+00:06:10,315 --> 00:06:12,315
+If however we have a more complex shape that
+如果形状复杂
+
+135
+00:06:12,315 --> 00:06:15,276
+can't be accommodated by any of the primitive colliders
+所有的原始碰撞检测机都不适用
+
+136
+00:06:15,276 --> 00:06:17,276
+and for some reason doesn't work by using
+复合碰撞检测机也不能很好工作
+
+137
+00:06:17,276 --> 00:06:21,310
+a compound collider we can select Mesh Collider.
+这时我们才会使用网格碰撞检测机
+
+138
+00:06:21,310 --> 00:06:23,719
+Let's look at the mesh collider in action.
+我们来动手建立个网格碰撞检测机
+
+139
+00:06:23,719 --> 00:06:26,472
+Select Mesh Collider and yes,
+选择Mesh Collider和Replace 
+
+140
+00:06:26,472 --> 00:06:28,472
+replace the existing component.
+替换当前存在的组件
+
+141
+00:06:29,416 --> 00:06:31,416
+This will remove the capsule collider and
+胶囊碰撞检测机将会被
+
+142
+00:06:31,416 --> 00:06:33,416
+use the mesh collider instead.
+网格碰撞检测机取代
+
+143
+00:06:33,972 --> 00:06:35,972
+To have a better look at the mesh collider
+为了更清楚地查看网格碰撞检测机
+
+144
+00:06:35,972 --> 00:06:38,136
+let's turn off the mesh renderer.
+我们先关闭网格渲染
+
+145
+00:06:38,136 --> 00:06:40,821
+This reveals the green lines of the mesh collider
+我们可以看到本来被网格渲染隐藏了的
+
+146
+00:06:40,821 --> 00:06:43,730
+that were hidden underneath the rendered mesh.
+网格碰撞检测机的绿线
+
+147
+00:06:44,442 --> 00:06:47,109
+We can see how complex this cage is.
+这个图形非常复杂
+
+148
+00:06:47,109 --> 00:06:49,109
+Unity must check the position of each
+Unity在做碰撞检测
+
+149
+00:06:49,109 --> 00:06:51,109
+triangle in the cage relative to
+的时候会计算这个图形上面的
+
+150
+00:06:51,109 --> 00:06:53,109
+the other colliders in the scene
+每一个三角形是否与
+
+151
+00:06:53,109 --> 00:06:55,109
+to properly detect a collision.
+其它对象发生碰撞
+
+152
+00:06:55,510 --> 00:06:57,510
+If for whatever reason we use a mesh collider
+如果我们选择使用网格碰撞检测机
+
+153
+00:06:57,510 --> 00:06:59,510
+rather than a primitive collider
+而非使用简单的原始碰撞检测机
+
+154
+00:06:59,510 --> 00:07:02,053
+it is best that we use a simplified mesh.
+最好先将网格碰撞检测机简化
+
+155
+00:07:02,716 --> 00:07:04,716
+The mesh collider holds a reference to the
+在网格碰撞检测机插件中
+
+156
+00:07:04,716 --> 00:07:06,716
+mesh it's using in the Mesh slot
+有个Mesh栏引用了当前对象的
+
+157
+00:07:06,716 --> 00:07:08,716
+on the component.
+网格模型
+
+158
+00:07:09,939 --> 00:07:11,939
+By default Unity will use the mesh
+默认情况下Unity会在网格碰撞检测机中
+
+159
+00:07:11,939 --> 00:07:14,750
+in the mesh filter if one is present.
+使用网格过滤器组建中存在的网格模型
+
+160
+00:07:16,405 --> 00:07:18,405
+We can simply swap this out with a new
+我们找一个简化了的网格模型
+
+161
+00:07:18,405 --> 00:07:20,405
+simplified mesh of our choice.
+来替换一下
+
+162
+00:07:21,249 --> 00:07:24,933
+We have supplied a simplified mesh in the Models directory.
+我们已经在Models目录下准备好了一个简化后的网格模型
+
+163
+00:07:24,933 --> 00:07:28,455
+Open the Model file and select the Mesh asset.
+打开Model文件夹选择这个网格模型
+
+164
+00:07:28,455 --> 00:07:30,820
+Drag the Mesh asset in to the Mesh slot
+将模型拖到网格碰撞检测机的
+
+165
+00:07:30,820 --> 00:07:32,958
+on the mesh collider.
+Mesh栏
+
+166
+00:07:32,958 --> 00:07:34,958
+Now we can see the substantially simplified
+我们看到,网格碰撞检测机的模型
+
+167
+00:07:34,958 --> 00:07:36,958
+mesh being used as the collider.
+已经被简化了
+
+168
+00:07:37,663 --> 00:07:40,111
+Let's turn the mesh renderer back on.
+我们把网格渲染再打开
+
+169
+00:07:40,732 --> 00:07:42,732
+For the purposes of this game we could use a
+本游戏使用胶囊碰撞机已经足够了
+
+170
+00:07:42,732 --> 00:07:44,732
+capsule collider, but this game will be
+但这个游戏很简单
+
+171
+00:07:44,732 --> 00:07:47,149
+simple enough to absorb the larger cost
+所以即使使用了网格碰撞检测机
+
+172
+00:07:47,149 --> 00:07:50,218
+of the mesh collider, so let's leave it as it is.
+而过多消耗的资源对游戏的影响也不大,我们先留着网格碰撞检测机继续使用
+
+173
+00:07:50,972 --> 00:07:52,972
+Now that we have a working collider,
+现在我们已经有了碰撞检测机
+
+174
+00:07:52,972 --> 00:07:54,972
+we need to adjust the collider's settings.
+我们需要对它作些设定
+
+175
+00:07:55,556 --> 00:07:57,556
+For this game we don't need to
+对当前这个游戏来说
+
+176
+00:07:57,556 --> 00:08:00,333
+or want to detect full physics collisions.
+我们不需要检测完整的物理碰撞
+
+177
+00:08:00,333 --> 00:08:03,485
+We simply need our collisions to trigger an action.
+碰撞对我们来说只不过是一个触发器
+
+178
+00:08:03,485 --> 00:08:05,485
+So select Is Trigger,
+所以钩选Is Trigger(对于Unity5 而言Convex 也必须钩选)
+
+179
+00:08:05,485 --> 00:08:07,961
+making this a Trigger Collider.
+这样我们的对象就是一个碰撞触发器
+
+180
+00:08:09,465 --> 00:08:12,375
+Lastly, let's add a little sizzle to our ship.
+最后给我们飞船加点喷射效果
+
+181
+00:08:12,375 --> 00:08:17,348
+In Prefabs - VFX - Engines
+在Prefabs - VFX - Engines
+
+182
+00:08:17,348 --> 00:08:19,941
+there is an engines_player prefab.
+有个engines_player 预制件
+
+183
+00:08:19,941 --> 00:08:21,941
+Let's add this to the player ship.
+把它加到玩家飞船上
+
+184
+00:08:21,941 --> 00:08:23,941
+Drag the prefab on to the player ship
+将预制件拖到Hierarchy视图中的
+
+185
+00:08:23,941 --> 00:08:25,941
+in the Hierarchy to add it as a 
+玩家飞船上
+
+186
+00:08:25,941 --> 00:08:27,811
+child game object.
+让它成为一个子对象
+
+187
+00:08:27,811 --> 00:08:31,508
+The Engines prefab consists of 2 particle systems.
+这个引擎喷射的预制件有2个部分
+
+188
+00:08:31,508 --> 00:08:33,508
+Now they look funny in the Scene view,
+现在在场景视图中看起来有点滑稽
+
+189
+00:08:33,508 --> 00:08:35,508
+as the particles are billboarding
+因为无论从哪个角度看引擎喷射总是
+
+190
+00:08:35,508 --> 00:08:38,307
+or facing to the camera at all times.
+一直竖直的对着相机
+
+191
+00:08:38,307 --> 00:08:40,307
+If however we are in top-down mode
+当我们从上往下看的时候
+
+192
+00:08:40,307 --> 00:08:43,312
+like our game will be they look just fine.
+这个引擎喷射的位置似乎刚刚好
+
+193
+00:08:43,774 --> 00:08:45,774
+If the gizmos in the scene are too large
+如果我们觉得这个白色的小齿轮图标太大了
+
+194
+00:08:45,774 --> 00:08:47,774
+we can reduce them by selecting the gizmos
+我们可以通过点选场景视图工具栏里面的gizmos
+
+195
+00:08:47,774 --> 00:08:50,251
+button in the Scene view toolbar
+中的滑动栏
+
+196
+00:08:50,251 --> 00:08:52,251
+and adjusting the slider.
+将它缩小
+
+197
+00:08:52,842 --> 00:08:54,842
+Now our player ship is setup.
+我们的玩家飞船也已经设定好了
+
+198
+00:08:55,467 --> 00:08:57,171
+In the next assignment we will setup the
+下一个任务是设置
+
+199
+00:08:57,171 --> 00:08:59,171
+camera and the lights.
+相机位置和光

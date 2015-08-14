@@ -1,0 +1,719 @@
+1
+00:00:01,699 --> 00:00:03,338
+So we have created shots,
+我们制作好了子弹
+
+2
+00:00:03,338 --> 00:00:05,199
+and we can now shoot them.
+并且子弹可以发射出去
+
+3
+00:00:05,617 --> 00:00:07,617
+But we have a problem.
+但是这里存在一个问题
+
+4
+00:00:07,617 --> 00:00:10,728
+Our shots are simply accumulating in the scene
+我们飞向Z轴无穷远处的子弹
+
+5
+00:00:10,728 --> 00:00:13,957
+flying off towards infinity on the Z axis.
+将会逐渐积累起来
+
+6
+00:00:13,957 --> 00:00:15,957
+Even though each shot only requires a
+虽然每发子弹所需要的系统资源
+
+7
+00:00:15,957 --> 00:00:17,873
+tiny amount of our resource budget 
+非常小,如果这些子弹逐渐
+
+8
+00:00:17,873 --> 00:00:19,593
+we will quickly have a lot of them,
+积累起来,每次计算这些子弹的飞行和
+
+9
+00:00:19,593 --> 00:00:23,211
+each being processed and moved and tested in our scene.
+检测它们的碰撞将耗费大量的系统资源
+
+10
+00:00:23,932 --> 00:00:25,932
+We need to find a way to remove these shots
+因此我们应该在这些子弹飞出视野的时候
+
+11
+00:00:25,932 --> 00:00:28,725
+from the scene when they leave the game area.
+将他们从游戏中剔除出去
+
+12
+00:00:29,399 --> 00:00:31,024
+There are a number of different ways that
+实现这个功能有很多种
+
+13
+00:00:31,024 --> 00:00:32,914
+that we can approach this issue.
+不同的方法
+
+14
+00:00:32,914 --> 00:00:34,524
+In this assignment we are going to create
+本章节中我们会围绕游戏视野
+
+15
+00:00:34,524 --> 00:00:36,357
+a box around our game 
+建立一个盒子作为边界
+
+16
+00:00:36,357 --> 00:00:38,357
+and we will destroy these shots as they
+如果有子弹离开盒子
+
+17
+00:00:38,357 --> 00:00:40,150
+leave the box.
+我们将这个子弹销毁
+
+18
+00:00:40,150 --> 00:00:43,037
+As an added bonus this boundary box
+这个边际盒子
+
+19
+00:00:43,037 --> 00:00:45,037
+will also deal with our hazards and
+还可以用来销毁
+
+20
+00:00:45,037 --> 00:00:47,846
+destroy them when they leave the game area as well.
+离开游戏场景的小行星
+
+21
+00:00:48,691 --> 00:00:51,260
+To create a box around our game area
+为了建立这个覆盖了整个游戏场景的盒子
+
+22
+00:00:51,260 --> 00:00:53,649
+create a new cube by using
+我们先点选Create menu 选择Cube
+
+23
+00:00:53,649 --> 00:00:56,418
+the Create menu and selecting Cube.
+来新建一个立方体
+
+24
+00:00:58,023 --> 00:01:00,106
+Now a cube has a mesh
+这个新建的立方体自带了
+
+25
+00:01:00,106 --> 00:01:02,686
+held by the mesh filter, and a mesh renderer
+网格过滤器和网格渲染器
+
+26
+00:01:02,686 --> 00:01:05,818
+that we don't strictly need for our purposes.
+这些对于我们的目的来说都是多余的
+
+27
+00:01:05,818 --> 00:01:08,547
+We only need a box collider component.
+我们只需要碰撞检测机这一个组件
+
+28
+00:01:08,950 --> 00:01:10,950
+However, being able to see the cube rendered
+但是，如果可以看到这个边际盒子的话
+
+29
+00:01:10,950 --> 00:01:12,950
+in the game view will be helpful to us
+在调整这个盒子大小使其适应游戏边界区域时
+
+30
+00:01:12,950 --> 00:01:15,558
+when placing the box around our game area.
+我们的操作会方便很多
+
+31
+00:01:16,155 --> 00:01:18,059
+So we'll use a cube
+所以我们保留
+
+32
+00:01:18,059 --> 00:01:20,715
+with it's mesh, mesh renderer and box collider
+这个四边形边界的
+
+33
+00:01:20,715 --> 00:01:22,715
+for our bounding box.
+网格,网格渲染和碰撞检测机组件
+
+34
+00:01:23,850 --> 00:01:26,323
+Rename the cube Boundary.
+将这个四边形重命名为Boundary.
+
+35
+00:01:27,344 --> 00:01:29,344
+And reset it's transform to make sure
+重置一下变形组件
+
+36
+00:01:29,344 --> 00:01:30,685
+it is at origin.
+确保四边形在原点位置
+
+37
+00:01:32,728 --> 00:01:34,604
+If we turn the mesh renderer off
+如果我们把网格渲染器关闭
+
+38
+00:01:34,604 --> 00:01:37,175
+we will see the box collider in the scene
+我们将看到这个盒子的碰撞检测器
+
+39
+00:01:37,675 --> 00:01:40,911
+We don't want a physical collision with this box.
+我们不需要知道这个立方体发生的物理碰撞
+
+40
+00:01:40,911 --> 00:01:43,256
+We want this box to trigger a new action
+我们只需要当一个对象离开这个盒子的时候
+
+41
+00:01:43,256 --> 00:01:45,642
+when our object's leave this box.
+触发某个事件
+
+42
+00:01:46,143 --> 00:01:49,157
+We want this box to be a trigger collider.
+我们希望这个盒子是一个碰撞检测的触发器
+
+43
+00:01:49,157 --> 00:01:51,825
+So on the box collider component select
+所以在碰撞检测器的组建中点选
+
+44
+00:01:51,825 --> 00:01:53,261
+Is Trigger.
+Is Trigger
+
+45
+00:01:54,325 --> 00:01:56,325
+Now in our Game view we can't
+现在我们观察下游戏视图
+
+46
+00:01:56,325 --> 00:01:58,059
+see our boundary.
+我们看不到边界
+
+47
+00:01:58,059 --> 00:02:00,059
+the gizmo indicating the box collider
+小图标已经暗示了这个盒子形状的碰撞检测机
+
+48
+00:02:00,059 --> 00:02:02,501
+is only visible in the Scene view.
+只能在场景视图中可见
+
+49
+00:02:02,501 --> 00:02:04,862
+The trigger collider by itself is invisible
+因为碰撞触发器对我们的游戏视角相机
+
+50
+00:02:04,862 --> 00:02:06,501
+to our game camera.
+来说并不可见
+
+51
+00:02:06,501 --> 00:02:09,623
+This makes sense though, we don't want to see
+这样很合理,我们并不想在游戏中
+
+52
+00:02:09,623 --> 00:02:11,358
+see our triggers in the game.
+看到这个触发器
+
+53
+00:02:11,358 --> 00:02:14,168
+This is why using a cube makes sense.
+这就是我们选择cube作为触发器的原因
+
+54
+00:02:14,168 --> 00:02:16,638
+Let's turn the mesh renderer back on.
+让我们把网格渲染重新打开
+
+55
+00:02:18,256 --> 00:02:20,256
+We want to place this box evenly
+我们需要把这个盒子套在
+
+56
+00:02:20,256 --> 00:02:22,256
+around the game area.
+整个游戏区域上
+
+57
+00:02:22,256 --> 00:02:24,256
+The centre of the game area is defined by
+游戏区域的中心位置
+
+58
+00:02:24,256 --> 00:02:26,256
+the position of the camera as it looks
+是由相机的位置决定的
+
+59
+00:02:26,256 --> 00:02:28,297
+down on the game.
+相机的正下方就是中心位置
+
+60
+00:02:28,297 --> 00:02:31,070
+The camera's transform on the X/Z plane
+相机的在X/Z平面的位移参数是
+
+61
+00:02:31,070 --> 00:02:33,070
+is 0,5.
+0,5
+
+62
+00:02:33,570 --> 00:02:35,874
+So let's keep the boundary's transform position
+我们把boundary的位移参数
+
+63
+00:02:35,874 --> 00:02:38,986
+X at 0 and let's set the boundary's
+根据相机的位置也设定一下
+
+64
+00:02:38,986 --> 00:02:41,851
+transform position Z to 5.
+X设定为0，Z设定为5
+
+65
+00:02:43,124 --> 00:02:45,682
+Next, using the transform scale
+下一步我们要调整边界盒子的
+
+66
+00:02:45,682 --> 00:02:47,682
+let's change the scale of the cube
+大小,我们调整Scale参数的值 
+
+67
+00:02:47,682 --> 00:02:49,682
+until it surrounds our scene.
+使其环绕在我们的场景周围
+
+68
+00:02:50,397 --> 00:02:52,397
+We are less concerned by the sides for this
+我们不太关心两边的情况
+
+69
+00:02:52,397 --> 00:02:54,397
+particular game, as nothing will leave
+因为在我们目前的游戏中
+
+70
+00:02:54,397 --> 00:02:57,140
+the game area by the sides of our game.
+并不会有对象从两边飞出我们的视野
+
+71
+00:02:58,019 --> 00:03:01,129
+Our background is 15 units wide
+我们的背景是15个单位宽
+
+72
+00:03:01,129 --> 00:03:03,307
+so let's match that with our cube
+我们就按照这个值来设定我们的cube
+
+73
+00:03:03,307 --> 00:03:05,537
+and use a value of 15 in the
+X方向的比例值
+
+74
+00:03:05,537 --> 00:03:07,537
+transform scale X.
+设定为15
+
+75
+00:03:08,618 --> 00:03:10,618
+The top and bottom are more critical.
+上下的边界要求的更严格一些
+
+76
+00:03:11,118 --> 00:03:13,118
+We want to get the boundary as close
+我们希望boundary可以跟我们
+
+77
+00:03:13,118 --> 00:03:15,460
+to the edge of the game area as possible
+游戏区域的边界靠的足够近
+
+78
+00:03:15,460 --> 00:03:17,460
+as all of our shots and hazards
+因为我们的子弹会从上方边界离开
+
+79
+00:03:17,460 --> 00:03:19,558
+will leave the game area by the top
+小行星则会从
+
+80
+00:03:19,558 --> 00:03:21,018
+or bottom edge.
+下方边界离开
+
+81
+00:03:21,567 --> 00:03:24,348
+This looks like about 20.
+这个值大约在20左右
+
+82
+00:03:24,750 --> 00:03:26,750
+So let's use a value of 20 for the
+我们就把Z方向的scale 
+
+83
+00:03:26,750 --> 00:03:28,750
+transform scale Z.
+值设定为20
+
+84
+00:03:30,324 --> 00:03:32,324
+We actually know that 20 is the
+其实我们是知道20
+
+85
+00:03:32,324 --> 00:03:35,340
+correct value because 20 is twice
+是这个正确值
+
+86
+00:03:35,340 --> 00:03:37,340
+the size of our orthographic camera.
+因为20刚好是我们正交相继尺寸的2倍
+
+87
+00:03:37,840 --> 00:03:39,840
+The number of units from the top of the screen
+正交相机屏幕的顶端单位值
+
+88
+00:03:39,840 --> 00:03:42,737
+to the bottom is always twice the value of
+也正好是正交相机的底端单位值
+
+89
+00:03:42,737 --> 00:03:45,368
+of our camera's orthographic size.
+的2倍
+
+90
+00:03:48,239 --> 00:03:50,239
+Now that we have placed the boundary
+我们现在已经设置好了边际
+
+91
+00:03:50,239 --> 00:03:52,239
+we can turn off the mesh renderer.
+我们可以把网格渲染关掉
+
+92
+00:03:52,837 --> 00:03:54,837
+When we look in the Scene view we can now see
+在场景视图中,我们仍然可以看到绿色的
+
+93
+00:03:54,837 --> 00:03:58,245
+our collider in green surrounding our game area.
+环绕我们场景的碰撞检测机边界
+
+94
+00:04:00,929 --> 00:04:03,747
+We now need to have our boundary do something.
+现在让我们对boundary加一些功能
+
+95
+00:04:04,307 --> 00:04:06,026
+To do this the boundary needs
+我们需要先建一个
+
+96
+00:04:06,026 --> 00:04:08,026
+a script attached.
+boundary的脚本文件
+
+97
+00:04:08,026 --> 00:04:12,321
+So with Boundary selected click on Add Component.
+先选定Boundary然后点击Add Component
+
+98
+00:04:12,821 --> 00:04:14,821
+Then select New Script.
+再点选New Script
+
+99
+00:04:15,711 --> 00:04:18,977
+Rename the script DestroyByBoundary.
+将脚本文件重命名DestroyByBoundary
+
+100
+00:04:20,111 --> 00:04:21,963
+Accept these changes to add this script
+点选确定把脚本文件添加到
+
+101
+00:04:21,963 --> 00:04:23,490
+to Boundary.
+Boundary
+
+102
+00:04:24,134 --> 00:04:26,889
+Select Assets to see our new script
+选Assets文件夹察看我们的新脚本
+
+103
+00:04:26,889 --> 00:04:28,889
+in the root level of our project.
+脚本应该在项目的根目录层级下
+
+104
+00:04:29,352 --> 00:04:32,316
+And let's file it in the Scripts folder.
+我们把它移动到Scripts文件夹
+
+105
+00:04:34,305 --> 00:04:36,538
+Open the Scripts folder and select
+打开Scripts文件夹
+
+106
+00:04:36,538 --> 00:04:39,921
+DestroyByBoundary and open it for editing.
+打开DestroyByBoundary脚本开始编辑
+
+107
+00:04:40,982 --> 00:04:43,516
+Our boundary game objects behaviour
+boundary这个游戏对象
+
+108
+00:04:43,516 --> 00:04:46,022
+will be driven by the box collider
+是由盒子形碰撞检测机驱动的
+
+109
+00:04:46,022 --> 00:04:48,563
+and that box collider is a trigger.
+盒子形碰撞检测机是一个触发器
+
+110
+00:04:48,563 --> 00:04:51,293
+To find out how to script to a trigger collider
+我们可以在文档中
+
+111
+00:04:51,293 --> 00:04:53,293
+we can search Trigger
+搜索Trigger关键字来学习
+
+112
+00:04:53,293 --> 00:04:54,965
+in the documentation.
+如何编写碰撞检测机的触发器
+
+113
+00:04:55,683 --> 00:04:58,493
+This will give us a list of all of the uses of
+我们看到Unity's API中关于Trigger(触发器)
+
+114
+00:04:58,493 --> 00:05:00,957
+Trigger in Unity's API/
+的内容的列表
+
+115
+00:05:02,128 --> 00:05:04,128
+We want to destroy the shots as they
+我们需要把子弹在它离开
+
+116
+00:05:04,128 --> 00:05:07,066
+leave the box collider's trigger volume.
+盒子碰撞检测机的触发器时销毁子弹
+
+117
+00:05:07,566 --> 00:05:10,189
+So let's look at OnTriggerExit.
+所以我们看一下OnTriggerExit这个函数
+
+118
+00:05:11,944 --> 00:05:14,896
+If we look at the description it tells us that
+我们看一下这个函数的介绍
+
+119
+00:05:14,896 --> 00:05:17,636
+OnTriggerExit is called when the other
+OnTriggerExit是在其他碰撞检测机
+
+120
+00:05:17,636 --> 00:05:20,198
+collider has stopped touching the trigger.
+离开触发器的时候被调用的
+
+121
+00:05:20,648 --> 00:05:22,818
+Conveniently the sample code does
+示例代码正好是
+
+122
+00:05:22,818 --> 00:05:24,684
+exactly what we want.
+我们要做的事情
+
+123
+00:05:24,684 --> 00:05:26,929
+When the other collider leaves the
+当其他的碰撞检测机
+
+124
+00:05:26,929 --> 00:05:28,892
+Boundary's trigger volume
+离开Boundary这个触发器的时候
+
+125
+00:05:28,892 --> 00:05:31,077
+we want to destroy the other
+我们需要销毁
+
+126
+00:05:31,077 --> 00:05:33,077
+collider's game object.
+那个游戏对象
+
+127
+00:05:34,992 --> 00:05:38,541
+Copy this code and paste it in to our script.
+把这个代码复制粘贴到我们的脚本当中
+
+128
+00:05:40,908 --> 00:05:43,935
+Save this script and return to Unity.
+保存脚本回到Unity
+
+129
+00:05:45,972 --> 00:05:48,596
+When we select Boundary we don't see any
+当我们选择Boundary后
+
+130
+00:05:48,596 --> 00:05:50,474
+properties on the component.
+我们看不到任何脚本相关的组建的属性
+
+131
+00:05:50,474 --> 00:05:52,595
+This is because there are no options
+这是因为这个组件
+
+132
+00:05:52,595 --> 00:05:55,046
+we can set on this component.
+没有任何需要设定的选项
+
+133
+00:05:55,046 --> 00:05:57,046
+This component simply does it's job
+这个组件只单纯做它的本职工作
+
+134
+00:05:57,046 --> 00:05:59,723
+if it's active, destroying any object that
+在激活状态下,消除一切离开
+
+135
+00:05:59,723 --> 00:06:01,723
+leave the trigger's volume.
+触发器的对象
+
+136
+00:06:03,358 --> 00:06:06,094
+Now that our boundary is setup and in position
+现在我们的boundary设定好了
+
+137
+00:06:06,094 --> 00:06:08,895
+we can remove the mesh renderer
+让我们把网格渲染器
+
+138
+00:06:08,895 --> 00:06:10,895
+and the mesh filter components.
+和网格过滤器的组件都删掉
+
+139
+00:06:12,176 --> 00:06:14,455
+Let's save the scene and test.
+让我们保存一下场景测试一下
+
+140
+00:06:20,593 --> 00:06:23,305
+And as the shots leave the game area
+当子弹离开游戏区域的时候
+
+141
+00:06:23,305 --> 00:06:25,305
+they are destroyed.
+子弹消失了
+
+142
+00:06:26,561 --> 00:06:28,926
+With our ship setup and it's weapons systems
+我们的飞船和武器都设定好了
+
+143
+00:06:28,926 --> 00:06:31,329
+ready to go, in the next assignment we will
+下一个任务是给我们的玩家制造新的挑战
+
+144
+00:06:31,329 --> 00:06:33,790
+create hazards to challenge our player.
+小行星来袭

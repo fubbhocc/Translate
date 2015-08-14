@@ -26,22 +26,27 @@ architecture similar to the one we used
 6
 00:00:14,806 --> 00:00:16,806
 to make the Bolt prefab.
+与子弹预制件的相同
 
 7
 00:00:17,306 --> 00:00:19,791
 We will have a parent game object for the logic
+逻辑上有一个父对象
 
 8
 00:00:19,791 --> 00:00:21,791
 and the artwork will be a child.
+小行星的美术模型作为一个子对象
 
 9
 00:00:22,346 --> 00:00:25,298
 To start, let's create a new game object
+首先,我们新建一个对象
 
 10
 00:00:25,298 --> 00:00:27,298
 and rename it Asteroid.
+重命名为Asteroid
 
 11
 00:00:27,798 --> 00:00:30,931

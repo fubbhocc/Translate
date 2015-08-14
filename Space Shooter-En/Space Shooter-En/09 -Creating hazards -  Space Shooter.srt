@@ -1,4 +1,4 @@
-﻿1
+1
 00:00:01,547 --> 00:00:04,774
 Our player is powered up, armed and ready to go.
 我们的玩家已经武装好了

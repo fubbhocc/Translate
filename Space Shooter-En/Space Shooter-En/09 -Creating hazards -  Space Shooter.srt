@@ -136,7 +136,7 @@ the model will be centred on the parent game object
 28
 00:01:17,437 --> 00:01:20,149
 with no relative rotation and a scale of 1
-并且没有相对的旋转,
+并且没有相对的旋转
 
 29
 00:01:20,149 --> 00:01:22,149

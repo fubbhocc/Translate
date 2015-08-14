@@ -1,107 +1,86 @@
 1
 00:00:01,547 --> 00:00:04,774
 Our player is powered up, armed and ready to go.
-我们的玩家已经武装好了
 
 2
 00:00:04,774 --> 00:00:07,536
 Let's create some hazards to challenge our player.
-下面让我们来设计小行星挑战我们的玩家
 
 3
 00:00:08,271 --> 00:00:10,648
 We will be creating an asteroid prefab to
-我们要先制作小行星预制件
 
 4
 00:00:10,648 --> 00:00:12,806
 throw at our player and we will use an
-让它们朝玩家飞船飞过来
 
 5
 00:00:12,806 --> 00:00:14,806
 architecture similar to the one we used
-小行星预制件的制作方法
 
 6
 00:00:14,806 --> 00:00:16,806
 to make the Bolt prefab.
-与子弹预制件的相同
 
 7
 00:00:17,306 --> 00:00:19,791
 We will have a parent game object for the logic
-逻辑上有一个父对象
 
 8
 00:00:19,791 --> 00:00:21,791
 and the artwork will be a child.
-小行星的美术模型作为一个子对象
 
 9
 00:00:22,346 --> 00:00:25,298
 To start, let's create a new game object
-首先,我们新建一个对象
 
 10
 00:00:25,298 --> 00:00:27,298
 and rename it Asteroid.
-重命名为Asteroid
 
 11
 00:00:27,798 --> 00:00:30,931
 Reset the asteroid's transform to origin
-重置Asteroid的变形组件,使其回到原点
 
 12
 00:00:30,931 --> 00:00:33,948
 and move it up along the Z axis to about 8.
-把它沿Z轴上移8个单位
 
 13
 00:00:34,448 --> 00:00:36,599
 By moving the asteroid parent a little further
-这样我们既可以把小行星
 
 14
 00:00:36,599 --> 00:00:38,970
 up the game area it will both separate
-和玩家飞船分离开
 
 15
 00:00:38,970 --> 00:00:41,292
 the asteroid from the player while we build it
-这便于测试
 
 16
 00:00:41,292 --> 00:00:44,394
 and allow us to easily test it when we are finished.
-同时行星生成的位置也不会与飞船混在一起
 
 17
 00:00:45,708 --> 00:00:48,765
 Next let's get some artwork for our asteroid.
-接下来让我们把美术模型加进来
 
 18
 00:00:49,210 --> 00:00:52,284
 If we open the Models folder in Assets
-打开Assets下的Models文件夹
 
 19
 00:00:52,284 --> 00:00:54,754
 we have 3 asteroid models to choose from.
-这里有3个小行星模型
 
 20
 00:00:55,406 --> 00:00:57,406
 We are going to use the first one.
-我们将先使用第一个模型
 
 21
 00:00:57,851 --> 00:00:59,851
 Select the asteroid model and drag it on
-选定这个小行星模型
 
 22
 00:00:59,851 --> 00:01:02,467

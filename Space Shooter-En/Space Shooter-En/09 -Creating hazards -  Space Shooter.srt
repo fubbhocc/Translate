@@ -51,22 +51,27 @@ and rename it Asteroid.
 11
 00:00:27,798 --> 00:00:30,931
 Reset the asteroid's transform to origin
+重置Asteroid的变形组件,使其回到原点
 
 12
 00:00:30,931 --> 00:00:33,948
 and move it up along the Z axis to about 8.
+把它沿Z轴上移8个单位
 
 13
 00:00:34,448 --> 00:00:36,599
 By moving the asteroid parent a little further
+把它沿Z轴上移8个单位
 
 14
 00:00:36,599 --> 00:00:38,970
 up the game area it will both separate
+和玩家飞船分离开
 
 15
 00:00:38,970 --> 00:00:41,292
 the asteroid from the player while we build it
+这便于测试
 
 16
 00:00:41,292 --> 00:00:44,394

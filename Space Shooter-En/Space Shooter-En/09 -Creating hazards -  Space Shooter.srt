@@ -146,318 +146,397 @@ relative to the parent game object.
 30
 00:01:23,519 --> 00:01:25,519
 For our game it's important that the transform's
+对我们这个游戏来说
 
 31
 00:01:25,519 --> 00:01:27,835
 position be at local origin.
+位移处在原点很重要
 
 32
 00:01:28,694 --> 00:01:30,777
 The game is designed to work with the asteroid
+游戏设计为小行星的
 
 33
 00:01:30,777 --> 00:01:33,096
 model at a local scale of 1.
+尺寸比例为1
 
 34
 00:01:33,096 --> 00:01:35,096
 But we may find it interesting to experiment
+不过做完目前这个项目
 
 35
 00:01:35,096 --> 00:01:37,732
 with local scale after we are done with this project
+我们可以体验一下改变比例尺寸
 
 36
 00:01:37,732 --> 00:01:40,271
 to see how it changes the game and gameplay.
+对游戏和游戏玩法的影响
 
 37
 00:01:41,876 --> 00:01:43,876
 With our artwork in place let's setup
+我们的美术模型已经就位了
 
 38
 00:01:43,876 --> 00:01:45,876
 the components and logic.
+我们来设定一下组件和逻辑规则
 
 39
 00:01:45,876 --> 00:01:48,473
 Select the parent Asteroid game object
+选择小行星这个父对象
 
 40
 00:01:48,473 --> 00:01:50,473
 and use the Add Component button to
+点击Add Component按钮
 
 41
 00:01:50,473 --> 00:01:53,750
 add a physics rigidbody.
+点选physics -> rigidbody
 
 42
 00:01:54,250 --> 00:01:57,336
 As our game is playing along the X/Z plane
+因为我们的游戏是在X/Z平面上
 
 43
 00:01:57,336 --> 00:02:00,065
 deselect Use Gravity so the asteroid
+所以将小行星的Use Gravity钩选取掉
 
 44
 00:02:00,065 --> 00:02:02,454
 does not fall in to the void.
+否则小行星就会掉下去
 
 45
 00:02:03,490 --> 00:02:06,484
 Now let's use the Add Component again
+现在我们再点一次Add Component
 
 46
 00:02:06,484 --> 00:02:09,128
 to add a physics capsule collider.
+点选physics -> capsule collider
 
 47
 00:02:10,393 --> 00:02:12,738
 Again we have what looks like a green wire
+我们得到了一个环绕小行星的
 
 48
 00:02:12,738 --> 00:02:14,738
 sphere around our asteroid.
+绿色的环绕线
 
 49
 00:02:14,738 --> 00:02:16,738
 We need to change the radius and the height
+我们需要通过改变半径和高度
 
 50
 00:02:16,738 --> 00:02:18,738
 of the capsule collider to more accurately
+来改变胶囊型碰撞检测机的大小和形状
 
 51
 00:02:18,738 --> 00:02:20,738
 match our model.
+使其更贴合我们的模型
 
 52
 00:02:20,738 --> 00:02:22,738
 Now we could try to set these using the
+我们可以通过改变组件的
 
 53
 00:02:22,738 --> 00:02:25,042
 properties on the component.
+参数来实现上面的目的
 
 54
 00:02:25,042 --> 00:02:28,437
 But this is a less than ideal way of doing things.
+但是这么做并不是一种理想的方法
 
 55
 00:02:29,061 --> 00:02:31,294
 We can however change the shape of the
+我们其实可以直接在场景视图中改变
 
 56
 00:02:31,294 --> 00:02:33,766
 capsule collider directly in the Scene view.
+胶囊碰撞检测机的形状
 
 57
 00:02:34,277 --> 00:02:36,906
 The trick here is to hold down the shift key.
+窍门就是按住shift键
 
 58
 00:02:36,906 --> 00:02:39,250
 When we hold down the shift key drag handles
+当按下shift键,拖拽碰撞检测机上的
 
 59
 00:02:39,250 --> 00:02:41,028
 appear on the collider.
+小箭头
 
 60
 00:02:41,028 --> 00:02:43,028
 With these we can simply drag the collider
+这样我们可以轻松的将碰撞检测机的形状
 
 61
 00:02:43,028 --> 00:02:45,028
 shape until we are satisfied.
+调整到我们满意为止
 
 62
 00:02:46,481 --> 00:02:49,286
 Now that we have our basic physics component setup
+现在最基本的物理组件也设置好了
 
 63
 00:02:49,286 --> 00:02:51,931
 let's save the scene and enter Play mode.
+让我们保存一下进入游戏模式
 
 64
 00:02:53,774 --> 00:02:57,048
 Wow, that's one boring asteroid.
+恩,这个小行星有点无聊
 
 65
 00:02:57,728 --> 00:02:59,728
 Exit Play mode.
+退出游戏模式
 
 66
 00:03:00,352 --> 00:03:02,786
 Let's give it some life and make it tumble.
+我们让它动起来,可以翻转
 
 67
 00:03:04,095 --> 00:03:06,439
 With the asteroid game object selected
+选定小行星对象
 
 68
 00:03:06,439 --> 00:03:08,843
 use the Add Component button to
+点击Add Component
 
 69
 00:03:08,843 --> 00:03:10,843
 create a new script.
+新建一个脚本
 
 70
 00:03:11,716 --> 00:03:14,681
 Rename the script RandomRotator.
+将脚本重命名为RandomRotator
 
 71
 00:03:15,982 --> 00:03:17,529
 and accept the changes to add
+将这个脚本保存并
 
 72
 00:03:17,529 --> 00:03:19,529
 this script to Asteroid.
+添加到Asteroid上
 
 73
 00:03:20,664 --> 00:03:22,971
 Select Assets and file the new script
+点选资源文件夹并把新的
 
 74
 00:03:22,971 --> 00:03:24,971
 in to the Scripts folder.
+脚本移动到Scripts文件夹
 
 75
 00:03:24,971 --> 00:03:28,228
 Open the Scripts folder and select RandomRotator
+打开Scripts文件夹选中RandomRotator
 
 76
 00:03:28,228 --> 00:03:30,228
 and open the script for editing.
+打开并编译
 
 77
 00:03:33,877 --> 00:03:36,863
 The first thing we want to do is create a public
+首先我们新建一个共有浮点型参数
 
 78
 00:03:36,863 --> 00:03:39,030
 float called Tumble
+命名为Tumble
 
 79
 00:03:39,030 --> 00:03:41,627
 to hold our maximum tumble value
+它负责储存我们在编辑器中设定的
 
 80
 00:03:41,627 --> 00:03:44,100
 which we will be able to set in the Editor.
+翻转的最大值
 
 81
 00:03:45,411 --> 00:03:47,411
 Now in Start
+在Start函数中
 
 82
 00:03:48,671 --> 00:03:52,648
 we want to set our rigidbody's angular velocity.
+我们需要设定刚体本身的角速度
 
 83
 00:03:55,008 --> 00:03:57,175
 What is angular velocity?
+什么是角速度?
 
 84
 00:03:57,175 --> 00:03:59,853
 Angular velocity is how fast a rigidbody
+角速度是刚体翻转
 
 85
 00:03:59,853 --> 00:04:01,546
 object is rotating
+的速度
 
 86
 00:04:02,046 --> 00:04:04,966
 and we want to set our angular velocity to
+我们想让这个角度是
 
 87
 00:04:04,966 --> 00:04:06,966
 some random value.
+一个随机的值
 
 88
 00:04:08,046 --> 00:04:10,753
 Now Unity has a Random class
+Unity有一个Random(随机)类
 
 89
 00:04:10,753 --> 00:04:12,753
 and it's very convenient for giving us all
+这个类可以很方便的给出我们
 
 90
 00:04:12,753 --> 00:04:14,574
 sorts of random values.
+各种各样的随机数
 
 91
 00:04:14,574 --> 00:04:18,028
 The most basic is literally random value.
+其中最简单的是随机数
 
 92
 00:04:18,625 --> 00:04:20,834
 This will return a random float value
+这里会给出一个值在0,1之间的
 
 93
 00:04:20,834 --> 00:04:23,128
 between 0 and 1
+随机浮点值
 
 94
 00:04:23,128 --> 00:04:24,408
 and then we can do anything we want
+我们可以按照我们需要的
 
 95
 00:04:24,408 --> 00:04:26,574
 to with this random number.
+方式处理这个随机数
 
 96
 00:04:26,574 --> 00:04:28,574
 But there are several more interesting items in
+如果我们仔细看Random类的详细介绍
 
 97
 00:04:28,574 --> 00:04:30,993
 the Random class that can give us more complex
+我们会发现,这个类可以给我们一些
 
 98
 00:04:30,993 --> 00:04:32,918
 and more useful values if we look at the
+更复杂和有用的
 
 99
 00:04:32,918 --> 00:04:34,726
 class in detail.
+随机值
 
 100
 00:04:34,720 --> 00:04:36,801
 For our asteroid let's look at
+对于我们的小行星而言
 
 101
 00:04:36,801 --> 00:04:39,683
 Random.InsideUnitSphere.
+让我们看看Random.InsideUnitSphere
 
 102
 00:04:42,644 --> 00:04:44,905
 This may sound intimidating, and it may also 
+这个名字看起来有些吓人
 
 103
 00:04:44,905 --> 00:04:46,905
 sound like it has nothing to do with tumbling
+貌似跟我们的小行星翻转关系不大
 
 104
 00:04:46,905 --> 00:04:49,753
 an asteroid, but in actuality it is
+但是事实上
 
 105
 00:04:49,753 --> 00:04:51,311
 everything that we need.
+这个正是我们需要的
 
 106
 00:04:51,311 --> 00:04:53,311
 InsideUnitySphere gives us a random
+InsideUnitySphere会给出一个随机的
 
 107
 00:04:53,311 --> 00:04:56,629
 vector3 value that we can apply to our
+vector3值,我们可以把这个值应用于
 
 108
 00:04:56,629 --> 00:04:59,338
 rigidbody's angular velocity.
+刚体的角速度上
 
 109
 00:04:59,338 --> 00:05:02,302

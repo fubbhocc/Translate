@@ -541,258 +541,322 @@ rigidbody's angular velocity.
 109
 00:04:59,338 --> 00:05:02,302
 And each of the 3 X, Y and Z values
+这三个值X,Y和Z
 
 110
 00:05:02,302 --> 00:05:04,302
 will be randomised individually.
+都是随机的并且互不相关
 
 111
 00:05:06,225 --> 00:05:08,995
 Copy Random.InsideUnitSphere
+复制Random.InsideUnitSphere
 
 112
 00:05:08,995 --> 00:05:10,995
 and paste it in to our code
+把它粘贴到我们的代码中
 
 113
 00:05:10,995 --> 00:05:13,782
 and multiply it by Tumble.
+乘以Tumble
 
 114
 00:05:14,821 --> 00:05:17,057
 This simple script takes our tumble value
+这个脚本会在开始的时候
 
 115
 00:05:17,057 --> 00:05:19,390
 from the Editor and at start
+从编辑器中取tumble值
 
 116
 00:05:19,390 --> 00:05:23,211
 we set the new asteroid's rigidbody.angularVelocity
+我们把新生成的小行星的角速度
 
 117
 00:05:23,211 --> 00:05:25,211
 to a random vector3 value from
+设定为一个从Random.InsideUnitSphere中获取的
 
 118
 00:05:25,211 --> 00:05:27,487
 Random.InsideUnitSphere.
+随机的vector3值
 
 119
 00:05:27,487 --> 00:05:30,129
 and then we multiply this by tumble.
+然后我们将这个值乘以tumble
 
 120
 00:05:30,960 --> 00:05:33,471
 Save the script and return to Unity.
+保存脚本回到Unity
 
 121
 00:05:36,029 --> 00:05:38,471
 Select Asteroid and let's set the
+选定Asteroid设定
 
 122
 00:05:38,471 --> 00:05:40,471
 tumble value to 5.
+tumble 值为5
 
 123
 00:05:41,559 --> 00:05:44,171
 Save the scene and enter Play mode to test.
+保存场景在游戏模式下测试一下
 
 124
 00:05:44,934 --> 00:05:47,525
 And our asteroid now has a random tumble.
+我们的小行星现在有了一个随机方向的翻转
 
 125
 00:05:48,257 --> 00:05:50,821
 Let's enter and exit Play mode a few more times.
+让我们重复进入和退出游戏模式几次
 
 126
 00:05:51,539 --> 00:05:54,708
 We can see that every time the script calls Start
+我们发现每次脚本调用Start函数
 
 127
 00:05:54,708 --> 00:05:57,452
 we get a different random angular velocity.
+我们都会得到一个不同的角速度
 
 128
 00:05:58,712 --> 00:06:00,411
 If, however, we leave it for a short
+如果我们就这样
 
 129
 00:06:00,411 --> 00:06:01,840
 period of time
+等待一会
 
 130
 00:06:02,764 --> 00:06:04,764
 the asteroid slows to a stop.
+小行星会逐渐停止翻转
 
 131
 00:06:06,700 --> 00:06:08,700
 This is due to a default value
+这是因为刚体组建
 
 132
 00:06:08,700 --> 00:06:10,493
 on the rigidbody component.
+的默认设定
 
 133
 00:06:11,089 --> 00:06:13,423
 The rigidbody has 2 parameters to simulate
+刚体有2个参数来模拟
 
 134
 00:06:13,423 --> 00:06:15,927
 resistance, like air friction,
+摩擦力,例如空气阻力
 
 135
 00:06:15,927 --> 00:06:19,033
 and these are Drag and Angular Drag.
+这两个参数是Drag(阻力)和Angular Drag(角阻力)
 
 136
 00:06:19,683 --> 00:06:21,683
 Angular Drag by default has a small
+Angular Drag默认有一个
 
 137
 00:06:21,683 --> 00:06:23,683
 but working value.
+小的数值
 
 138
 00:06:24,853 --> 00:06:26,186
 Exit Play mode.
+退出游戏模式
 
 139
 00:06:27,558 --> 00:06:29,980
 Let's drop this value to 0.
+让我们把这个值改为0
 
 140
 00:06:31,042 --> 00:06:32,376
 Enter Play mode.
+进入游戏模式
 
 141
 00:06:33,282 --> 00:06:35,717
 Now our asteroid has now angular drag
+我们的小行星没有了角阻力
 
 142
 00:06:35,717 --> 00:06:38,279
 being applied to it's angular velocity
+角速度也就不会受影响了
 
 143
 00:06:38,279 --> 00:06:40,279
 so it will keep tumbling until it's destroyed
+所以小行星会一直翻转
 
 144
 00:06:40,279 --> 00:06:42,957
 by the player or by the boundary.
+直到被玩家消灭或者被边界消灭
 
 145
 00:06:43,594 --> 00:06:44,896
 Exit Play mode.
+退出游戏模式
 
 146
 00:06:46,094 --> 00:06:47,956
 Speaking of which, what happens if our
+如果玩家朝小行星射击会发生什么
 
 147
 00:06:47,956 --> 00:06:49,956
 player tries to shoot the asteroid?
+会发生什么?
 
 148
 00:06:50,839 --> 00:06:52,402
 Enter Play mode.
+进入游戏模式
 
 149
 00:06:56,676 --> 00:06:57,732
 Nothing.
+什么也没发生
 
 150
 00:06:58,464 --> 00:07:00,741
 Our asteroid has a collider on it
+我们的小行星上有个碰撞检测机
 
 151
 00:07:00,741 --> 00:07:02,741
 and so do our laser bolts.
+我们的镭射子弹上也有
 
 152
 00:07:02,741 --> 00:07:04,741
 Why don't we see any interaction?
+为什么现在就没有任何反应了呢?
 
 153
 00:07:05,387 --> 00:07:07,988
 That's because they are both trigger colliders
+因为他们都是触发器型的
 
 154
 00:07:07,988 --> 00:07:10,891
 and triggers don't have physical collisions,
+触发器型的没有物理碰撞塌陷效果
 
 155
 00:07:10,891 --> 00:07:12,214
 and we have written nothing that can
+并且我们也没有写任何
 
 156
 00:07:12,214 --> 00:07:13,935
 capture the trigger event.
+捕捉触发器触发事件的代码
 
 157
 00:07:14,435 --> 00:07:16,435
 We will need to write more trigger related
+我们得写一些触发相关的代码
 
 158
 00:07:16,435 --> 00:07:19,406
 code for our 2 colliders to have any effect.
+这样我们的两个碰撞检测机发生碰撞才有效果
 
 159
 00:07:20,257 --> 00:07:22,257
 Exit Play mode.
+退出游戏模式
 
 160
 00:07:23,896 --> 00:07:27,144
 With Asteroid selected use the Add Component
+在已选定Asteroid的情况下点选Add Component
 
 161
 00:07:27,144 --> 00:07:29,681
 button to create a new script.
+新增一个新脚本
 
 162
 00:07:30,809 --> 00:07:33,642
 Rename this script DestroyByContact
+把脚本命名为DestroyByContact
 
 163
 00:07:33,642 --> 00:07:35,283
 and accept the changes to add this
+确定并把这个脚本
 
 164
 00:07:35,283 --> 00:07:37,283
 new script to Asteroid.
+添加到Asteroid上
 
 165
 00:07:38,367 --> 00:07:39,858
 File the script
+把脚本移到script文件夹
 
 166
 00:07:40,519 --> 00:07:42,519
 and open it for editing.
+打开并编辑脚本
 
 167
 00:07:45,502 --> 00:07:47,502
 After removing the sample code
+删除示例代码
 
 168
 00:07:48,221 --> 00:07:50,221
 let's write Trigger again and
+填写代码Trigger
 
 169
 00:07:50,221 --> 00:07:52,221
 search the documentation.
+在文档里搜一下
 
 170
 00:07:53,349 --> 00:07:55,671
 In this case we want to destroy the asteroid
 
+
 171
 00:07:55,671 --> 00:07:57,583
 when the bolt first touches it
 
+
 172
 00:07:57,583 --> 00:08:00,270
 so let's select OnTriggerEnter.
+
 
 173
 00:08:00,901 --> 00:08:02,680

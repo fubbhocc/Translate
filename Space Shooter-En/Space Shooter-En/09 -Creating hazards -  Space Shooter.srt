@@ -846,285 +846,352 @@ search the documentation.
 170
 00:07:53,349 --> 00:07:55,671
 In this case we want to destroy the asteroid
-
+这里我们想要在子弹碰撞小行星的时候
 
 171
 00:07:55,671 --> 00:07:57,583
 when the bolt first touches it
-
+把小行星销毁
 
 172
 00:07:57,583 --> 00:08:00,270
 so let's select OnTriggerEnter.
-
+所以让我们选OnTriggerEnter这个函数
 
 173
 00:08:00,901 --> 00:08:02,680
 This code is very much like the code
+这个代码跟我们在边界中
 
 174
 00:08:02,680 --> 00:08:04,651
 we used for our boundary.
+使用的代码非常类似
 
 175
 00:08:04,651 --> 00:08:06,651
 except this code is called when a
+除了这个代码是碰撞检测机碰到
 
 176
 00:08:06,651 --> 00:08:09,382
 collider first touches the trigger collider
+触发器的时候才调用
 
 177
 00:08:09,382 --> 00:08:11,382
 rather than when the collider leaves the
+边界的代码是碰撞检测机离开
 
 178
 00:08:11,382 --> 00:08:12,731
 trigger volume.
+触发器的时候调用
 
 179
 00:08:13,751 --> 00:08:15,957
 This sample code is also convenient
+这段示例代码
 
 180
 00:08:15,957 --> 00:08:18,416
 as it does almost everything we need.
+完成了几乎我要求的全部功能
 
 181
 00:08:18,924 --> 00:08:21,483
 When another collider enters the trigger
+当一个碰撞检测机碰到了触发器
 
 182
 00:08:21,483 --> 00:08:24,013
 we are given a reference to that other collider
+我们姑且把碰到触发器的碰撞检测机
 
 183
 00:08:24,013 --> 00:08:25,733
 as Collider other.
+命名为Collider other
 
 184
 00:08:26,233 --> 00:08:28,365
 The code then destroys the other
+这段代码会销毁
 
 185
 00:08:28,365 --> 00:08:30,365
 collider's game object.
+碰到触发器的对象
 
 186
 00:08:30,953 --> 00:08:33,943
 Copy this code and paste it in to our script.
+复制这段代码粘贴到我们的脚本中
 
 187
 00:08:34,867 --> 00:08:36,867
 This code as it stands will destroy the
+这段代码就像它描述的那样会销毁
 
 188
 00:08:36,867 --> 00:08:39,352
 laser bolt when it hits the asteroid.
+碰撞到小行星的激光子弹
 
 189
 00:08:40,448 --> 00:08:42,448
 Next we need to destroy the asteroid
+下一步我们就要销毁
 
 190
 00:08:42,448 --> 00:08:46,039
 itself with Destroy (gameObject).
+小行星本身
 
 191
 00:08:46,933 --> 00:08:49,419
 Destroy (gameObject) will destroy the game object
+Destroy (gameObject)会将附加了这个脚本
 
 192
 00:08:49,419 --> 00:08:51,608
 this script is attached to
+的对象销毁
 
 193
 00:08:51,608 --> 00:08:53,741
 which in this case is the asteroid
+这里是小行星
 
 194
 00:08:53,741 --> 00:08:55,697
 and all of it's children and all
+以及它的子节点
 
 195
 00:08:55,697 --> 00:08:57,212
 their attached components.
+和其他它附带的组件
 
 196
 00:08:57,756 --> 00:09:00,065
 One quick note about destroy.
+稍微了解一下destroy的操作
 
 197
 00:09:00,065 --> 00:09:01,974
 Destroy does not immediately destroy the
+Destroy不是直接马上将
 
 198
 00:09:01,974 --> 00:09:04,606
 object listed in the parenthesis.
+所列出的对象销毁
 
 199
 00:09:04,606 --> 00:09:07,843
 It marks the object to be destroyed
+只是标记了需要被销毁的对象
 
 200
 00:09:07,843 --> 00:09:09,843
 and all of the marked objects are
+所有被标记的对象
 
 201
 00:09:09,843 --> 00:09:12,034
 destroyed at the end of the frame.
+都会在这帧结束后被销毁
 
 202
 00:09:12,034 --> 00:09:14,034
 So we can put these destroy lines
+所以我们可以把需要销毁的对象
 
 203
 00:09:14,034 --> 00:09:15,768
 in any order.
+任意顺序排列
 
 204
 00:09:15,768 --> 00:09:17,768
 It seems wrong if we destroy this
+看起来先将子弹销毁
 
 205
 00:09:17,768 --> 00:09:19,768
 game object before we call destroy on
+再将小行星销毁的顺序
 
 206
 00:09:19,768 --> 00:09:21,340
 the other one.
+是错误的
 
 207
 00:09:21,340 --> 00:09:23,340
 But code-wise it doesn't matter what order
+但是从代码的逻辑上讲
 
 208
 00:09:23,340 --> 00:09:25,928
 we mark our objects to be destroyed
+我们销毁对象的顺序
 
 209
 00:09:25,928 --> 00:09:28,600
 as long as they are marked in the same frame.
+并不重要,只要他们在同一帧被销毁就可以了
 
 210
 00:09:29,553 --> 00:09:32,523
 Save this script and return to Unity.
+保存脚本回到Unity
 
 211
 00:09:33,353 --> 00:09:35,353
 Again, this script has no properties
+再说一遍,这个脚本
 
 212
 00:09:35,353 --> 00:09:37,163
 for us to set in the Editor.
+没有需要我们设定的属性
 
 213
 00:09:37,163 --> 00:09:39,163
 It will just work as long as it's
+当他被贴到一个激活了的对象上的时候
 
 214
 00:09:39,163 --> 00:09:42,037
 attached to an active game object.
+它会正常的执行
 
 215
 00:09:42,037 --> 00:09:44,669
 Let's save our scene and enter Play mode.
+让我们保存一下场景进入游戏模式
 
 216
 00:09:45,150 --> 00:09:46,606
 Where's our asteroid?
+我们的小行星哪去了?
 
 217
 00:09:47,212 --> 00:09:48,614
 Let's exit Play mode.
+退出游戏模式
 
 218
 00:09:49,114 --> 00:09:50,438
 There it is.
+它还在那啊
 
 219
 00:09:51,278 --> 00:09:53,796
 Okay, enter Play mode
+恩,再进入游戏模式
 
 220
 00:09:53,796 --> 00:09:55,317
 and it's gone!
+小行星又没了
 
 221
 00:09:55,317 --> 00:09:57,535
 We can see our asteroid in Edit mode
+我们可以在编辑模式下看到小行星
 
 222
 00:09:57,535 --> 00:09:59,535
 but it vanishes in Play mode.
+但是游戏模式小行星就消失了
 
 223
 00:10:00,035 --> 00:10:02,168
 No, we aren't standing at a flux point
+我们并不是发生了神秘现象
 
 224
 00:10:02,168 --> 00:10:04,862
 in the probability field, we have a bug.
+我们只是产生了一个bug
 
 225
 00:10:05,771 --> 00:10:07,654
 Let's do some simply debugging.
+让我们简单的debug一下
 
 226
 00:10:08,198 --> 00:10:09,816
 Let's exit Play mode.
+退出游戏模式
 
 227
 00:10:10,231 --> 00:10:12,791
 We turn to our DestroyByContact script.
+打开DestroyByContact脚本
 
 228
 00:10:13,320 --> 00:10:15,746
 If something is calling our new trigger code
+如果某些对象调用了我们这段
 
 229
 00:10:15,746 --> 00:10:17,895
 and destroying our asteroid we need to
+触发器的代码并销毁了小行星
 
 230
 00:10:17,895 --> 00:10:20,468
 find out what that something is.
+我们得知道是哪个对象
 
 231
 00:10:21,461 --> 00:10:23,461
 In OnTriggerEnter let's write
+在OnTriggerEnter中写下代码
 
 232
 00:10:23,461 --> 00:10:27,054
+debug.logOther.name
 debug.logOther.name
 
 233
 00:10:27,671 --> 00:10:29,671
 This will send the name of the game object
+这段代码会把触发这段代码的
 
 234
 00:10:29,671 --> 00:10:31,510
 that Other is attached to
+另一个对象的名称
 
 235
 00:10:31,510 --> 00:10:33,510
 as a line in our console log.
+输出到控制台
 
 236
 00:10:34,010 --> 00:10:36,721
 Save this script and return to Unity.
+保存并回到Unity
 
 237
 00:10:37,372 --> 00:10:38,858
 Enter Play mode.
+进入游戏模式
 
 238
 00:10:39,434 --> 00:10:41,753
 and now we see who the culprit is,
+现在我们知道谁是罪魁祸首了
 
 239
 00:10:41,753 --> 00:10:43,162
 it's Boundary.
+是边界干的好事
 
 240
 00:10:43,662 --> 00:10:45,387

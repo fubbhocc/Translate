@@ -1196,259 +1196,324 @@ it's Boundary.
 240
 00:10:43,662 --> 00:10:45,387
 We see the most recent error or message
+我们可以在脚标看到
 
 241
 00:10:45,387 --> 00:10:47,927
 in the footer, we can also check the
+最新的报错或者信息
 
 242
 00:10:47,927 --> 00:10:50,568
 console for more detailed information.
+控制台也有更详细的信息
 
 243
 00:10:51,727 --> 00:10:53,727
 If we look in to the Hierarchy we can see
+如果我们检查一下层级视图
 
 244
 00:10:53,727 --> 00:10:55,727
 that Boundary is also missing from
+会发现边界这个对象也消失了
 
 245
 00:10:55,727 --> 00:10:58,214
 our scene, it has been destroyed.
+边界被销毁了
 
 246
 00:10:59,454 --> 00:11:02,027
 Exit Play mode and switch to the Scene view.
+退出游戏模式切换回场景视图
 
 247
 00:11:02,655 --> 00:11:04,655
 Now if we focus our Scene view camera
+现在把我们场景中相机的焦点
 
 248
 00:11:04,655 --> 00:11:06,873
 on the Boundary we can look at
+设为Boundary
 
 249
 00:11:06,873 --> 00:11:09,914
 the relationship between the asteroid and Boundary.
+我们可以发现小行星和边界的关系是
 
 250
 00:11:10,414 --> 00:11:13,299
 Asteroid is right there in the middle of the boundary
+小行星正好在边界的中央
 
 251
 00:11:13,716 --> 00:11:15,716
 On the very first frame Asteroid
+所以在最开始的几帧
 
 252
 00:11:15,716 --> 00:11:18,470
 detects it's inside Boundary
+小行星是在边界内部的
 
 253
 00:11:18,470 --> 00:11:20,844
 and Boundary triggers our OnTriggerEnter
+边界触发了小行星的OnTriggerEnter函数
 
 254
 00:11:20,844 --> 00:11:23,596
 code on Asteroid, and the code destroys
+函数的代码就在最开始的的几帧
 
 255
 00:11:23,596 --> 00:11:26,441
 both game objects in the very first frame.
+就把小行星和边界这两个对象都销毁了
 
 256
 00:11:27,010 --> 00:11:29,314
 We need to test our OnTriggerEnter
+我们要测试一下我们的OnTriggerEnter函数
 
 257
 00:11:29,314 --> 00:11:32,586
 code and ignore collisions with Boundary.
+让它忽略与Boundary的碰撞
 
 258
 00:11:33,086 --> 00:11:36,090
 One way of identifying an object is with a tag.
+其中一种方法就是使用标签
 
 259
 00:11:36,687 --> 00:11:38,687
 Let's tag our boundary.
+让我们给边界加上标签
 
 260
 00:11:39,187 --> 00:11:41,781
 Select Boundary and in the header of
+选定Boundary
 
 261
 00:11:41,781 --> 00:11:43,781
 the game object is it's tag.
+看这个对象的标题栏的标签选项
 
 262
 00:11:44,281 --> 00:11:46,281
 We can see it is untagged.
+我们可以看到上面写的未标记
 
 263
 00:11:46,878 --> 00:11:50,564
 Click on the Tag drop-down and select Add Tag.
+点击一下然后在下拉菜单选择Add Tag
 
 264
 00:11:51,216 --> 00:11:54,238
 This brings up Tags and Layers in the Inspector.
+标签和层级的选项就会出现在检查器窗口
 
 265
 00:11:54,917 --> 00:11:56,917
 Our custom tag list is empty
+我们自定义的标签是空的
 
 266
 00:11:56,917 --> 00:12:00,056
 so let's add a new tag, Boundary.
+让我们加一个新标签Boundary
 
 267
 00:12:00,646 --> 00:12:03,340
 Now if we look back at our boundary game object
+如果我们切换回边界对象
 
 268
 00:12:03,340 --> 00:12:05,685
 we can see it is still untagged.
+我们看到它仍然是未标注的
 
 269
 00:12:06,116 --> 00:12:08,116
 This is an important note.
+这点需要注意一下
 
 270
 00:12:08,116 --> 00:12:10,614
 We used Add Tag on the Tag drop-down
+我们使用下拉菜单中的Add Tag
 
 271
 00:12:10,614 --> 00:12:12,987
 to create a new tag, but we still must
+新建了一个标签
 
 272
 00:12:12,987 --> 00:12:14,987
 assign that new tag.
+但是我们仍然需要把对象标上标签
 
 273
 00:12:14,987 --> 00:12:17,180
 So with Boundary selected
+所以选定边界
 
 274
 00:12:17,180 --> 00:12:20,840
 click on the Tag drop-down and select Boundary.
+点击Tag的下拉菜单选定Boundary
 
 275
 00:12:21,962 --> 00:12:23,740
 We now have successfully tagged this game
+现在这个对象已经被加上了
 
 276
 00:12:23,740 --> 00:12:25,740
 object as Boundary.
+Boundary的标签
 
 277
 00:12:26,862 --> 00:12:30,009
 Return to our DestroyByContact script.
+回到DestroyByContact脚本
 
 278
 00:12:30,009 --> 00:12:33,165
 Let's remove our Debug line and replace it with
+把我们的Debug代码替换一下
 
 279
 00:12:34,066 --> 00:12:36,794
 If the other tag
+如果另一个对象的标签
 
 280
 00:12:36,794 --> 00:12:39,100
 is the same as Boundary
+是Boundary
 
 281
 00:12:39,724 --> 00:12:41,724
 then return.
+那么就返回
 
 282
 00:12:42,486 --> 00:12:44,887
 Return ends the execution of a function
+Return(返回)会让一个函数
 
 283
 00:12:44,887 --> 00:12:46,702
 and hands the control back to the
+结束并将控制权返回调用它的函数
 
 284
 00:12:46,702 --> 00:12:49,340
 function that called it, which in some cases
+有些条件下
 
 285
 00:12:49,340 --> 00:12:51,078
 maybe Unity itself.
+会返回给Unity
 
 286
 00:12:51,660 --> 00:12:53,660
 Optionally a value can be passed back
+如果需要return
 
 287
 00:12:53,660 --> 00:12:55,259
 as well with return.
+也可以回传某个值
 
 288
 00:12:55,966 --> 00:12:57,966
 In our case return simply ends this
+在我们当前程序中
 
 289
 00:12:57,966 --> 00:12:59,966
 function at that point and returns the
+return结束了当前的函数
 
 290
 00:12:59,966 --> 00:13:01,966
 control back to Unity's game loop,
+并把控制权返回给了Unity的循环
 
 291
 00:13:01,966 --> 00:13:04,311
 which means we will never reach or execute
+这就意味着
 
 292
 00:13:04,311 --> 00:13:06,311
 the Destroy code if the other's
+如果对象的标签是Boundary
 
 293
 00:13:06,311 --> 00:13:08,311
 tag is Boundary.
+那么销毁的代码永远都不执行
 
 294
 00:13:09,115 --> 00:13:11,115
 Save the script and return to Unity.
+保存脚本并回到Unity
 
 295
 00:13:12,748 --> 00:13:16,116
 Enter Play mode and there's our asteroid.
+进入游戏模式小行星还在
 
 296
 00:13:16,116 --> 00:13:18,116
 Fire our weapons and the asteroid
+朝小行星开火
 
 297
 00:13:18,116 --> 00:13:20,558
 and the laser bolt are destroyed.
+小行星和镭射子弹都被销毁了
 
 298
 00:13:21,127 --> 00:13:22,680
 When the asteroid entered the boundary
+当小行星进入到边界内部时
 
 299
 00:13:22,680 --> 00:13:24,680
 on the first frame the trigger message
+触发器仅执行了那个return的代码
 
 300
 00:13:24,680 --> 00:13:28,177
 was cut short and the destruction code was ignored.
+之后销毁的代码并没有被执行
 
 301
 00:13:29,920 --> 00:13:33,232
 Now we have a tumbling asteroid and destruction code.
+现在我们有翻转的小行星和销毁代码
 
 302
 00:13:34,326 --> 00:13:36,602
 In the next assignment we will add explosions,
+下一项任务是增加爆炸效果
 
 303
 00:13:36,602 --> 00:13:38,961
 move the asteroid and save it as a prefab
+让小行星可以移动并把它保存为预制件
 
 304
 00:13:38,961 --> 00:13:41,195
 for our game controller to use.
+供以后的游戏控制器使用

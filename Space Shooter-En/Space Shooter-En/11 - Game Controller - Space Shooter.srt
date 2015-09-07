@@ -1,800 +1,999 @@
 1
 00:00:01,340 --> 00:00:03,384
 We have a player ship, weapons
+我们已经做好了玩家飞船,武器
 
 2
 00:00:03,384 --> 00:00:05,454
 and hazard objects.
+小行星灾难
 
 3
 00:00:05,454 --> 00:00:07,024
 We need to bring them together in to a
+我们得把它们重组到一起
 
 4
 00:00:07,024 --> 00:00:09,024
 simple but playable game.
+让它们赤尾一个简单可玩的游戏
 
 5
 00:00:09,524 --> 00:00:11,441
 To do this we need to create a 
+为了这个目的我们需要
 
 6
 00:00:11,441 --> 00:00:13,824
 game controller to run our game,
+建立一个游戏控制器
 
 7
 00:00:13,824 --> 00:00:15,435
 to spawn our hazards,
+生成我们一波波的小行星
 
 8
 00:00:15,435 --> 00:00:17,701
 keep track of and display our score
+记录并显示得分
 
 9
 00:00:17,701 --> 00:00:20,868
 and when our player is destroyed end our game.
+当玩家飞船被毁就结束游戏
 
 10
 00:00:21,672 --> 00:00:24,202
 First create a new game object
+首先建立一个新的对象
 
 11
 00:00:24,202 --> 00:00:26,202
 to hold our game controller logic.
+来保存我们游戏控制器的逻辑
 
 12
 00:00:27,006 --> 00:00:30,049
 Rename this game object Game Controller.
+把这个对象命名为Game Controller
 
 13
 00:00:31,260 --> 00:00:33,496
 And then reset the transform.
+重置一下它的变形组件
 
 14
 00:00:34,105 --> 00:00:36,371
 For this game object this step isn't
+对于当前这个游戏而言
 
 15
 00:00:36,371 --> 00:00:39,435
 absolutely necessary as this game object
+重置这个步骤并不是必须的
 
 16
 00:00:39,435 --> 00:00:42,438
 will not have a physical presence in our game.
+游戏控制器这个对象并不会出现在游戏场景中
 
 17
 00:00:42,438 --> 00:00:45,116
 It won't have a collider and it won't be rendered.
+它没有碰撞检测机也不需要渲染
 
 18
 00:00:45,492 --> 00:00:47,492
 That being said it is always best
+我们提到过最好是把所有的对象
 
 19
 00:00:47,492 --> 00:00:50,431
 to keep everything in our project neat and tidy
+都弄的整齐紧凑
 
 20
 00:00:50,431 --> 00:00:52,431
 and there is no good reason not to put
+所以我们并没有什么好理由
 
 21
 00:00:52,431 --> 00:00:55,201
 the game controller cleanly at origin.
+不把游戏控制器放在原点
 
 22
 00:00:56,571 --> 00:00:58,930
 Using the Tag drop-down menu in the header
+在 Game Controller标题栏下的标签下拉菜单中
 
 23
 00:00:58,930 --> 00:01:01,784
 of the Game Controller game object select the
+选择已有的标签
 
 24
 00:01:01,784 --> 00:01:04,456
 pre-made tag GameController.
+GameController
 
 25
 00:01:06,093 --> 00:01:08,162
 With our game object setup
+我们的对象已经设置好了
 
 26
 00:01:08,162 --> 00:01:09,887
 let's write our logic.
+下面我们来设定一下逻辑
 
 27
 00:01:10,387 --> 00:01:12,387
 With the Game Controller selected
+在Game Controller对象选定的情况下
 
 28
 00:01:12,387 --> 00:01:15,212
 use the Add Component button
+点击Add Component按钮
 
 29
 00:01:15,212 --> 00:01:18,057
 to create a new script
+新建一个脚本
 
 30
 00:01:18,057 --> 00:01:20,516
 named GameController.
+命名为GameController
 
 31
 00:01:21,330 --> 00:01:24,009
 Accept the changes to add this new script
+确认更改
 
 32
 00:01:24,009 --> 00:01:25,748
 to GameController.
+并新增这个脚本
 
 33
 00:01:26,386 --> 00:01:30,086
 Select Assets and file the GameController script
+点选资源文件夹
 
 34
 00:01:30,086 --> 00:01:31,863
 in the Scripts folder.
+把GameController脚本文件移到Scripts文件夹中
 
 35
 00:01:32,489 --> 00:01:34,489
 Open the Scripts folder
+打开Scripts文件夹
 
 36
 00:01:34,489 --> 00:01:37,628
 and open the GameController script for editing.
+打开编辑GameController脚本
 
 37
 00:01:38,570 --> 00:01:40,570
 Our game controller will perform
+我们的控制器
 
 38
 00:01:40,570 --> 00:01:42,268
 several different tasks.
+主要完成一下几个任务
 
 39
 00:01:42,268 --> 00:01:44,519
 The primary task however will be 
+首要任务是产生
 
 40
 00:01:44,519 --> 00:01:46,810
 spawning the hazards in our game.
+游戏中的小行星灾难
 
 41
 00:01:47,364 --> 00:01:49,711
 So the first thing we will need in this script
+所以这个脚本要做的第一件事是
 
 42
 00:01:49,711 --> 00:01:54,383
 is a public GameObject reference to our hazard.
+建立一个公有的对小行星对象的引用
 
 43
 00:01:55,712 --> 00:01:57,712
 Next we need to do something
+之后我们需要对小行星
 
 44
 00:01:57,712 --> 00:01:59,365
 with these hazards. 
+执行一些操作
 
 45
 00:01:59,365 --> 00:02:02,414
 We need to spawn them, preferably in waves
+我们需要产生小行星
 
 46
 00:02:02,414 --> 00:02:04,181
 for our player to fight through.
+最好是产生一波波的小行星让玩家射击
 
 47
 00:02:04,721 --> 00:02:06,721
 Let's write a new function to spawn
+让我们写一些能产生小行星
 
 48
 00:02:06,721 --> 00:02:08,543
 our waves of hazards.
+的方法
 
 49
 00:02:08,543 --> 00:02:11,419
 Write void SpawnWaves.
+敲入代码void SpawnWaves
 
 50
 00:02:12,057 --> 00:02:14,717
 Now we need to call this function.
+现在我们需要调用这个代码
 
 51
 00:02:15,217 --> 00:02:17,217
 There are some functions that are called
+有些方法Unity会
 
 52
 00:02:17,217 --> 00:02:19,537
 automatically by Unity
+自动调用
 
 53
 00:02:19,537 --> 00:02:21,923
 but most of the functions that we write
+但是大多数我们自己编写的方法
 
 54
 00:02:21,923 --> 00:02:23,979
 we will need to call ourselves
+都需要我们自己调用
 
 55
 00:02:23,979 --> 00:02:25,673
 or they won't be executed.
+否则代码不会被执行
 
 56
 00:02:26,313 --> 00:02:28,313
 We want our SpawnWaves function to
+我们希望SpawnWaves这个函数
 
 57
 00:02:28,313 --> 00:02:31,246
 work for most of the duration of our game.
+在大部分时间都被调用
 
 58
 00:02:31,746 --> 00:02:35,353
 So let's call SpawnWaves from start.
+所以我们在start中调用SpawnWaves
 
 59
 00:02:35,853 --> 00:02:38,799
 So let's write void Start.
+让我们写下代码void Start
 
 60
 00:02:39,299 --> 00:02:42,235
 Unity will call Start on the very first frame
+Unity会在游戏开始的时候
 
 61
 00:02:42,235 --> 00:02:44,625
 that this game object is enabled
+调用Start方法
 
 62
 00:02:44,625 --> 00:02:47,637
 and then Start will call SpawnWaves.
+之后Start会调用SpawnWaves
 
 63
 00:02:49,491 --> 00:02:51,769
 What do we want SpawnWaves to do?
+我们需要SpawnWaves执行那些操作?
 
 64
 00:02:51,769 --> 00:02:54,836
 We want SpawnWaves to instantiate our hazards.
+我们需要SpawnWaves初始化我们小行星灾难
 
 65
 00:02:55,226 --> 00:02:59,240
 We want to instantiate our hazards
+我们需要在某个小行星出生点的位置
 
 66
 00:02:59,240 --> 00:03:01,475
 at a spawnPosition
+产生一些小行星
 
 67
 00:03:01,475 --> 00:03:04,124
 with a spawnRotation applied.
+这些小行星要按照给出的spawnRotation旋转
 
 68
 00:03:05,826 --> 00:03:08,708
 We have 3 parameters for instantiate
+这里我们有三个参数
 
 69
 00:03:08,708 --> 00:03:11,122
 and we need a value for each of them.
+我们需要给这三个参数赋值
 
 70
 00:03:11,122 --> 00:03:13,384
 Let's look at each of these parameters
+所以让我们逐个看看
 
 71
 00:03:13,384 --> 00:03:15,176
 1 parameter at a time.
+这些参数
 
 72
 00:03:15,552 --> 00:03:18,485
 Our object Hazard has already been defined
+我们的小行星对象已经被
 
 73
 00:03:18,485 --> 00:03:20,306
 as a public variable.
+定义成了公有的参数
 
 74
 00:03:20,888 --> 00:03:23,978
 Our spawnPosition is a vector3 value
+我们的spawnPosition参数是一个vector3的值
 
 75
 00:03:23,978 --> 00:03:28,268
 so let's create a vector3 variable called 
+所以我们建立一个vector3的变量
 
 76
 00:03:28,268 --> 00:03:31,312
 spawnPosition, which we will set to
+叫做spawnPosition
 
 77
 00:03:31,312 --> 00:03:33,866
 a new vector3.
+把一个新建的vector3赋值给spawnPosition
 
 78
 00:03:35,678 --> 00:03:39,230
 Our spawnRotation is a quaternion value.
+我们的spawnRotation是一个四元变量
 
 79
 00:03:39,730 --> 00:03:41,938
 So let's create a quaternion variable
+让我们新建一个四元的变量
 
 80
 00:03:41,938 --> 00:03:44,172
 called spawnRotation
+命名为spawnRotation
 
 81
 00:03:44,172 --> 00:03:48,183
 which we will set to a new quaternion.
+把一个新建的四元变量赋值给它
 
 82
 00:03:48,918 --> 00:03:51,665
 Both of these will change before we're done.
+spawnPosition和spawnRotation的值我们稍后会做调整
 
 83
 00:03:52,400 --> 00:03:54,193
 Let's look at how we can assign
+让我们先看看如何
 
 84
 00:03:54,193 --> 00:03:56,193
 working values to these.
+给这些参数赋值
 
 85
 00:03:57,024 --> 00:03:59,177
 Hazard is a public variable.
+Hazard是一个公有参数
 
 86
 00:03:59,177 --> 00:04:01,680
 We can set this directly in the Inspector.
+这个参数我们可以在Inspector中直接设置
 
 87
 00:04:02,083 --> 00:04:04,611
 Save this script and return to Unity.
+保存脚本回到Unity
 
 88
 00:04:05,647 --> 00:04:07,647
 We can see the hazard property
+我们在GameController这个组件上可以看到
 
 89
 00:04:07,647 --> 00:04:09,881
 on the GameController component.
+hazard这个属性
 
 90
 00:04:10,382 --> 00:04:12,927
 In the Prefabs folder we can find our
+在Prefabs文件夹中
 
 91
 00:04:12,927 --> 00:04:14,927
 Asteroid prefab.
+我们找到小行星的预制件
 
 92
 00:04:14,927 --> 00:04:16,927
 Drag the Asteroid prefab on to the
+把小行星的预制件
 
 93
 00:04:16,927 --> 00:04:19,425
 Game Controller component and drop it
+拖拽到Game Controller组件
 
 94
 00:04:19,425 --> 00:04:23,168
 on to the Hazard slot to create the reference.
+把预制件放置到Hazard槽位
 
 95
 00:04:24,897 --> 00:04:27,229
 We want to be able to set our spawn position
+我们需要在编辑器中
 
 96
 00:04:27,229 --> 00:04:29,229
 in the Editor as well.
+设置我们的小行星产生位置
 
 97
 00:04:30,171 --> 00:04:32,672
 Return to our GameController script.
+回到我们的GameController脚本
 
 98
 00:04:34,494 --> 00:04:36,494
 For our spawnPosition
+对于spawnPosition这个参数
 
 99
 00:04:36,494 --> 00:04:38,923
 let's define a public vector3
+我们定义一个公有的vector3参数
 
 100
 00:04:38,923 --> 00:04:42,076
 variable called spawnValues.
+命名为spawnValues
 
 101
 00:04:42,825 --> 00:04:45,446
 Why can't we just use spawnPosition here?
+我们这里为什么不直接使用spawnPosition呢?
 
 102
 00:04:45,946 --> 00:04:47,946
 We will see why in just a moment.
+我们等会就知道为什么了
 
 103
 00:04:47,946 --> 00:04:49,269
 Patience.
+耐心点
 
 104
 00:04:49,269 --> 00:04:51,269
 Save this script and let's set
+保存脚本
 
 105
 00:04:51,269 --> 00:04:53,711
 spawnValue in Unity.
+让我们在Unity中设置一下spawnValue
 
 106
 00:04:55,648 --> 00:04:58,847
 To help visualise this let's drag and asteroid
+为了让我们更好的理解
 
 107
 00:04:58,847 --> 00:05:01,390
 prefab in to the scene temporarily.
+我们暂时先把一个小行星拖拽到场景中
 
 108
 00:05:02,815 --> 00:05:06,055
 So on what position along the Y axis
+小行星产生的位置
 
 109
 00:05:06,055 --> 00:05:08,055
 do we want to spawn our hazards?
+在Y轴上应该为多少呢?
 
 110
 00:05:08,942 --> 00:05:11,850
 On the X/Z plane or the game plane?
+在X/Z平面和游戏平面?
 
 111
 00:05:12,129 --> 00:05:14,655
 So 0 on the Y axis.
+所以Y值应该为0
 
 112
 00:05:15,402 --> 00:05:18,549
 What about the position on the X/Z plane?
+在X/Z平面上的位置又如何呢
 
 113
 00:05:19,670 --> 00:05:20,948
 This could be better seen
+我们可以通过游戏场景相机观察
 
 114
 00:05:20,948 --> 00:05:22,948
 through the Game View camera.
+这样会更清晰
 
 115
 00:05:24,442 --> 00:05:26,692
 What position on the Z axis?
+Z轴的值应该是多少?
 
 116
 00:05:26,692 --> 00:05:28,692
 Up, out of the game area.
+向上,直到游戏场景以外
 
 117
 00:05:29,565 --> 00:05:32,867
 That looks like about 16.
+看起来16差不多
 
 118
 00:05:33,464 --> 00:05:37,373
 So let's set the spawnValue Z to 16.
+我们把spawnValue的Z值设置为16
 
 119
 00:05:40,704 --> 00:05:43,215
 Now what about the X axis
+X方向的参数又该如何设置
 
 120
 00:05:43,839 --> 00:05:47,284
 Well we can't really use a single value here.
+我们这里不要使用一个固定值
 
 121
 00:05:47,284 --> 00:05:49,284
 If we did we will define a
+如果我们这样做了
 
 122
 00:05:49,284 --> 00:05:51,868
 single point for our spawnPosition,
+我们会只产生一个固定的spawnPosition
 
 123
 00:05:51,868 --> 00:05:53,868
 and for that we could have used a simple
+我们可以向子弹的产生点那样
 
 124
 00:05:53,868 --> 00:05:56,397
 game object's transform, like we did for
+使用一个对象的变形组建
 
 125
 00:05:56,397 --> 00:05:58,397
 the shotSpawn on the player ship.
+使小行星的生成位置可以发生变化
 
 126
 00:05:59,118 --> 00:06:01,688
 What we really want here is a random
+我们这里需要的是一个
 
 127
 00:06:01,688 --> 00:06:03,743
 point in the X axis.
+随机的X值
 
 128
 00:06:03,743 --> 00:06:06,104
 One that is a new random value for
+这个值可以让每个小行星
 
 129
 00:06:06,104 --> 00:06:08,452
 each new hazard we spawn.
+都在不同的位置产生出来
 
 130
 00:06:09,129 --> 00:06:12,627
 This is why we couldn't use spawnPosition directly.
+这就是我们为什么不直接使用spawnPosition的原因
 
 131
 00:06:13,210 --> 00:06:15,210
 Let's return to our script
+让我们回到脚本继续编辑
 
 132
 00:06:17,036 --> 00:06:19,657
 We will use our spawnValues to set
+我们用spawnValues来设定
 
 133
 00:06:19,657 --> 00:06:21,923
 a random spawnPosition.
+一个随机的spawnPosition
 
 134
 00:06:22,986 --> 00:06:25,463
 Our spawnPosition is made up of 
+spawnPosition是由
 
 135
 00:06:25,463 --> 00:06:27,922
 X, Y and Z values.
+X, Y and Z三个值组成
 
 136
 00:06:28,312 --> 00:06:30,312
 Working from back to front
+从最后一个参数依次向前赋值
 
 137
 00:06:30,812 --> 00:06:33,496
 our spawnPosition Z will be our
+spawnPosition的Z值是
 
 138
 00:06:33,496 --> 00:06:36,254
 spawnValues Z, or outside the
+spawnValues的Z值
 
 139
 00:06:36,254 --> 00:06:37,918
 top of the game area.
+这个值要在游戏区域上方之外
 
 140
 00:06:38,418 --> 00:06:40,418
 Our spawnPosition Y will be
+spawnPosition的Y值就是
 
 141
 00:06:40,418 --> 00:06:42,667
 our spawnValue Y
+spawnValue的Y值
 
 142
 00:06:42,667 --> 00:06:45,293
 or 0 on the game plane.
+这个值是0也就是在游戏所在的平面
 
 143
 00:06:46,300 --> 00:06:48,300
 Our spawnPosition X is the one
+spawnPosition的X值
 
 144
 00:06:48,300 --> 00:06:50,023
 that's more tricky.
+非常有技巧
 
 145
 00:06:50,023 --> 00:06:52,411
 We can't use a single value here.
+这里没法用一个值表示
 
 146
 00:06:52,911 --> 00:06:55,687
 We will use our spawnValue X
+我们用spawnValue的X值
 
 147
 00:06:55,687 --> 00:06:58,379
 to control a random value.
+来控制这个随机值
 
 148
 00:07:00,012 --> 00:07:02,975
 Let's search the documentation for random again
+让我们再在文档中搜索一下random 
 
 149
 00:07:02,975 --> 00:07:05,555
 so we can look at the Random class.
+我们可以看看Random这个类
 
 150
 00:07:06,221 --> 00:07:08,221
 In this case we want to look at
+这里我们看
 
 151
 00:07:08,221 --> 00:07:10,082
 Random.Range.
+Random.Range
 
 152
 00:07:10,624 --> 00:07:14,158
 We give Random.Range a min and a max value
+我们给Random.Range一个最大和一个最小值
 
 153
 00:07:14,158 --> 00:07:16,158
 and randomRange will return
+这个函数会随机返回
 
 154
 00:07:16,158 --> 00:07:19,525
 a random value between those 2 values.
+最大值和最小值之间的一个值
 
 155
 00:07:20,315 --> 00:07:22,785
 This means we can feed Random.Range
+这意味着我们可以把
 
 156
 00:07:22,785 --> 00:07:26,200
 with the values of the edges of our game area
+游戏边界的值给Random.Range
 
 157
 00:07:26,200 --> 00:07:29,483
 and it will return a random value between them.
+Random.Range会返回一个边界之间的随机数
 
 158
 00:07:29,983 --> 00:07:33,699
 Copy Random.Range and return to our script.
+复制Random.Range
 
 159
 00:07:34,890 --> 00:07:36,890
 Paste Random.Range in to our code
+粘贴到我们的脚本中
 
 160
 00:07:36,890 --> 00:07:39,666
 and let's feed Random.Range with
+给Random.Range赋值
 
 161
 00:07:39,666 --> 00:07:42,276
+- spawnValues.x
 - spawnValues.x
 
 162
 00:07:42,276 --> 00:07:44,721
 and spawnValues.x.
+和spawnValues.x
 
 163
 00:07:46,737 --> 00:07:49,844
 Save this script and return to Unity.
+保存脚本回到Unity
 
 164
 00:07:51,518 --> 00:07:53,518
 Where are the edges of our game?
+我们游戏的边界是多少?
 
 165
 00:07:54,999 --> 00:07:57,742
 Let's move our asteroid along the X axis.
-
+让我们把小行星沿着X轴移动一下
 
 166
 00:07:58,132 --> 00:08:02,691
 And it looks like about -6 and 6.
+差不多是-6到6
 
 167
 00:08:03,343 --> 00:08:06,863
 So spawnValues.x is 6.
+所以spawnValues.x的值是6
 
 168
 00:08:08,275 --> 00:08:11,686
 Lastly we need to set our spawnRotation.
+最后我们需要设定spawnRotation
 
 169
 00:08:12,752 --> 00:08:15,124
 Back to our GameController script
+返回我们的GameController脚本
 
 170
 00:08:15,124 --> 00:08:17,046
 let's find out more about
+让我们在文档中
 
 171
 00:08:17,046 --> 00:08:19,046
 quaternion in the documentation.
+找一下四元数的信息
 
 172
 00:08:20,029 --> 00:08:22,319
 Quaternions are complex.
+四元数很复杂
 
 173
 00:08:22,319 --> 00:08:24,319
 We almost never access or modify
+我们几乎无法直接获得
 
 174
 00:08:24,319 --> 00:08:26,319
 a quaternion directly.
+或者更改一个四元数
 
 175
 00:08:26,819 --> 00:08:28,555
 There are many quaternion functions for us
+这里有很多的四元数函数
 
 176
 00:08:28,555 --> 00:08:30,401
 for us to use.
+可供我们使用
 
 177
 00:08:30,401 --> 00:08:32,332
 We won't be using any of the quaternion
+我们并不会用到某个具体的
 
 178
 00:08:32,332 --> 00:08:34,957
 functions exactly, but we will be looking at
+四元数方程
 
 179
 00:08:34,957 --> 00:08:38,273
 a quaternion property called Identity.
+但是我们需要看一个四元数的叫Identity的属性
 
 180
 00:08:39,685 --> 00:08:42,417
 Quaternion.Identity corresponds with
+Quaternion.Identity对应
 
 181
 00:08:42,417 --> 00:08:44,806
 no rotation of the quaternion.
+一个非旋转的四元数
 
 182
 00:08:45,306 --> 00:08:47,306
 We will instantiate our hazards with
+我们的小行星将被实例化
 
 183
 00:08:47,306 --> 00:08:49,306
 no rotation at all.
+为没有任何翻转
 
 184
 00:08:49,806 --> 00:08:51,806
 Copy Quaternion.Identity
+复制Quaternion.Identity
 
 185
 00:08:51,806 --> 00:08:53,806
 and return to our script.
+回到我们的脚本
 
 186
 00:08:54,209 --> 00:08:57,561
 Paste this in to our code so the line reads
+把它粘贴到我们的代码行中使代码成为
 
 187
 00:08:57,557 --> 00:09:02,853
 Quaternion spawnRotation = Quaternion.Identity.
+Quaternion spawnRotation = Quaternion.Identity
 
 188
 00:09:03,629 --> 00:09:07,191
 Save this script and return to Unity to test.
+保存脚本回到Unity测试一下
 
 189
 00:09:08,216 --> 00:09:10,508
 Remove our temporary asteroid.
+把我们临时的那个小行星删除掉
 
 190
 00:09:10,508 --> 00:09:12,508
 Save the scene and play.
+保存场景进入游戏模式
 
 191
 00:09:13,077 --> 00:09:15,244
 And we get a tumbling asteroid
+我们得到了一个翻转的小行星
 
 192
 00:09:15,244 --> 00:09:17,382
 from a random point left to right
+它产生的位置的左右距离是随机的
 
 193
 00:09:17,382 --> 00:09:19,382
 starting outside of the game area
+它是从游戏场景上方发出的
 
 194
 00:09:19,382 --> 00:09:21,799
 and moving along the game plane.
+并且它是沿着游戏平面飞行的
 
 195
 00:09:22,600 --> 00:09:25,329
 Let's enter and exit Play mode a few times.
+让我们重新进入退出游戏模式重复几次
 
 196
 00:09:25,829 --> 00:09:28,244
 We can see that our spawn points are random
+我们可以看到我们的小行星生成位置是随机的
 
 197
 00:09:28,244 --> 00:09:30,244
 and each new asteroid is spawned
+所有小行星都在
 
 198
 00:09:30,244 --> 00:09:32,244
 at a new random location.
+不同的位置生成
 
 199
 00:09:33,918 --> 00:09:36,098
 In the next assignment we will instantiate
+下一个任务是
 
 200
 00:09:36,098 --> 00:09:39,363
 waves of hazards to challenge our player with.
+生成一大波小行星来挑战我们的玩家

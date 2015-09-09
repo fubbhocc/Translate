@@ -766,464 +766,579 @@ loop in another loop.
 154
 00:07:44,495 --> 00:07:47,323
 Grab the for loop code that we have written
-
+选定循环的代码
 
 155
 00:07:47,323 --> 00:07:49,323
 and indent that code.
+把他们缩进
 
 156
 00:07:50,624 --> 00:07:54,271
 Write while followed by parenthesis.
+敲入代码while后面紧跟小括号
 
 157
 00:07:54,881 --> 00:07:56,881
 Wrap the code block in brackets.
+把之前选定的循环代码放入大括号中
 
 158
 00:07:59,439 --> 00:08:01,398
 This is a while loop.
+这就是while循环
 
 159
 00:08:01,398 --> 00:08:03,398
 With a while loop we will continue to
+如果while循环条件始终为真
 
 160
 00:08:03,398 --> 00:08:05,398
 cycle through that loop while the
+则while循环会
 
 161
 00:08:05,398 --> 00:08:07,732
 statement in the parenthesis is true.
+持续执行循环体中的代码
 
 162
 00:08:07,995 --> 00:08:11,540
 Let's say as long as A is greater than B
+while循环的这个条件可以填写为a>b
 
 163
 00:08:11,540 --> 00:08:14,148
 or whatever statement our code needs.
+或者我们需要的条件
 
 164
 00:08:15,173 --> 00:08:18,616
 In this case we will say while true
+这里我们会写while(true)
 
 165
 00:08:18,616 --> 00:08:21,381
 and of course true will always be true
+当然true总是真的
 
 166
 00:08:21,381 --> 00:08:23,785
 so this becomes an infinite loop.
+所以这里会无限循环
 
 167
 00:08:24,257 --> 00:08:26,009
 We will discuss how to break out of this
+我们会在其他的讲解中讨论
 
 168
 00:08:26,009 --> 00:08:28,009
 infinite loop in another assignment.
+如何中断这个无限循环
 
 169
 00:08:28,675 --> 00:08:31,271
 The way this works is in our while loop
+整个代码的工作过程是这样
 
 170
 00:08:31,271 --> 00:08:33,023
 we execute our for loop
+在while循环中有for循环
 
 171
 00:08:33,633 --> 00:08:35,981
 and we instantiate our wave of hazards
+for循环中初始化了我们的小行星
 
 172
 00:08:35,981 --> 00:08:37,663
 based on our hazard count.
+小行星的产生数量由hazard count决定
 
 173
 00:08:38,481 --> 00:08:40,397
 When we're done spawning our wave
+当我们的一波小行星产生完毕
 
 174
 00:08:40,397 --> 00:08:42,012
 the while loop brings us back to the top
+while循环会把我们带回到
 
 175
 00:08:42,012 --> 00:08:44,620
 of the block and we execute the for loop again.
+这段代码的最前面一行代码来重新执行for循环
 
 176
 00:08:45,272 --> 00:08:47,272
 To create a gap between our waves we need
+我们需要在每波小行星之间保留一个空隙
 
 177
 00:08:47,272 --> 00:08:50,398
 to wait, this time at the end of the while loop.
+我们可以在每个while循环之后增加一个等待时间
 
 178
 00:08:50,898 --> 00:08:55,121
 Write yield return new WaitForSeconds.
+敲入yield return new WaitForSeconds
 
 179
 00:08:57,320 --> 00:09:00,409
 Write public float waveWait.
+敲入public float waveWait
 
 180
 00:09:00,909 --> 00:09:02,909
 And the amount of time we wait between waves
+我们每波小行星之间的
 
 181
 00:09:02,909 --> 00:09:05,577
 will be represented by waveWait.
+等待时间由waveWait决定
 
 182
 00:09:06,790 --> 00:09:09,370
 Save this script and return to Unity.
+保存脚本回到Unity
 
 183
 00:09:10,726 --> 00:09:12,561
 We can see our GameController component
+我们可以看到我们的GameController组件
 
 184
 00:09:12,561 --> 00:09:14,437
 now has a Wave Wait property.
+有一个Wave Wait属性
 
 185
 00:09:14,937 --> 00:09:16,867
 Let's set this to 4.
+我们把这个设定为4
 
 186
 00:09:17,201 --> 00:09:20,609
 Save the scene and enter Play mode to test.
+保存场景进入游戏模式测试
 
 187
 00:09:22,739 --> 00:09:25,485
 There's our first wave of 10 asteroids.
+这是我们第一波的10个小行星
 
 188
 00:09:27,615 --> 00:09:29,809
 We have a pause between waves as we wait
+我们在每波之间
 
 189
 00:09:29,809 --> 00:09:31,685
 in our while loop.
+都有停顿时间
 
 190
 00:09:31,685 --> 00:09:33,574
 and there is another wave as we
+又来了一波
 
 191
 00:09:33,574 --> 00:09:35,574
 execute our for loop again.
+因为我们的for循环又执行了一遍
 
 192
 00:09:37,704 --> 00:09:39,329
 Another pause.
+又一次间隙
 
 193
 00:09:40,964 --> 00:09:43,409
 And wave 3, and this will continue
+第三波
 
 194
 00:09:43,409 --> 00:09:45,409
 until we exit Play mode.
+这会执行到我们退出游戏模式
 
 195
 00:09:49,294 --> 00:09:51,637
 This is starting to look like a real game.
+现在看起来像是一个游戏了
 
 196
 00:09:52,139 --> 00:09:54,139
 There is one last step we need to do
+还有最后一步
 
 197
 00:09:54,139 --> 00:09:56,968
 before we sign off on this segment however.
+在我们结束本段教学前
 
 198
 00:09:58,393 --> 00:10:01,379
 Look in to our Hierarchy while we're playing the game,
+让我们看看游戏进行时我们的层级视图
 
 199
 00:10:01,379 --> 00:10:03,918
 it's full of used explosion clones.
+全都是被小行星爆破后的克隆数据
 
 200
 00:10:05,233 --> 00:10:07,344
 Every time we destroy an asteroid
+每次我们击毁一个小行星
 
 201
 00:10:07,344 --> 00:10:09,454
 the asteroid spawns an explosion
+小行星产生一个爆炸
 
 202
 00:10:09,454 --> 00:10:11,287
 and there it stays.
+然后就留在了层级视图
 
 203
 00:10:11,287 --> 00:10:13,287
 Currently we have only 2 ways of destroying
+目前为止我们只有2种
 
 204
 00:10:13,287 --> 00:10:15,121
 things in our game.
+销毁对象的方法
 
 205
 00:10:15,121 --> 00:10:17,633
 When they leave the boundary trigger box
+当他们离开边界造成触发后
 
 206
 00:10:17,633 --> 00:10:19,508
 and by contact.
+或者是发生接触
 
 207
 00:10:19,508 --> 00:10:21,508
 Neither will work in this case.
+这两种方法在这里都不适用
 
 208
 00:10:22,049 --> 00:10:23,536
 We will need to write another way of
+我们需要写一种按时间
 
 209
 00:10:23,536 --> 00:10:26,019
 destroying things by time.
+销毁物体的方法
 
 210
 00:10:27,003 --> 00:10:28,390
 Exit Play mode.
+退出游戏模式
 
 211
 00:10:29,627 --> 00:10:31,627
 Select the Scripts folder
+选定脚本文件夹
 
 212
 00:10:32,279 --> 00:10:34,738
 and use the Create menu in the Project view.
+在Project视图中点选Create按钮
 
 213
 00:10:35,345 --> 00:10:37,345
 Choose C# Script.
+选择C#脚本
 
 214
 00:10:38,895 --> 00:10:41,131
 Unity creates new assets where we are
+Unity在当前文件夹
 
 215
 00:10:41,131 --> 00:10:42,868
 focused in the Editor.
+生成了新的组件
 
 216
 00:10:42,868 --> 00:10:44,868
 By selecting the Scripts folder before we
+我们可以先点选Scripts文件夹
 
 217
 00:10:44,868 --> 00:10:47,885
 created our new script Unity created it
+再生成新脚本文件
 
 218
 00:10:47,885 --> 00:10:49,649
 inside the Scripts folder,
+这样脚本文件就生成在Scripts文件夹中了
 
 219
 00:10:49,649 --> 00:10:51,869
 so there is no need to file it away.
+所以这里不需要再移动文件了
 
 220
 00:10:52,439 --> 00:10:55,489
 Rename this script DestroyByTime.
+把这个脚本重命名为DestroyByTime
 
 221
 00:10:55,878 --> 00:10:58,962
 And with the script selected open it for editing.
+点选这个脚本并打开编辑它
 
 222
 00:11:01,416 --> 00:11:04,125
 This script will be very simple.
+这个脚本非常简单
 
 223
 00:11:04,125 --> 00:11:06,923
 After removing the sample code write
+先把已有的代码删除
 
 224
 00:11:06,923 --> 00:11:11,519
 void Start Destroy gameObject.
+敲入void Start Destroy gameObject
 
 225
 00:11:12,074 --> 00:11:13,644
 Now this seems a bit crazy,
+这个看起来太疯狂了
 
 226
 00:11:13,644 --> 00:11:15,644
 destroying our game object the same frame
+销毁我们的当前帧的游戏对象
 
 227
 00:11:15,644 --> 00:11:17,366
 it's instantiated, no?
+需要实例化?不
 
 228
 00:11:17,866 --> 00:11:20,818
 Well, Destroy is very useful.
+Destroy这个函数很有用
 
 229
 00:11:20,818 --> 00:11:22,818
 For more information on Destroy see the
+更多的关于Destroy函数的信息
 
 230
 00:11:22,818 --> 00:11:25,333
 lessons and information linked below.
+请参考下方连接
 
 231
 00:11:26,354 --> 00:11:29,380
 One of the parameters in Destroy is Time.
+Destroy函数的参数之一就是Time
 
 232
 00:11:29,880 --> 00:11:31,880
 We can specify a wait time before
+我们可以标注一个等待时间
 
 233
 00:11:31,880 --> 00:11:33,880
 Destroy takes effect.
+之后Destroy才会触发
 
 234
 00:11:34,670 --> 00:11:37,683
 Let's write public float lifetime.
+让我们敲入代码public float lifetime
 
 235
 00:11:39,647 --> 00:11:41,647
 And let's copy lifetime.
+让我们拷贝lifetime
 
 236
 00:11:42,368 --> 00:11:44,658
 After gameObject add a comma
+在gameObject后面增加个逗号
 
 237
 00:11:44,658 --> 00:11:46,658
 and paste lifetime.
+并粘贴lifetime
 
 238
 00:11:47,904 --> 00:11:50,866
 Now when our game object is instantiated
+现在当我们的游戏对象实例化了
 
 239
 00:11:50,866 --> 00:11:52,726
 like a ticking time bomb
+它们就像一个定时炸弹
 
 240
 00:11:52,726 --> 00:11:54,726
 the object will set it's lifetime and
+这个对象有一个生命周期
 
 241
 00:11:54,726 --> 00:11:56,726
 destroy itself when the time is up.
+然后毁灭当前对象自己
 
 242
 00:11:58,276 --> 00:12:01,063
 Save this script and return to Unity.
+保存这个脚本回到Unity
 
 243
 00:12:02,834 --> 00:12:06,394
 Select the Explosions folder in Prefabs VFX.
+选定Prefabs VFX文件夹下的Explosions文件夹 
 
 244
 00:12:06,918 --> 00:12:08,918
 In the Explosions folder are our
+在此文件夹中
 
 245
 00:12:08,918 --> 00:12:10,808
 explosion prefabs.
+有我们的爆炸预制件
 
 246
 00:12:10,808 --> 00:12:13,361
 Select the Astroid explosion and using the
+选定小行星爆炸
 
 247
 00:12:13,361 --> 00:12:16,312
 Add Component button select Scripts
+点击Add Component按钮选择Scripts
 
 248
 00:12:16,729 --> 00:12:19,230
 and choose DestroyByTime.
+选择DestroyByTime
 
 249
 00:12:20,900 --> 00:12:24,070
 Set the value of lifetime to 2.
+把lifetime这个值设定为2
 
 250
 00:12:26,034 --> 00:12:29,529
 We can also add a script this way to multiple items.
+我们可以通过这种方式把已经脚本添加到多个对象上
 
 251
 00:12:29,529 --> 00:12:32,778
 Let's update all of our explosion prefabs.
+让我们更新一下我们全部的爆炸预制件
 
 252
 00:12:32,778 --> 00:12:35,219
 Select the other 2 explosion prefabs
+选定另外2个爆炸预制件
 
 253
 00:12:35,219 --> 00:12:37,578
 and using multi-object editing
+使用多重选择的方式
 
 254
 00:12:37,578 --> 00:12:41,735
 use the Add Component button and select Scripts
+点击Add Component按钮选择Scripts
 
 255
 00:12:41,735 --> 00:12:44,839
 and again choose DestroyByTime.
+再选择一次DestroyByTime
 
 256
 00:12:45,850 --> 00:12:48,838
 And set the lifetime value to 2 as well.
+然后把lifetime(生命周期)的值设定为2
 
 257
 00:12:49,275 --> 00:12:51,552
 This adds the script and sets the
+这样就可以把脚本和
 
 258
 00:12:51,552 --> 00:12:53,552
 lifetime value on both prefabs
+生命周期时间同时设定到这2个
 
 259
 00:12:53,552 --> 00:12:55,030
 at the same time.
+预制件上
 
 260
 00:12:55,596 --> 00:12:57,195
 Save the scene.
+保存场景
 
 261
 00:12:57,195 --> 00:12:59,612
 Enter Play mode and test.
+进入游戏模式测试
 
 262
 00:13:07,871 --> 00:13:10,440
 We can see the explosion clones are no longer
+我们可以看到爆炸的克隆
 
 263
 00:13:10,440 --> 00:13:12,440
 accumulating in our scene,
+不再会在我们的场景中增加了
 
 264
 00:13:12,440 --> 00:13:14,841
 not even the player's explosion.
+玩家的爆炸也是
 
 265
 00:13:16,528 --> 00:13:18,709
 We almost have a complete game!
+我们的游戏快做完了
 
 266
 00:13:19,097 --> 00:13:20,987
 In the next assignment we will add
+下一章节我们将介绍
 
 267
 00:13:20,987 --> 00:13:22,822
 audio to our scene.
+如何在场景中添加音频
 
 268
 00:13:22,822 --> 00:13:24,423
 Including explosion sounds
+包括爆炸声音
 
 269
 00:13:24,423 --> 00:13:26,423
 and laser guns blasting.
+还有镭射子弹的咆哮

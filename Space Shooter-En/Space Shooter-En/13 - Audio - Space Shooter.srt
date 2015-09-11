@@ -1,166 +1,207 @@
 1
 00:00:01,588 --> 00:00:03,287
 Our game is taking shape.
+我们的游戏逐渐成形了
 
 2
 00:00:03,718 --> 00:00:06,236
 The game play is pretty much finished.
+这个游戏快做完了
 
 3
 00:00:06,236 --> 00:00:08,042
 Now it's time to polish our game
+我们要将它完善一下
 
 4
 00:00:08,042 --> 00:00:10,042
 and get it ready to build.
+然后要生成应用了
 
 5
 00:00:12,130 --> 00:00:14,130
 Next we're going to be adding audio,
+下一步是增加音频
 
 6
 00:00:14,130 --> 00:00:16,130
 sound effects and music.
+音效和音乐
 
 7
 00:00:16,975 --> 00:00:20,053
 There are 3 main audio components in Unity.
+Unity中的音频组件主要有3种
 
 8
 00:00:20,553 --> 00:00:23,340
 There are audio clips, audio sources
+分别是音频剪辑,音频源
 
 9
 00:00:23,340 --> 00:00:25,089
 and the audio listener.
+和音频监听器
 
 10
 00:00:25,564 --> 00:00:27,813
 We will concentrate on audio clips
+我们这里只关注音频剪辑和
 
 11
 00:00:27,813 --> 00:00:29,813
 and audio sources.
+音频源
 
 12
 00:00:29,813 --> 00:00:32,797
 For more details on these 3 audio components
+更多关于这3中音频组件的信息
 
 13
 00:00:32,797 --> 00:00:34,977
 please see the information linked below.
+请参考下方连接
 
 14
 00:00:35,794 --> 00:00:38,247
 Audio clips hold our audio data
+音频剪辑保存了音频的数据
 
 15
 00:00:38,247 --> 00:00:40,136
 or sound files.
+或者声音文件
 
 16
 00:00:40,136 --> 00:00:44,233
 Audio sources play our audio clips in the scene.
+音频源在场景中播放音频剪辑
 
 17
 00:00:45,285 --> 00:00:47,285
 Let's find our audio clips.
+让我们找一下我们的音频剪辑
 
 18
 00:00:47,633 --> 00:00:50,587
 In Assets we have an Audio folder.
+在Assets目录下找到Audio文件夹
 
 19
 00:00:51,253 --> 00:00:52,893
 Here we can see a selection of sound
+这里我们可以看到一些已经选好的
 
 20
 00:00:52,893 --> 00:00:54,893
 effects and a music track.
+音效和音轨
 
 21
 00:00:55,835 --> 00:00:58,963
 If we select any 1 of the audio clips
+如果我们选取任何一个音频剪辑
 
 22
 00:00:58,963 --> 00:01:00,963
 we will see that clip's import settings
+我们可以在右侧的查看器中
 
 23
 00:01:00,963 --> 00:01:02,504
 in the Inspector.
+看到这个音频剪辑的导入设置
 
 24
 00:01:03,173 --> 00:01:05,173
 The Preview window will display additional
+预览窗口会展示
 
 25
 00:01:05,173 --> 00:01:07,173
 information about that clip.
+其他关于当前剪辑的信息
 
 26
 00:01:07,604 --> 00:01:10,052
 If the Preview window has been closed
+如果预览窗口关闭了
 
 27
 00:01:10,052 --> 00:01:12,052
 we can drag the Preview window's header
+我们可以拖拽预览窗口的标题栏
 
 28
 00:01:12,052 --> 00:01:14,052
 bar up to reopen it.
+将其重新打开
 
 29
 00:01:14,870 --> 00:01:16,967
 In the Preview window we can see
+在预览窗口中
 
 30
 00:01:16,967 --> 00:01:18,967
 the audio clip's waveform,
+我们可以看到音频剪辑的波形
 
 31
 00:01:20,006 --> 00:01:21,207
 we can play,
+可以播放它
 
 32
 00:01:22,894 --> 00:01:25,597
 or loop the audio clip's audio file,
+或者循环播放这个音频剪辑
 
 33
 00:01:29,688 --> 00:01:31,826
 and we get additional information about
+我们在预览窗口的底部看到
 
 34
 00:01:31,826 --> 00:01:34,489
 that audio clip printed at the bottom.
+当前音频剪辑的其他信息
 
 35
 00:01:35,624 --> 00:01:38,741
 We won't cover the details of the audio importer.
+我们不会详细介绍整个音频导入器
 
 36
 00:01:38,741 --> 00:01:41,187
 For more information on the audio importer
+更多详细信息
 
 37
 00:01:41,187 --> 00:01:43,187
 please see the links below.
+请参考下方连接
 
 38
 00:01:43,977 --> 00:01:46,700
 We do want to note one important import
+我们这里有一点需要注意
 
 39
 00:01:46,700 --> 00:01:50,810
 setting here however, and that is 3D Sound.
+就是3D声音(Unity5的音频设置选项好像本身就没这个3D Sound)
 
 40
 00:01:50,810 --> 00:01:53,127
 For our game we want to make sure
+对我们的游戏而言
 
 41
 00:01:53,127 --> 00:01:57,731
 all of our audio clips have 3D sound deselected.
+我们需要确保所有的音频剪辑的3D sound没被勾选
 
 42
 00:01:58,079 --> 00:02:00,079

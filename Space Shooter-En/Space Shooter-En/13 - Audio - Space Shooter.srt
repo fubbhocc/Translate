@@ -206,246 +206,307 @@ all of our audio clips have 3D sound deselected.
 42
 00:01:58,079 --> 00:02:00,079
 This should already be set properly on the
+这个项目的资源中的
 
 43
 00:02:00,079 --> 00:02:02,491
 assets provided with this project.
+这个设定应该已经被设置好了
 
 44
 00:02:03,518 --> 00:02:06,811
 When an audio clip is imported as a 3D sound
+当一个音频作为3D sound被导入后
 
 45
 00:02:06,811 --> 00:02:08,811
 Unity will compare the location
+Unity会比较它的位置
 
 46
 00:02:08,811 --> 00:02:11,862
 of the audio source playing the audio clip
+音频源播放音频剪辑
 
 47
 00:02:11,862 --> 00:02:13,862
 and compare it with the scene's
+场景中的一个激活了的音频接收器就会
 
 48
 00:02:13,862 --> 00:02:15,624
 1 active audio listener
+与这个音频源对比
 
 49
 00:02:15,958 --> 00:02:18,372
 and use the relative positions
+使用相关的位置信息
 
 50
 00:02:18,372 --> 00:02:20,901
 to affect the clip's volume and panning.
+来决定音频剪辑的声调和平移
 
 51
 00:02:21,300 --> 00:02:23,300
 We don't want any of this working in our
+我们在目前这个简单的街机游戏中
 
 52
 00:02:23,300 --> 00:02:25,190
 simple arcade-style game.
+并不需要这个功能
 
 53
 00:02:25,190 --> 00:02:27,190
 So we want to make sure 3D Sound
+所以我们的3D Sound选项
 
 54
 00:02:27,190 --> 00:02:29,190
 has been deselected.
+应该不要勾选
 
 55
 00:02:30,588 --> 00:02:33,215
 The audio files that we have in this project
+这个项目的音频文件有
 
 56
 00:02:33,215 --> 00:02:35,853
 are 3 styles of explosions,
+3种爆炸声
 
 57
 00:02:35,853 --> 00:02:38,706
 Asteroid, Enemy and Player.
+小行星,敌人和玩家
 
 58
 00:02:39,206 --> 00:02:41,206
 A backgound music track.
+一个背景音乐音轨
 
 59
 00:02:41,609 --> 00:02:43,609
 And 2 weapons effects.
+两种武器音效
 
 60
 00:02:44,219 --> 00:02:46,920
 In this portion of the Space Shooter project
+我们只是太空射击这个项目的一部分
 
 61
 00:02:46,920 --> 00:02:49,438
 we will be ignoring the Enemy sounds,
+我们忽略敌人的声音
 
 62
 00:02:49,855 --> 00:02:52,675
 they are for later optional assignments.
+这些是以后可选任务中才会用到的
 
 63
 00:02:54,156 --> 00:02:56,156
 We need to associate an audio clip with
+我们需要把我们的音频剪辑
 
 64
 00:02:56,156 --> 00:02:59,556
 our explosion prefabs and our player ship.
+连接到我们的爆炸预制件或者我们的玩家飞船上
 
 65
 00:03:00,346 --> 00:03:02,927
 The explosions need to play their audio clip
+当爆炸初始化的时候
 
 66
 00:03:02,927 --> 00:03:05,792
 when they are first instantiated in to the scene.
+爆炸的音频剪辑就要播放了
 
 67
 00:03:06,416 --> 00:03:08,416
 The player ship on the other hand needs
+玩家飞船在
 
 68
 00:03:08,416 --> 00:03:10,833
 to play it's audio clip when the player
+发射子弹的时候
 
 69
 00:03:10,833 --> 00:03:12,405
 fires their weapons.
+也需要播放音频剪辑
 
 70
 00:03:12,905 --> 00:03:14,905
 We associate an audio clip with a
+我们可以把音频剪辑和
 
 71
 00:03:14,905 --> 00:03:18,086
 game object by using an audio source component.
+游戏对象使用音频源组件连接
 
 72
 00:03:18,683 --> 00:03:21,309
 The audio source plays an audio clip.
+音频源负责播放音频剪辑
 
 73
 00:03:22,058 --> 00:03:24,058
 We can add an audio source component
+我们可以先给游戏对象添加
 
 74
 00:03:24,058 --> 00:03:27,173
 to our game objects and then reference an audio
+一个音频源的组件
 
 75
 00:03:27,173 --> 00:03:29,173
 clip for that source to play.
+然后将音频剪辑被这个音频源引用播放
 
 76
 00:03:29,673 --> 00:03:31,853
 But there is an easier way to do this.
+但是有一种更简单的处理方法
 
 77
 00:03:32,173 --> 00:03:34,173
 If we drag an audio clip on to
+把音频剪辑直接
 
 78
 00:03:34,173 --> 00:03:36,889
 a game object Unity will create
+拖拽到对应对象上
 
 79
 00:03:36,889 --> 00:03:39,617
 a new audio source on the game object
+Unity 会自动在那个对象上新建一个音频源组件
 
 80
 00:03:39,617 --> 00:03:42,734
 and automatically reference the dragged audio clip.
+然后自动引用拖拽过来的音频剪辑
 
 81
 00:03:43,455 --> 00:03:45,455
 Let's see this in action.
+让我们来实践一下
 
 82
 00:03:45,955 --> 00:03:47,955
 We can drag assets easily from our
+我们可以很容易的把资源
 
 83
 00:03:47,955 --> 00:03:51,852
 Project view on to game objects in our Hierarchy.
+从项目视图拖拽到游戏对象的层级视图
 
 84
 00:03:52,476 --> 00:03:55,053
 To drag an asset like our audio clip
+但是如果把一个音频剪辑资源拖拽到
 
 85
 00:03:55,053 --> 00:03:57,136
 on to a prefab asset
+预制件的资源当中并不能这样操作
 
 86
 00:03:57,136 --> 00:03:59,136
 which both are in our project
+因为他们都在我们的项目视图中
 
 87
 00:03:59,733 --> 00:04:02,829
 we can either open 2 Project view windows
+我们可以通过打开2个项目视图窗口来完成操作
 
 88
 00:04:02,829 --> 00:04:05,654
 or we can change our existing Project view
+或者我们改一下我们现有的层级视图
 
 89
 00:04:05,654 --> 00:04:08,097
 from using the 2 column layout
+将使用两列的布局(2 column layout)
 
 90
 00:04:08,097 --> 00:04:10,695
 to using a single column layout.
+换为使用一列的布局(a single column layout)
 
 91
 00:04:11,730 --> 00:04:14,034
 This will allow us to drag objects
+这样我们就可以
 
 92
 00:04:14,034 --> 00:04:16,562
 from one part of our Project view to another
+从项目视图中把资源来回拖拽
 
 93
 00:04:16,562 --> 00:04:19,405
 without losing focus on our target asset.
+同时也不会弄丢目标
 
 94
 00:04:20,236 --> 00:04:22,236
 Our first target asset will be the
+我们第一个要连接的目标是
 
 95
 00:04:22,236 --> 00:04:24,584
 asteroid explosion prefab.
+小行星爆炸的预制件
 
 96
 00:04:25,012 --> 00:04:27,137
 Our asteroid hazards have a reference
+我们的小行星引用了
 
 97
 00:04:27,137 --> 00:04:28,916
 to this prefab.
+这个预制件
 
 98
 00:04:28,916 --> 00:04:31,012
 When we destroy the asteroid
+当小行星被击毁的时候
 
 99
 00:04:31,012 --> 00:04:33,345
 the asteroid will spawn this prefab.
+小行星会生成这个预制件
 
 100
 00:04:33,845 --> 00:04:36,727
 At that point we want it to go bang.
+这时候我们希望有爆炸声
 
 101
 00:04:37,768 --> 00:04:41,311
 With the explosion_steroid prefab selected
 
+
 102
 00:04:41,311 --> 00:04:44,059
 drag the explosion_asteroid audio clip
+
 
 103
 00:04:44,059 --> 00:04:47,664

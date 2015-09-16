@@ -501,517 +501,644 @@ At that point we want it to go bang.
 101
 00:04:37,768 --> 00:04:41,311
 With the explosion_steroid prefab selected
-
+explosion_steroid预制件已经被选定的情况下
 
 102
 00:04:41,311 --> 00:04:44,059
 drag the explosion_asteroid audio clip
-
+将explosion_asteroid的音频剪辑
 
 103
 00:04:44,059 --> 00:04:47,664
 on to the game object on the Inspector and drop it.
+拖拽到对象的查看窗口并松开鼠标
 
 104
 00:04:48,924 --> 00:04:50,924
 We can see that Unity has added an
+我们看到Unity已经自动
 
 105
 00:04:50,924 --> 00:04:53,835
 audio source to the prefab asset
+在当前预制件上添加了音频源
 
 106
 00:04:53,835 --> 00:04:55,835
 and that audio source has a reference
+这个音频源
 
 107
 00:04:55,835 --> 00:04:58,800
 to the audio clip that we dragged and dropped on it.
+也已经引用了我们刚才拖拽过来的音频剪辑
 
 108
 00:05:00,667 --> 00:05:02,832
 The bulk of the component is dedicated
+这个组件的大部分内容是
 
 109
 00:05:02,832 --> 00:05:04,832
 to 3D Sound settings,
+关于3D音效的设定
 
 110
 00:05:05,332 --> 00:05:07,332
 which we can safely ignore.
+我们可以忽略这部分
 
 111
 00:05:07,929 --> 00:05:09,929
 The only important setting that we need to
+唯一需要我们注意的
 
 112
 00:05:09,929 --> 00:05:11,929
 worry about for our game here
+关于我们游戏的重要设定是
 
 113
 00:05:11,929 --> 00:05:13,374
 is Play On Awake.
+Play On Awake
 
 114
 00:05:14,095 --> 00:05:16,626
 Play On Awake should be on by default.
+Play On Awake默认应该被勾选了
 
 115
 00:05:17,126 --> 00:05:20,128
 For our explosions to work properly in our game
+为了使我们的爆炸可以在游戏中正常的执行
 
 116
 00:05:20,128 --> 00:05:22,924
 we need to make sure that it is set on.
+我们需要确保这个选项被勾选
 
 117
 00:05:22,924 --> 00:05:25,187
 This way the audio will play automatically
+这样在产生这个爆炸的时候
 
 118
 00:05:25,187 --> 00:05:27,187
 when we spawn our explosion.
+这个音频就会被自动播放
 
 119
 00:05:29,234 --> 00:05:31,234
 We can also drag an audio clip on to a
+我们也可以把一个音频剪辑
 
 120
 00:05:31,234 --> 00:05:33,068
 prefab asset without having it
+不通过查看器窗口
 
 121
 00:05:33,068 --> 00:05:35,068
 visable in the Inspector.
+拖拽到预制件资源上
 
 122
 00:05:35,568 --> 00:05:38,683
 Select the explosion_player audio clip
+选定explosion_player剪辑
 
 123
 00:05:38,683 --> 00:05:42,686
 and drag it on to the explosion_player prefab asset.
+把它拖拽到explosion_player预制件上
 
 124
 00:05:43,725 --> 00:05:46,206
 As we are using the defaults as they are
+因为默认就是Play On Awake
 
 125
 00:05:46,206 --> 00:05:48,749
 with Play On Awake automatically set
+已经被自动选定了
 
 126
 00:05:48,749 --> 00:05:51,467
 we don't need to make any changes to this at all.
+所以我们不需要做任何更改
 
 127
 00:05:52,685 --> 00:05:56,046
 Now the player's weapon sound is almost as simple.
+玩家武器的声音更简单
 
 128
 00:05:56,905 --> 00:05:59,644
 Select the weapon_player audio clip
+选定weapon_player的音频剪辑
 
 129
 00:05:59,644 --> 00:06:01,644
 and drag it in to the Scene view
+拖拽到场景视图中
 
 130
 00:06:01,644 --> 00:06:04,200
 and drop it on to the player game object.
+的玩家对象上
 
 131
 00:06:04,890 --> 00:06:06,890
 Again we can see that Unity has added
+我们可以看到Unity 
 
 132
 00:06:06,890 --> 00:06:09,483
 an audio source to the player game object
+又一次帮我们把音频源
 
 133
 00:06:09,873 --> 00:06:11,873
 and the audio clip reference is set to
+添加到了玩家对象上并对weapon_player
 
 134
 00:06:11,873 --> 00:06:13,134
 weapon_player.
+做了引用
 
 135
 00:06:13,765 --> 00:06:15,765
 The player however has just a few more
+这里玩家有几点需要
 
 136
 00:06:15,765 --> 00:06:17,209
 items to consider.
+特别注意
 
 137
 00:06:17,709 --> 00:06:21,302
 First we definately do not want Play On Awake set.
+第一,Play On Awake这个选项不要勾选
 
 138
 00:06:21,302 --> 00:06:23,302
 Otherwise we would get our weapon sound playing
+否则我们在游戏一开始的时候
 
 139
 00:06:23,302 --> 00:06:25,535
 on the very first frame of the game.
+就会听到物体的声音
 
 140
 00:06:26,035 --> 00:06:28,035
 Deselect Play On Awake.
+去掉Play On Awake的勾选
 
 141
 00:06:29,460 --> 00:06:32,380
 Now if we won't be playing this sound automatically
+如果我们不让声音自动产生
 
 142
 00:06:32,380 --> 00:06:34,037
 how will we play it?
+那应该让声音何时播放?
 
 143
 00:06:34,742 --> 00:06:38,008
 We must do this from our PlayerController script.
+我们需要在PlayerController脚本中处理
 
 144
 00:06:38,706 --> 00:06:40,985
 So select the player controller script
+选定player controller脚本
 
 145
 00:06:41,955 --> 00:06:43,955
 and open it for editing.
+打开编辑
 
 146
 00:06:47,024 --> 00:06:49,493
 Looking at our PlayerController script
+浏览一下我们的PlayerController脚本
 
 147
 00:06:49,493 --> 00:06:51,493
 where do we want to write our code?
+我们的代码该加在哪里呢?
 
 148
 00:06:52,297 --> 00:06:55,988
 In our Update function where we fire our shot.
+写在Update函数中这里我们发射子弹
 
 149
 00:06:56,944 --> 00:06:58,944
 As all of the logic will be
+所有的逻辑将会被
 
 150
 00:06:58,944 --> 00:07:00,944
 executed within the same frame
+在同一帧中执行
 
 151
 00:07:01,693 --> 00:07:03,693
 practically it doesn't make a difference
+因此在这段代码的
 
 152
 00:07:03,693 --> 00:07:06,421
 where in the block we write our new line
+什么位置新增代码
 
 153
 00:07:06,421 --> 00:07:08,826
 as long as it is inside the if statement.
+并没有什么区别,只要在这段
 
 154
 00:07:08,826 --> 00:07:11,592
 controlling when we fire our weapons.
+控制武器发射的if条件内的添加新代码
 
 155
 00:07:12,962 --> 00:07:14,962
 We will add this line of code to the
+我们会在这段代码
 
 156
 00:07:14,962 --> 00:07:16,725
 end of this block.
+的结尾处添加代码
 
 157
 00:07:16,725 --> 00:07:20,970
 Write audio.Play with a capital P
+敲入audio.Play注意P大写
 
 158
 00:07:20,970 --> 00:07:22,970
 followed by parenthesis.
+后面跟着括弧
 
 159
 00:07:23,705 --> 00:07:25,705
 Audio is the shorthand reference
+Audio是一个引用的缩写
 
 160
 00:07:25,705 --> 00:07:27,705
 that this script will use to talk
+注明了这个脚本
 
 161
 00:07:27,705 --> 00:07:29,982
 to the audio source attached to it.
+将会使用已经引用了的音频源
 
 162
 00:07:30,523 --> 00:07:33,989
 And Play is a function on the audio source
+Play函数说明
 
 163
 00:07:33,989 --> 00:07:36,044
 that will play the current clip
+播放当前的音频剪辑
 
 164
 00:07:36,044 --> 00:07:38,321
 and as a function needs to be called
+作为一个函数
 
 165
 00:07:38,321 --> 00:07:40,321
 with the parenthesis.
+它在被调用的过程中应该带括号
 
 166
 00:07:41,346 --> 00:07:43,346
 It is worth noting that we can change the
+实际上我们可以更换要播放的
 
 167
 00:07:43,346 --> 00:07:45,346
 clips to be played and other
+音频剪辑
 
 168
 00:07:45,346 --> 00:07:48,203
 additional functionality all in code
+以及代码中其他附加的函数
 
 169
 00:07:48,203 --> 00:07:50,203
 but we won't be covering that here.
+但是这里并不会做详细介绍
 
 170
 00:07:50,703 --> 00:07:53,282
 For more information on the audio source
+更多关于音频源
 
 171
 00:07:53,282 --> 00:07:55,712
 or any of the other audio components 
+或者其他音频组件的信息
 
 172
 00:07:55,712 --> 00:07:58,174
 please see the details linked below.
+请参考下方连接
 
 173
 00:07:59,469 --> 00:08:02,014
 Now when we fire our weapon we instantiate
+现在我们可以让武器开火,实例化我们的激光子弹
 
 174
 00:08:02,014 --> 00:08:05,329
 our shot clone and play our weapon sound.
+同时发出发射子弹的声音
 
 175
 00:08:06,078 --> 00:08:09,234
 Save this script, return to Unity,
+保存这个脚本回到Unity
 
 176
 00:08:09,734 --> 00:08:12,949
 save the scene and enter Play mode.
+保存场景并进入游戏模式
 
 177
 00:08:21,211 --> 00:08:23,211
 And we have sound effects.
+我们已经有音效了
 
 178
 00:08:23,794 --> 00:08:25,321
 Exit Play mode.
+退出游戏模式
 
 179
 00:08:26,543 --> 00:08:28,543
 Along with our sound effects we also have a
+除了音效外
 
 180
 00:08:28,543 --> 00:08:30,392
 background music track.
+我们还有一个背景音轨
 
 181
 00:08:30,392 --> 00:08:31,990
 we can find this in our audio folder
+我们可以在audio文件夹中找到
 
 182
 00:08:31,990 --> 00:08:34,560
 as music_background.
+music_background文件
 
 183
 00:08:35,098 --> 00:08:36,570
 Let's put this background music
+让我们把背景音乐加入我们的
 
 184
 00:08:36,570 --> 00:08:38,612
 on our game controller.
+游戏控制器中
 
 185
 00:08:38,612 --> 00:08:40,612
 This audio track will be self sufficient
+这个音轨是自己独立运行的
 
 186
 00:08:40,612 --> 00:08:42,112
 and won't need to interact with a
+不会受到游戏控制的
 
 187
 00:08:42,112 --> 00:08:44,015
 game controller at all.
+任何影响
 
 188
 00:08:44,015 --> 00:08:46,015
 It could go on it's own game object.
+它可以自己独立作为一个对象
 
 189
 00:08:46,584 --> 00:08:48,584
 But the game controller's game object
+但是如果把背景音乐音轨
 
 190
 00:08:48,584 --> 00:08:50,762
 is a tidy place to keep a component
+加入到game controller中就会
 
 191
 00:08:50,762 --> 00:08:53,012
 that is related to the game in general.
+让整体感觉很简洁并且相关性更好
 
 192
 00:08:54,132 --> 00:08:56,132
 Drag music_background in to our
+把music_background拖拽到
 
 193
 00:08:56,132 --> 00:08:59,180
 Scene view and drop it on Game Controller.
+我们场景视图的Game Controller对象上
 
 194
 00:08:59,680 --> 00:09:01,680
 This will add a new audio source
+这会在Game Controller增加
 
 195
 00:09:01,680 --> 00:09:05,221
 to Game Controller with music_background
+一个新的关联了music_background剪辑的
 
 196
 00:09:05,221 --> 00:09:06,710
 as the referenced clip.
+音频源
 
 197
 00:09:07,334 --> 00:09:10,089
 We want this music to start right away
+我们希望背景音乐在游戏启动时马上开始
 
 198
 00:09:10,089 --> 00:09:12,660
 and play during the entire game.
+并且在游戏中不停的播放
 
 199
 00:09:12,660 --> 00:09:14,660
 For this we want to make sure that
+因此我们需要确认
 
 200
 00:09:14,660 --> 00:09:16,743
 Play On Awake is selected
+Play On Awake(游戏开始时播放)已勾选
 
 201
 00:09:16,743 --> 00:09:19,588
 so it will begin playing on the first frame
+背景音轨在游戏一开始就会播放
 
 202
 00:09:19,588 --> 00:09:22,279
 and select Loop as well.
+同时选定循环播放
 
 203
 00:09:22,279 --> 00:09:24,997
 So the audio runs continuously.x
+因此音频就会不停播放
 
 204
 00:09:26,036 --> 00:09:28,984
 The audio clip is designed as a seamless loop
+这个音频剪辑已经被设计成一个无缝的循环
 
 205
 00:09:28,984 --> 00:09:30,984
 so there will be no audible gap when the
+所以在音乐循环往复的过程中听不到
 
 206
 00:09:30,984 --> 00:09:33,385
 music continuously restarts.
+音频上的间隔
 
 207
 00:09:34,050 --> 00:09:36,481
 Save the scene and enter Play mode.
+保存场景进入游戏模式
 
 208
 00:09:48,317 --> 00:09:50,857
 Now we have sound effects and music.
+现在我们已经有了音效和音乐
 
 209
 00:09:52,130 --> 00:09:54,130
 Exit Play mode.
+退出游戏模式
 
 210
 00:09:54,948 --> 00:09:56,948
 The last step we need to take is
+最后一步就是调整不同音频
 
 211
 00:09:56,948 --> 00:09:58,781
 balancing the audio.
+的大小
 
 212
 00:09:58,781 --> 00:10:00,781
 All of the clips are currently being played back
+所有的剪辑目前都是最大的声音播放
 
 213
 00:10:00,781 --> 00:10:04,029
 at full volume, and they don't mix well.
+他们混合的并不理想
 
 214
 00:10:04,029 --> 00:10:07,796
 Let's bring some of these effects down in volume.
+让我们把一些音效的声音调小一点
 
 215
 00:10:08,779 --> 00:10:10,779
 Select the player game object and
+选定玩家对象
 
 216
 00:10:10,779 --> 00:10:13,210
 bring up the audio source component.
+找到音频源这个组件
 
 217
 00:10:14,550 --> 00:10:18,295
 Change the Volume property to 0.5.
+将音量属性设置为0.5
 
 218
 00:10:18,295 --> 00:10:20,295
 This will reduce the strength of the
+这样会减小玩家
 
 219
 00:10:20,295 --> 00:10:22,295
 player's weapon sound.
+武器发射的声音
 
 220
 00:10:22,295 --> 00:10:25,414
 Next select the Game Controller game object
+下一步选定Game Controller这个对象
 
 221
 00:10:25,414 --> 00:10:28,175
 and again on the audio component
+再次找到音频组件
 
 222
 00:10:28,175 --> 00:10:31,424
 reduce the volume property to 0.5.
+把音量调正为0.5
 
 223
 00:10:32,034 --> 00:10:34,531
 Save the scene and enter Play mode.
+保存场景进入游戏模式
 
 224
 00:10:50,957 --> 00:10:54,281
 Now the explosions are still bright and snappy
+现在爆炸的声音依然响亮
 
 225
 00:10:54,281 --> 00:10:56,033
 but the player's weapons and the background
+玩家武器和背景音乐
 
 226
 00:10:56,033 --> 00:10:58,834
 music are not so overwhelming.
+的声音也不那么吵闹了
 
 227
 00:10:58,834 --> 00:11:00,389
 Excellent.
+很棒
 
 228
 00:11:01,058 --> 00:11:02,919
 In the next assignment we will see how to
+下一项任务是
 
 229
 00:11:02,919 --> 00:11:04,919
 display a score.
+如何显示得分

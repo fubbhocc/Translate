@@ -1,328 +1,407 @@
 1
 00:00:01,657 --> 00:00:04,544
 We have developed a simple but playable game.
+我们开发了一个简单好玩的游戏
 
 2
 00:00:04,544 --> 00:00:06,544
 Now we need to find a way to break out
+现在我们需要中断我们的
 
 3
 00:00:06,544 --> 00:00:08,544
 of our infinite loop spawning our waves
+产生小行星的无尽循环
 
 4
 00:00:08,544 --> 00:00:11,963
 of hazards, end the game when the player is destroyed
+当玩家被击毁的时候结束游戏
 
 5
 00:00:11,963 --> 00:00:13,963
 and give our players the chance to
+允许玩家
 
 6
 00:00:13,963 --> 00:00:16,341
 restart a new game if they want to.
+重新开始游戏
 
 7
 00:00:17,278 --> 00:00:19,278
 As we prepare to end the game
+我们准备结束游戏
 
 8
 00:00:19,278 --> 00:00:21,793
 we need to create 2 new labels.
+我们需要2个新标签
 
 9
 00:00:22,192 --> 00:00:24,357
 1 to display Game Over
+一个显示游戏结束
 
 10
 00:00:24,357 --> 00:00:26,538
 and the other to indicate when it's
+另一个告知
 
 11
 00:00:26,538 --> 00:00:28,538
 okay to restart the game.
+什么时候游戏可以重新开始
 
 12
 00:00:29,646 --> 00:00:32,688
 In an effort to keep our Hierarchy organised
+为了让我们的层级组织更有效
 
 13
 00:00:32,688 --> 00:00:35,540
 let's create an empty parent game object
+让我们新建一个父对象
 
 14
 00:00:35,540 --> 00:00:37,775
 to hold our current Score Text
+来保存我们现有的得分文本
 
 15
 00:00:37,775 --> 00:00:40,516
 and the 2 new labels we are about to create.
+和2个新的将要建立的文本
 
 16
 00:00:41,725 --> 00:00:44,425
 Rename the game object DisplayText
+将父类改名为DisplayText(显示文本)
 
 17
 00:00:44,425 --> 00:00:47,415
 and reset the game object's transform.
+将这个对象的位移重置一下
 
 18
 00:00:48,854 --> 00:00:51,554
 Add Score Text to DisplayText
+把Score Text拖拽到DisplayText上
 
 19
 00:00:51,554 --> 00:00:54,698
 making Score Text a child of DisplayText.
-
-
+让其成为DisplayText的子节点
 
 20
 00:00:55,750 --> 00:00:59,421
 Next create a new GUI text game object.
+然后再新建一个GUI text对象
 
 21
 00:01:00,308 --> 00:01:02,826
 Rename it Restart Text
+(5.0以后的版本请选择UI -> Text代替GUI Text)
 
 22
 00:01:02,826 --> 00:01:05,197
 and change the text property to
+重命名为Restart Text
 
 23
 00:01:05,197 --> 00:01:07,197
 Restart Text.
+并更改文本属性为Restart Text
 
 24
 00:01:08,084 --> 00:01:10,556
 Change the transform position to 
+把位置组件改为
 
 25
 00:01:10,556 --> 00:01:13,541
 (1, 1) on the X and Y.
+X和Y分别为(1, 1)
 
 26
 00:01:13,541 --> 00:01:15,804
 This should place the restart text
+这样restart text文本应该
 
 27
 00:01:15,804 --> 00:01:17,804
 up in to the upper right corner.
+就会出现在右上方
 
 28
 00:01:18,622 --> 00:01:20,272
 But we can't see it.
+但是我们看不到它
 
 29
 00:01:20,901 --> 00:01:23,055
 By adjusting the transform's position
+我们可以通过更改transform组件的
 
 30
 00:01:23,055 --> 00:01:26,649
 on the X axis we can drag Restart Text
+position属性的X方向的值把Restart Text
 
 31
 00:01:26,649 --> 00:01:28,649
 back in to the game screen.
+文本拖拽回游戏屏幕
 
 32
 00:01:29,190 --> 00:01:31,789
 But again using the transform component
+但是再重新说一遍使用transform组件来
 
 33
 00:01:31,789 --> 00:01:33,789
 for adjusting this fine detail on the GUI
+实现对文本位置的微调
 
 34
 00:01:33,789 --> 00:01:36,067
 text label is not ideal.
+不是一个好注意
 
 35
 00:01:36,676 --> 00:01:40,556
 Let's leave the transform position X at 1.
+让我们把X方向上的位移值保持为1
 
 36
 00:01:41,678 --> 00:01:43,912
 There are 2 adjustments that we can make
+这里还有2个地方的设置
 
 37
 00:01:43,912 --> 00:01:46,533
 in the GUI text component to better display
+可以让我们更好的显示
 
 38
 00:01:46,533 --> 00:01:48,533
 our Restart Text label.
+我们的Restart Text标签
 
 39
 00:01:49,364 --> 00:01:52,076
 The first is our anchor and alignment.
+第一处设置就是锚定和调整
 
 40
 00:01:52,576 --> 00:01:54,576
 Currently these are set at default
+目前这些设置都是使用默认的
 
 41
 00:01:54,576 --> 00:01:56,842
 or upper left and left.
+左上和左
 
 42
 00:01:57,228 --> 00:02:00,024
 This is why we cannot see our label.
+这就是我们看不到我们文本标签的原因
 
 43
 00:02:00,024 --> 00:02:02,588
 The label is starting at the upper right
+这个标签是在右上角的位置
 
 44
 00:02:02,588 --> 00:02:05,256
 of our screen and is drawn to the right
+并且从右上角的右侧从左往右
 
 45
 00:02:05,256 --> 00:02:06,564
 from the left.
+绘制标签文字
 
 46
 00:02:06,564 --> 00:02:09,134
 So the label draws off the screen.
+所以这个文本被画在了屏幕外面
 
 47
 00:02:09,644 --> 00:02:11,588
 Change the anchor and alignment properties
+把锚定和调整属性改为
 
 48
 00:02:11,588 --> 00:02:13,143
 to upper right
+右上
 
 49
 00:02:14,944 --> 00:02:16,240
 and right.
+右
 
 50
 00:02:17,872 --> 00:02:20,203
 We can see our Restart Text label
+这下我们看到Restart Text的文本标签
 
 51
 00:02:20,203 --> 00:02:22,650
 now draws to the left from the right
+在右上角
 
 52
 00:02:22,650 --> 00:02:24,845
 starting in the upper right corner.
+已经从右往左绘制了
 
 53
 00:02:25,896 --> 00:02:29,189
 The second adjustment is to the pixel offset.
+第二处需要变更的地方就是像素偏移
 
 54
 00:02:29,189 --> 00:02:31,314
 Let's match the pixel offset
+让我们把Restart Text像素偏移
 
 55
 00:02:31,314 --> 00:02:34,804
 on Restart Text to that of Score Text.
+设置成与Score Text(得分文本)匹配的格式
 
 56
 00:02:35,304 --> 00:02:37,695
 We can have the same 10 pixel pad
+我们选择10个像素的空间
 
 57
 00:02:37,695 --> 00:02:40,093
 by setting the pixel offset to
+这就是说像素偏移的值设定为
 
 58
 00:02:40,093 --> 00:02:42,463
 -10 and -10.
+-10 和 -10
 
 59
 00:02:44,402 --> 00:02:47,206
 Add Restart Text to DisplayText
+把Restart Text这个文本对象也拖拽到
 
 60
 00:02:47,206 --> 00:02:49,741
 to keep our Hierarchy neat and tidy.
+DisplayText里保持我们的层级结构整齐干净
 
 61
 00:02:51,018 --> 00:02:53,491
 Create another GUI text object.
+再新建一个GUI text对象
 
 62
 00:02:55,479 --> 00:02:58,188
 And rename this one Game Over Text.
+重命名为Game Over文本
 
 63
 00:02:59,346 --> 00:03:02,405
 Change the text property to Game Over Text.
+把文本的属性改为Game Over Text
 
 64
 00:03:03,582 --> 00:03:05,582
 Change the anchor and alignment to
+把锚定和调整
 
 65
 00:03:05,582 --> 00:03:07,170
 middle centre
+改为中部中心
 
 66
 00:03:08,275 --> 00:03:09,654
 and centre.
+和中心
 
 67
 00:03:10,416 --> 00:03:13,120
 And change the transform's position Y
+将transform的position的Y属性设置为
 
 68
 00:03:13,120 --> 00:03:14,745
 to 0.6
+0.6
 
 69
 00:03:14,745 --> 00:03:17,940
 so it is in the middle of our screen but up a bit.
+这样它就在屏幕的中心稍微靠上一点
 
 70
 00:03:19,075 --> 00:03:21,503
 Now add Game Over Text
+现在再把Game Over Text文本
 
 71
 00:03:21,503 --> 00:03:24,119
 to our Display Text parent game object.
+拖拽到我们的Display Text父类中
 
 72
 00:03:25,067 --> 00:03:27,329
 This sets up the basic GUI text objects
+这下所有需要用来结束游戏的
 
 73
 00:03:27,329 --> 00:03:29,718
 that we will need to end our game.
+文本都已经准备好了
 
 74
 00:03:31,031 --> 00:03:33,392
 Next we need to update our code
+下一步我们需要更新我们
 
 75
 00:03:33,392 --> 00:03:35,671
 on our GameController script.
+GameController脚本中的代码
 
 76
 00:03:35,671 --> 00:03:38,828
 Open our GameController script for editing.
+打开GameController脚本并编辑
 
 77
 00:03:40,253 --> 00:03:42,516
 We need to create references to our new
+我们需要新建一些对刚才建好的文本
 
 78
 00:03:42,516 --> 00:03:44,739
 GUI text components.
+的引用
 
 79
 00:03:44,739 --> 00:03:49,116
 Write public GUIText restartText
+敲入代码public GUIText restartText
 
 80
 00:03:49,116 --> 00:03:53,266
 and public GUIText gameOverText.
+和public GUIText gameOverText
 
 81
 00:03:54,111 --> 00:03:56,166
 We will feed information to these labels
+
 
 82
 00:03:56,166 --> 00:03:58,166

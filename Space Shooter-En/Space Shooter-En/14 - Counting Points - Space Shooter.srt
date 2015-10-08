@@ -1,1399 +1,1749 @@
 1
 00:00:01,602 --> 00:00:03,666
 Now that we can destroy our hazards
+现在我们可以消灭小行星
 
 2
 00:00:03,666 --> 00:00:06,413
 we should reward our player with points.
+我应该用得分来奖励我们的玩家
 
 3
 00:00:06,413 --> 00:00:08,413
 Let's count and display a score
+让我们计算并显示一下得分
 
 4
 00:00:08,413 --> 00:00:10,721
 where every asteroid hazard destroyed
+击毁一个小行星给予
 
 5
 00:00:10,721 --> 00:00:12,804
 gives our player 10 points.
+玩家10分
 
 6
 00:00:12,804 --> 00:00:15,623
 We will start by creating a display for the score
+在我们知道如何计算得分之前
 
 7
 00:00:15,623 --> 00:00:18,676
 before we create a score value to feed it with.
+让我们先研究一下如何显示得分
 
 8
 00:00:19,342 --> 00:00:21,649
 First using the Create menu
+首先在层级视图点选Create菜单并选择GUI Text
 
 9
 00:00:21,649 --> 00:00:24,992
 in the Hierarchy view select GUI Text.
+(5.0以后的版本请选择UI -> Text代替GUI Text)
 
 10
 00:00:26,307 --> 00:00:28,307
 This creates a new game object with
+这样就新建出了一个附带了
 
 11
 00:00:28,307 --> 00:00:30,307
 a GUI text component attached.
+GUI text组建的对象(5.0以后用text代替GUI Text)
 
 12
 00:00:31,194 --> 00:00:34,296
 Rename this game object Score Text.
+把这个对象重命名为Score Text
 
 13
 00:00:35,942 --> 00:00:37,942
 We can now see GUI text being
+我们现在可以看到GUI text
 
 14
 00:00:37,942 --> 00:00:40,467
 displayed in the centre of our game area.
+在游戏的中心区域显示了
 
 15
 00:00:40,967 --> 00:00:43,874
 The Text property on the GUI text component
+GUI text组件的文本属性
 
 16
 00:00:43,874 --> 00:00:45,694
 drives what is being displayed.
+决定了显示的内容
 
 17
 00:00:46,222 --> 00:00:48,470
 The rest of the component describes
+其他的组建描述了
 
 18
 00:00:48,470 --> 00:00:50,927
 how this text is displayed and where this
+这个文本是如何显示的
 
 19
 00:00:50,927 --> 00:00:53,221
 text is displayed on screen.
+和在屏幕的什么位置显示
 
 20
 00:00:54,532 --> 00:00:56,532
 We will not go in to all of the details
+我们这里不详细描述
 
 21
 00:00:56,532 --> 00:00:58,532
 of the GUI text component.
+GUI text组建的细节
 
 22
 00:00:58,532 --> 00:01:00,879
 For more information on GUI text
+GUI text的更多详细信息
 
 23
 00:01:00,879 --> 00:01:03,195
 see the details linked below.
+请查看下方链接
 
 24
 00:01:05,133 --> 00:01:07,133
 In later assignments we will create
+在后面的任务中
 
 25
 00:01:07,133 --> 00:01:09,133
 additional GUI text objects
+我们会建立GUI text对象
 
 26
 00:01:09,133 --> 00:01:11,008
 to hold different information.
+来保存不同的信息
 
 27
 00:01:11,523 --> 00:01:13,979
 With the default GUI text in the Text property
+如果使用默认的GUI text的Text属性
 
 28
 00:01:13,979 --> 00:01:16,586
 on all of them the Game View at edit time
+在游戏场景视图中会显得
 
 29
 00:01:16,586 --> 00:01:18,586
 could become a little confusing.
+很混乱(因为显示出来的名称都相同)
 
 30
 00:01:19,417 --> 00:01:22,810
 Change the Text property to Score Text.
+把Text属性改名为Score Text
 
 31
 00:01:23,393 --> 00:01:25,393
 We can see Score Text is now being
+我们看到Score Text已经
 
 32
 00:01:25,393 --> 00:01:27,393
 displayed in the Game View.
+显示在了游戏视图中了
 
 33
 00:01:27,893 --> 00:01:30,745
 We will be changing this value at runtime.
+这个值会实时的变化
 
 34
 00:01:31,245 --> 00:01:33,245
 Changing this label now will help
+我们将这个标签改成了这个新名字
 
 35
 00:01:33,245 --> 00:01:36,703
 us identify which display is which while editing.
+这样我们更容易定位我们正在编辑的是哪个文本的显示
 
 36
 00:01:37,921 --> 00:01:39,921
 Our Score Text is currently displaying
+Score Text是现在显示在
 
 37
 00:01:39,921 --> 00:01:41,921
 in the middle of our screen.
+屏幕正中的那个
 
 38
-00:01:42,766 --> 00:01:44,626
+00:01:42,766 --> 00:01:44,626 
 Let's move it so it displayed in the upper
+让我们把它移动到
 
 39
 00:01:44,626 --> 00:01:46,626
 left of the game screen.
+屏幕的左上角
 
 40
 00:01:47,126 --> 00:01:49,126
 Before we change any settings
+在更改设定之前
 
 41
 00:01:49,126 --> 00:01:51,126
 it's important to understand
+我们首先要了解
 
 42
 00:01:51,126 --> 00:01:53,703
 that GUI text is drawn on a layer
+GUI text是画在游戏之上的层上的
 
 43
 00:01:53,703 --> 00:01:56,662
 above our game, not in the game world.
+它并不在游戏中绘制
 
 44
 00:01:57,438 --> 00:01:59,841
 We won't see it in our Scene view.
+所以场景视图中看不到这些文本
 
 45
 00:02:00,490 --> 00:02:02,861
 Moreover it is important to understand
+并且我们需要理解
 
 46
 00:02:02,861 --> 00:02:05,413
 that the GUI text uses something called
+GUI text使用的是视图空间
 
 47
 00:02:05,413 --> 00:02:09,023
 Viewport Space, rather than screen space.
+而不是屏幕空间
 
 48
 00:02:09,689 --> 00:02:11,689
 The difference, very briefly,
+简单的说一下不同就是
 
 49
 00:02:11,689 --> 00:02:15,363
 is that screen space is defined in pixels.
+屏幕空间是由像素决定的
 
 50
 00:02:15,363 --> 00:02:17,363
 This is the number of pixels wide
+就是指屏幕的长宽
 
 51
 00:02:17,363 --> 00:02:20,434
 and high that we set in our player settings.
+分别有多少像素是由我们设定的
 
 52
 00:02:23,883 --> 00:02:26,424
 Viewport Space is defined simply
+视图空间是一种更简单的设定
 
 53
 00:02:26,424 --> 00:02:29,034
 as a single width and height value
+它的长宽表示为
 
 54
 00:02:29,034 --> 00:02:31,282
 with (0 0) in the lower left
+左下角为(0 0)
 
 55
 00:02:31,282 --> 00:02:33,748
 and (1,1) in the upper right.
+右上角是(1,1)
 
 56
 00:02:35,522 --> 00:02:38,030
 With Viewport Space in mind
+掌握了视图空间
 
 57
 00:02:38,030 --> 00:02:41,781
 set the transform position on the display text
+我们就清楚了X Y的设定如果是(0.5, 0.5)
 
 58
 00:02:41,781 --> 00:02:46,493
 from (0.5, 0.5) on the X and Y,
+那么显示就在正中间
 
 59
 00:02:46,493 --> 00:02:49,029
 in other words the middle of the screen,
+也就是屏幕的正中间
 
 60
 00:02:49,847 --> 00:02:52,714
 to (0, 1), which is the upper left.
+如果让它显示在左上角就设置为(0, 1)
 
 61
 00:02:54,443 --> 00:02:56,443
 The text seems wedged up against
+这个文本似乎贴在了
 
 62
 00:02:56,443 --> 00:02:58,292
 the upper left corner.
+左上角
 
 63
 00:02:58,292 --> 00:03:00,209
 It would be good to give it some pad
+如果这个文本与屏幕的
 
 64
 00:03:00,209 --> 00:03:02,442
 or space around it to separate
+边界有一定的空隙或者空间的话
 
 65
 00:03:02,442 --> 00:03:04,442
-it from the edges of the game screen.
+it from the edges of t he game screen.
+那就是最好的了
 
 66
 00:03:05,881 --> 00:03:07,881
 Because of the viewport space
+如果在视图空间
 
 67
 00:03:07,881 --> 00:03:10,518
 it is awkward trying to set such a small
+设定一个很小的值
 
 68
 00:03:10,518 --> 00:03:13,938
 value of space using the transform component.
+是一个不怎么有效的操作
 
 69
 00:03:14,894 --> 00:03:18,165
 This solution to this is to use pixel offset.
+解决这个问题的方法就是使用像素补偿
 
 70
 00:03:18,692 --> 00:03:21,572
 Pixel offset is, not too surprisingly,
+像素补偿很直观的就是
 
 71
 00:03:21,572 --> 00:03:23,240
 using pixels.
+使用像素
 
 72
 00:03:23,240 --> 00:03:25,587
 So we can set our primary location
+因此我们可以先用空间视图的值
 
 73
 00:03:25,587 --> 00:03:27,587
 with the transform component,
+设定一个大概的位置
 
 74
 00:03:27,587 --> 00:03:29,365
 the upper left corner,
+例如左上角
 
 75
 00:03:29,365 --> 00:03:32,102
 and then perfect it with pixel offset.
+然后用像素补偿完善具体位置
 
 76
 00:03:32,708 --> 00:03:37,114
 Change Pixel Offset to 10 and -10.
+将像素补偿的值设定为10 和 -10
 
 77
 00:03:37,114 --> 00:03:39,279
 This will give us a 10 pixel
+这样我们的分数显示文本周边
 
 78
 00:03:39,279 --> 00:03:41,279
 pad around our score text.
+就有了10个像素的空间
 
 79
 00:03:41,779 --> 00:03:43,971
 Separating it from the edge of the screen.
+这样就跟屏幕的变分开了
 
 80
 00:03:45,066 --> 00:03:47,437
 Next we need to feed Score Text
+下一步我们要将分数文本
 
 81
 00:03:47,437 --> 00:03:49,064
 a score value.
+填充上分数
 
 82
 00:03:49,688 --> 00:03:52,471
 Select Game Controller and open the
+点击打开GameController脚本
 
 83
 00:03:52,471 --> 00:03:54,996
 GameController script for editing.
+并编辑
 
 84
 00:03:57,540 --> 00:03:59,656
 The first thing we need is a
+我们首先需要做的是
 
 85
 00:03:59,656 --> 00:04:04,799
 public GUI Text variable called scoreText
+声明一个公有的GUI Text变量命名为scoreText
 
 86
 00:04:04,799 --> 00:04:07,904
 to hold a reference to our GUI text component.
+来保存对GUI text组件的引用
 
 87
 00:04:08,722 --> 00:04:10,792
 The next thing we need is a
+下一步需要做的是
 
 88
 00:04:10,792 --> 00:04:14,439
 public int variable called score
+建一个公有的变量命名为score
 
 89
 00:04:14,439 --> 00:04:16,439
 to hold our current score.
+来保存现在的得分
 
 90
 00:04:17,381 --> 00:04:19,983
 We use int because we will never count
+我们使用整数是因为
 
 91
 00:04:19,983 --> 00:04:21,649
 a partial point.
+这个值从来都不是分数
 
 92
 00:04:21,649 --> 00:04:24,713
 Score will always be a whole number.
+总是一个整数
 
 93
 00:04:25,847 --> 00:04:27,847
 Our game controller will keep track
+游戏控制脚本会一直追踪
 
 94
 00:04:27,847 --> 00:04:31,381
 of our score, increment it when we destroy hazards
+这个得分,在击毁小行星的时候加分
 
 95
 00:04:31,381 --> 00:04:34,588
 and feed that value to our score text.
+并显示到我们的得分显示区域
 
 96
 00:04:36,842 --> 00:04:40,482
 To update our score we need to write a new function.
+为了不停的更新我们的得分我们得写个新的函数
 
 97
 00:04:40,982 --> 00:04:44,390
 Write void update score.
+敲入代码void updatescore()
 
 98
 00:04:45,194 --> 00:04:47,933
 And the code within this function is
+这个函数中的代码是
 
 99
 00:04:47,933 --> 00:04:56,189
 scoreText.text = "score: " +score.
+scoreText.text = "score: " +score
 
 100
 00:04:57,877 --> 00:05:00,476
 This function will set the text property
+这个函数会设置Score Text组件的
 
 101
 00:05:00,476 --> 00:05:02,737
 on the Score Text component
+文本属性为
 
 102
 00:05:02,737 --> 00:05:07,719
 to the string Score: plus whatever our 
+字符串Score:加
 
 103
 00:05:07,719 --> 00:05:11,438
 current score value is held by our score variable.
+我们当前score这个变量中的值
 
 104
 00:05:12,062 --> 00:05:14,784
 When written like this Unity automatically
+当我们这样写这段代码Unity会自动的将
 
 105
 00:05:14,784 --> 00:05:17,629
 converts the int value of Score
+这个整型的值Score
 
 106
 00:05:17,629 --> 00:05:19,629
 to a string of text characters
+转换成为字符串的形式
 
 107
 00:05:19,629 --> 00:05:22,499
 so it works with our text property.
+这样就可以复合我们的文本属性
 
 108
 00:05:23,275 --> 00:05:25,275
 This feeds our score value
+这样我们就可以把score的值
 
 109
 00:05:25,275 --> 00:05:27,275
 to our GUI text component.
+填写到GUI text组件当中
 
 110
 00:05:28,300 --> 00:05:30,872
 We next need to update our score
+下一步是在两处更新
 
 111
 00:05:30,872 --> 00:05:32,598
 in two different places.
+我们的score值
 
 112
 00:05:33,068 --> 00:05:35,261
 When we first start the game
+分别是游戏开始的时候
 
 113
 00:05:35,261 --> 00:05:37,261
 and when a hazard is destroyed.
+和小行星被击毁的时候
 
 114
 00:05:38,728 --> 00:05:40,907
 When we start the game the first thing we need
+当我们开始游戏的时候
 
 115
 00:05:40,907 --> 00:05:44,876
 to do is set our score to 0.
+我们得把score设定为0
 
 116
 00:05:45,777 --> 00:05:48,148
 Then we want to call update Score
+然后我们调用updateScore函数
 
 117
 00:05:48,148 --> 00:05:51,496
 to set the score text to this starting value.
+把分数文本设定成这个初始值
 
 118
 00:05:53,046 --> 00:05:57,490
 Now how can we tell from inside Game Controller
+现在的问题是我们怎么在GameController内部
 
 119
 00:05:57,490 --> 00:06:00,121
 when a hazard has been destroyed by the player?
+得知一个小行星被玩家机会了?
 
 120
 00:06:00,791 --> 00:06:02,460
 Well, we can't.
+恩,我们做不到
 
 121
 00:06:03,153 --> 00:06:06,351
 But we can expose a public function
+但是我们可以为
 
 122
 00:06:06,351 --> 00:06:08,908
 to the other game objects in our game
+其他游戏对象开发一个公共函数
 
 123
 00:06:08,908 --> 00:06:11,089
 like the hazards themselves
+例如小行星
 
 124
 00:06:11,089 --> 00:06:13,520
 and when they are destroyed the hazards
+当小行星被击毁了
 
 125
 00:06:13,520 --> 00:06:17,521
 can inform Game Controller to add to the score,
+它们可以通知GameController增加分数
 
 126
 00:06:17,521 --> 00:06:20,523
 and the Game Controller can use this information
+GameController可以把这个信息
 
 127
 00:06:20,523 --> 00:06:23,479
 as a signal to update the score text.
+作为更新得分文本的信号
 
 128
 00:06:24,794 --> 00:06:28,154
 Let's create a public function for our hazards.
+让我们为小行星建个公共函数
 
 129
 00:06:28,571 --> 00:06:32,040
 Write public void AddScore
+敲入代码void AddScore
 
 130
 00:06:32,540 --> 00:06:36,208
 with the parameter int newScoreValue.
+带newScoreValue这个变量
 
 131
 00:06:37,647 --> 00:06:41,359
 First we write code to update our score value
+首先敲入更新得分的代码
 
 132
 00:06:41,359 --> 00:06:45,938
 with score += newScoreValue.
+score += newScoreValue
 
 133
 00:06:46,590 --> 00:06:49,352
 And then we call the function UpdateScore
+然后我们调用UpdateScore函数
 
 134
 00:06:49,352 --> 00:06:51,352
 to update our score text to display
+来吧我们显示的得分
 
 135
 00:06:51,352 --> 00:06:53,491
 the new current score.
+更新成新的分数
 
 136
 00:06:55,469 --> 00:06:57,622
 We now need to call Add Score
+现在我们需要在
 
 137
 00:06:57,622 --> 00:07:00,538
 from our game when a hazard is destroyed.
+小行星被击毁的时候调用AddScore函数
 
 138
 00:07:00,538 --> 00:07:03,697
 Save this script and switch back to Unity.
+保存当前脚本切换回Unity
 
 139
 00:07:05,426 --> 00:07:07,883
 Let's look at our asteroid hazards
+让我们看看小行星这个对象 
 
 140
 00:07:09,032 --> 00:07:11,490
 We want our instances of this prefab
+我们希望小行星预制件
 
 141
 00:07:11,490 --> 00:07:14,448
 to call addScore on GameController
+在被玩家击毁的时候
 
 142
 00:07:14,448 --> 00:07:16,865
 when they are destroyed by the player.
+调用addScore这个函数
 
 143
 00:07:17,487 --> 00:07:20,153
 The player destroys our hazards through the
+玩家击毁小行星
 
 144
 00:07:20,153 --> 00:07:22,153
 DestroyByContact script.
+是通过脚本DestroyByContact
 
 145
 00:07:22,819 --> 00:07:26,412
 So open DestroyByContact for editing.
+因此打开DestroyByContact并编辑
 
 146
 00:07:29,440 --> 00:07:31,756
 First let's give our hazards a value
+首先给我们的小行星
 
 147
 00:07:31,756 --> 00:07:34,763
 with public int scoreValue.
+一个公有的整形变量scoreValue
 
 148
 00:07:36,133 --> 00:07:38,328
 Now how do we call a function
+我们如何调用另一个游戏对象
 
 149
 00:07:38,328 --> 00:07:41,008
 on another component on a different game object?
+的组建的函数呢?
 
 150
 00:07:41,991 --> 00:07:44,502
 We can try to access this by writing
+让我们试试写代码
 
 151
 00:07:44,502 --> 00:07:47,363
+GameController.AddScore
 GameController.AddScore
 
 152
 00:07:47,863 --> 00:07:50,668
 and then send the new score value
+然后我们把刚建好的score value
 
 153
 00:07:50,668 --> 00:07:53,178
 with the argument scoreValue.
+作为scoreValue这个参数
 
 154
 00:07:53,983 --> 00:07:56,577
 Save this script and return to Unity.
+保存脚本回到Unity
 
 155
 00:07:58,127 --> 00:08:00,389
 Well we seem to have an error.
+现在报错了
 
 156
 00:08:00,972 --> 00:08:04,023
 We can see the most recent error in the footer.
+我们可以通过脚标看到最新的报错
 
 157
 00:08:04,023 --> 00:08:06,023
 Let's open the console and look at this
+让我们把控制台打开
 
 158
 00:08:06,023 --> 00:08:07,578
 error more closely.
+仔细看一下这个报错
 
 159
 00:08:08,854 --> 00:08:10,950
 The error seems to be on the script
+这个报错时关于
 
 160
 00:08:10,950 --> 00:08:13,678
 we have just edited, not surprisingly,
+我们刚编辑的脚本DestroyByContact
 
 161
 00:08:13,678 --> 00:08:15,678
 the DestroyByContact script.
+果然不出所料
 
 162
 00:08:16,302 --> 00:08:18,205
 This error says
+报错的内容是
 
 163
 00:08:18,205 --> 00:08:20,819
 an object reference is required to access
+需要一个对象的引用来保证
 
 164
 00:08:20,819 --> 00:08:25,073
 non-static member GameController.AddScore(int).
+非静态参数GameController.AddScore(int)的可达
 
 165
 00:08:25,761 --> 00:08:27,497
 Why is this?
+为什么是这个报错?
 
 166
 00:08:27,497 --> 00:08:29,636
 This is because we are addressing the
+这是因为
 
 167
 00:08:29,636 --> 00:08:32,328
 class directly, not a specific
+我们直接引用了这个类
 
 168
 00:08:32,328 --> 00:08:34,136
 instance of our class.
+而不是这个类的一个实例
 
 169
 00:08:34,787 --> 00:08:37,075
 If we look at our Game Controller object
+我们看一下Game Controller对象
 
 170
 00:08:37,075 --> 00:08:38,909
 we can see that there is a GameController
+它上面附加了GameController
 
 171
 00:08:38,909 --> 00:08:40,909
 script attached.
+脚本
 
 172
 00:08:40,909 --> 00:08:44,632
 This is an instance of this script or class.
+这是这个脚本或者类的实例
 
 173
 00:08:44,632 --> 00:08:47,097
 This is very much like all of the asteroid
+这个实例化就像小行星
 
 174
 00:08:47,097 --> 00:08:49,097
 hazards or laser bolts that we have
+镭射子弹那样
 
 175
 00:08:49,097 --> 00:08:51,097
 instantiated in our scene.
+在场景中实例化
 
 176
 00:08:51,097 --> 00:08:53,251
 Each one is an instance.
+每个都是一个实例
 
 177
 00:08:53,251 --> 00:08:55,473
 Even though we have one and only one
+虽然我们的游戏中
 
 178
 00:08:55,473 --> 00:08:57,861
 GameController script in our game
+仅有一个GameController脚本的实例
 
 179
 00:08:57,861 --> 00:08:59,861
 there is nothing technically stopping us
+但是技术上我们是可以
 
 180
 00:08:59,861 --> 00:09:01,484
 from having several.
+产生GameController脚本的很多个实例
 
 181
 00:09:02,085 --> 00:09:04,598
 If we created a new game object,
+如果我们新建一个对象
 
 182
 00:09:04,598 --> 00:09:06,598
 say a cube, there is nothing stopping
+例如一个立方体,没什么可以阻止我们
 
 183
 00:09:06,598 --> 00:09:08,598
 us from having another instance of
+在这个立方体上实例化
 
 184
 00:09:08,598 --> 00:09:10,598
 GameController on it.
+GameController
 
 185
 00:09:11,333 --> 00:09:13,333
 Now we have two instances of our
+现在我们实例化了
 
 186
 00:09:13,333 --> 00:09:14,961
 GameController script.
+两个GameController的脚本
 
 187
 00:09:15,584 --> 00:09:17,584
 When our hazard is destroyed it needs to know
+当我们的小行星被击毁了
 
 188
 00:09:17,584 --> 00:09:20,188
 which one to call AddScore on.
+它需要知道调用哪个实例的脚本来加分
 
 189
 00:09:20,871 --> 00:09:23,641
 This is very much like valet parking.
+这就好比我们叫侍者帮助泊车
 
 190
 00:09:24,086 --> 00:09:25,592
 We can't simply say
+我们不能简单的只说
 
 191
 00:09:25,592 --> 00:09:27,799
 'please, can you bring our car?'.
+‘请帮忙把我们的车开过来’
 
 192
 00:09:27,799 --> 00:09:30,501
 We must have a reference to a specific car,
+我们必须有一个指向特定车的引用
 
 193
 00:09:30,501 --> 00:09:32,501
 usually through a numbered ticket
+通常来说是个号码标签卡
 
 194
 00:09:32,501 --> 00:09:35,050
 so the valet knows which one to bring.
+这样侍者就知道把哪辆车开过来了
 
 195
 00:09:36,244 --> 00:09:38,866
 Let's delete our example cube.
+让我们把我们例子立方体删除
 
 196
 00:09:41,341 --> 00:09:44,028
 Even though we have only one instance
+虽然我们只实例化了一个GameController脚本
 
 197
 00:09:44,028 --> 00:09:46,182
 we still need a reference to it.
+我们依旧需要一个对它的引用
 
 198
 00:09:46,182 --> 00:09:48,881
 That valet won't bring our car without a ticket,
+如果我们没标签卡侍者不会把车开给我们
 
 199
 00:09:48,881 --> 00:09:51,172
 even if it's the only one on the lot.
+即使停车场只有一辆车
 
 200
 00:09:53,053 --> 00:09:56,315
 Reopen DestroyByContact for editing.
+重新打开并编辑DestroyByContact
 
 201
 00:09:58,108 --> 00:10:00,108
 Let's write a variable to hold our
+让我们写一个变量来保存
 
 202
 00:10:00,108 --> 00:10:03,458
 reference to our instance of GameController.
+我们实例化的GameController的引用
 
 203
 00:10:04,842 --> 00:10:08,788
 Write public GameController gameController
+写下public GameController gameController
 
 204
 00:10:09,288 --> 00:10:12,330
 Note the 2 different capitalisation's.
+注意这2个单词的首字母大小写
 
 205
 00:10:12,330 --> 00:10:14,675
 The first Game Controller with a capital G
+第一个GameController的首字母G大写
 
 206
 00:10:14,675 --> 00:10:17,066
 is the class name, or type.
+因为它是类名称或者类型名称
 
 207
 00:10:17,714 --> 00:10:20,638
 The second Game Controller with the lower case g
+第二个gameController首字母g小写
 
 208
 00:10:20,638 --> 00:10:22,638
 is the name of our variable.
+它是变量名称
 
 209
 00:10:23,442 --> 00:10:25,442
 Now if we copy and paste the
+然后我们在把变量的名称
 
 210
 00:10:25,442 --> 00:10:27,442
 name of our variable in to the
+复制粘贴到
 
 211
 00:10:27,442 --> 00:10:30,891
 offending line of code we change the line from
+结尾的代码中
 
 212
 00:10:30,891 --> 00:10:33,140
 addressing the class directly
+我们把直接使用类
 
 213
 00:10:33,140 --> 00:10:35,769
 to using the reference to our instance
+改为使用一个保存了
 
 214
 00:10:35,769 --> 00:10:37,769
 that we have held in our variable.
+实例的索引
 
 215
 00:10:39,526 --> 00:10:42,175
 Save this script and return to Unity.
+保存脚本并回到Unity
 
 216
 00:10:43,421 --> 00:10:45,421
 And the error is gone.
+报错不见了
 
 217
 00:10:46,764 --> 00:10:48,764
 Let's switch to the Game View.
+让我们切换回游戏视图
 
 218
 00:10:50,880 --> 00:10:52,880
 Select the Asteroid prefab.
+点选小行星预制件
 
 219
 00:10:53,532 --> 00:10:55,615
 We can now see the Game Controller
+我们现在可以看到在DestroyByContact
 
 220
 00:10:55,615 --> 00:10:59,550
 type reference on the DestroyByContact component.
+脚本组建处有一个Game Controller类型的引用槽
 
 221
 00:10:59,843 --> 00:11:01,843
 We need to associate our instance of
+我们需要把实例化的GameController
 
 222
 00:11:01,843 --> 00:11:03,843
 GameController with this variable.
+与这个变量做一个链接
 
 223
 00:11:04,744 --> 00:11:07,247
 So let's drag our GameController object
+让我们把GameController对象
 
 224
 00:11:07,247 --> 00:11:09,929
 on to the slot to make the reference.
+拖拽到这个槽位形成一个引用
 
 225
 00:11:10,760 --> 00:11:12,760
 Okay, that doesn't work.
+似乎不能这么用
 
 226
 00:11:13,260 --> 00:11:15,761
 Let's try to use the asset picker.
+让我们再试一下资源选择器
 
 227
 00:11:16,962 --> 00:11:17,763
 Nope.
+也不行
 
 228
 00:11:18,252 --> 00:11:19,919
 This is not working.
+我们无法这么做
 
 229
 00:11:19,919 --> 00:11:21,177
 Why?
+为什么呢？
 
 230
 00:11:22,695 --> 00:11:25,936
 This comes back to the nature of instances.
+这里要回过来谈谈实例的本质
 
 231
 00:11:25,936 --> 00:11:29,529
 Instances are copies of objects within a scene.
+实例是场景中对象的一个副本
 
 232
 00:11:30,029 --> 00:11:33,421
 Now if we think about the nature of prefabs,
+再来说一下预制件的本质
 
 233
 00:11:33,421 --> 00:11:36,160
 prefabs are templates of game objects
+预制件是游戏对象的一个模版
 
 234
 00:11:36,160 --> 00:11:39,698
 that can be instantiated in any scene in our game.
+这个模版可以在游戏内的任何场景中被实例化
 
 235
 00:11:40,101 --> 00:11:42,101
 It doesn't make sense that a template
+但这听起来并不合理
 
 236
 00:11:42,101 --> 00:11:44,584
 that can be added to any scene in our game
+一个可以被添加到游戏中任何场景的模版
 
 237
 00:11:44,584 --> 00:11:46,891
 can hold a reference to an instance
+可以保存的实例化对象的引用
 
 238
 00:11:46,891 --> 00:11:48,891
 in just one scene.
+仅仅只在一个场景中
 
 239
 00:11:49,971 --> 00:11:51,971
 Now once we have instantiated our
+当我们在场景中
 
 240
 00:11:51,971 --> 00:11:53,748
 hazards in to the scene
+实例化了一个小行星
 
 241
 00:11:53,748 --> 00:11:56,204
 and we have an instance of our hazard
+这个实例化的小行星
 
 242
 00:11:56,204 --> 00:11:58,657
 these instances can hold a reference
+保留了一个实例化的GameController
 
 243
 00:11:58,657 --> 00:12:01,505
 to our instance of the Game Controller.
+的引用
 
 244
 00:12:02,497 --> 00:12:04,802
 So we have to find our references
+所以我们需要在游戏开始的时候
 
 245
 00:12:04,802 --> 00:12:07,848
 to the Game Controller after the game has started.
+找到这个GameController的引用
 
 246
 00:12:08,762 --> 00:12:10,914
 Each new hazard will have to find a new
+每个新的小行星在它实例化的时候
 
 247
 00:12:10,914 --> 00:12:12,168
 reference to Game Controller
+都需要找到一个
 
 248
 00:12:12,168 --> 00:12:14,168
 when they are instantiated.
+新的对GameController的引用
 
 249
 00:12:15,607 --> 00:12:18,675
 Open DestroyByContact for editing.
+打开DestroyByContact脚本并编辑
 
 250
 00:12:21,619 --> 00:12:25,000
 Every hazard has an instance of this script
+每个小行星都都有一个这个脚本的实例
 
 251
 00:12:25,000 --> 00:12:26,834
 and every hazard will have to find
+并且小行星都要
 
 252
 00:12:26,834 --> 00:12:28,338
 their own reference to the Game
+找到自己对
 
 253
 00:12:28,338 --> 00:12:30,338
 Controller component on the Game
+GameController对象的
 
 254
 00:12:30,338 --> 00:12:31,823
 Controller game object.
+GameController组建的引用
 
 255
 00:12:32,355 --> 00:12:35,485
 Let's modify this script to do just that.
+让我们把这个脚本修改一下完成上述功能
 
 256
 00:12:35,985 --> 00:12:39,451
 In Start we first need to find
+开始的时候我们需要
 
 257
 00:12:39,451 --> 00:12:41,451
 the game object that holds
+找到保存GameController脚本
 
 258
 00:12:41,451 --> 00:12:43,451
 our Game Controller script.
+的游戏对象
 
 259
 00:12:44,255 --> 00:12:46,255
 Let's call this reference the
+让我们把这个引用起名为
 
 260
 00:12:46,255 --> 00:12:48,255
 gameControllerObject.
+gameControllerObject
 
 261
 00:12:48,755 --> 00:12:51,250
 We will set this reference by using
+我们可以通过
 
 262
 00:12:51,250 --> 00:12:53,834
+GameObject.FindWithTag
 GameObject.FindWithTag
 
 263
 00:12:54,334 --> 00:12:56,911
 and the tag we will look for is
+来设定这个引用
 
 264
 00:12:56,911 --> 00:12:58,621
 GameController.
+需要找的标签是GameController
 
 265
 00:12:58,621 --> 00:13:00,621
 This will find the first game object in the
+这个函数会找到场景中
 
 266
 00:13:00,621 --> 00:13:03,499
 scene that we have tagged as GameController
+的第一个标有GameController标签的对象
 
 267
 00:13:03,499 --> 00:13:05,251
 and we have only one.
+我们这里只有一个标有GameController的对象
 
 268
 00:13:05,251 --> 00:13:08,640
 Remember we tagged our Game Controller object
+回忆一下我们在新建GameController对象的时候
 
 269
 00:13:08,640 --> 00:13:11,602
 with Game Controller when we created it.
+已经给它加上标签了
 
 270
 00:13:12,576 --> 00:13:16,649
 Next if we have successfully found the
+下一步是如果我们
 
 271
 00:13:16,649 --> 00:13:18,649
 game controller object,
+成功找到了GameController对象
 
 272
 00:13:18,649 --> 00:13:21,410
 and we check this by testing the reference
+我们需要通过测试检查一下
 
 273
 00:13:21,410 --> 00:13:23,410
 to the Game Controller object.
+这个对GameController对象的引用
 
 274
 00:13:23,410 --> 00:13:26,509
 So if the Game Controller object
+所以如果GameController对象
 
 275
 00:13:26,509 --> 00:13:28,509
 is not null
+不是null
 
 276
 00:13:28,509 --> 00:13:31,305
 where null means nothing or empty
+这里null的意思是没有或者空的
 
 277
 00:13:31,305 --> 00:13:33,305
 essentially no reference,
+就是本质上说没引用
 
 278
 00:13:33,805 --> 00:13:35,805
 then we will set our Game Controller
+我们就将它设置为
 
 279
 00:13:35,805 --> 00:13:40,317
 reference to the Game Controller component
+对GameController对象的GameController组建
 
 280
 00:13:40,317 --> 00:13:43,035
 on the Game Controller object.
+的引用
 
 281
 00:13:43,035 --> 00:13:45,357
 We do this by searching the Game Controller
+我们是通过搜索GameController对象的
 
 282
 00:13:45,357 --> 00:13:48,254
 object and getting the component on it,
+并通过GetComponent函数获得
 
 283
 00:13:48,254 --> 00:13:50,558
 with GetComponent.
+它的组件来实现上述功能的
 
 284
 00:13:50,558 --> 00:13:54,009
 searching for the type of GameController.
+搜索GameController这个类型
 
 285
 00:13:55,324 --> 00:13:57,324
 Note this syntax where
+注意这里的语法
 
 286
 00:13:57,324 --> 00:14:00,105
 Game Controller is in angle brackets
+GameController使用的是角括号
 
 287
 00:14:00,105 --> 00:14:02,105
 followed by parenthesis.
+后面跟着小括号
 
 288
 00:14:03,641 --> 00:14:06,152
 Technically this is all the code we need.
+技术上说我们需要的代码已经齐了
 
 289
 00:14:06,583 --> 00:14:08,306
 We are however going to write
+我们这里要多写一些
 
 290
 00:14:08,306 --> 00:14:10,306
 an insurance policy.
+来做个保险
 
 291
 00:14:10,972 --> 00:14:13,415
 If, after all this work,
+如果经过上述的代码
 
 292
 00:14:13,415 --> 00:14:15,415
 our Game Controller reference is
+我们的GameController引用
 
 293
 00:14:15,415 --> 00:14:17,054
 the same as null
+还是null
 
 294
 00:14:17,554 --> 00:14:20,408
 we will use Debug.Log
+我们要使用Debug.Log
 
 295
 00:14:20,408 --> 00:14:23,876
 to put "Cannot find 'GameController' script"
+在控制台输出"Cannot find 'GameController' script"
 
 296
 00:14:23,876 --> 00:14:25,876
 in to the console.
+(找不到游戏控制器脚本)
 
 297
 00:14:26,569 --> 00:14:28,652
 Note that we are using single quotes
+注意这里我们在GameController
 
 298
 00:14:28,652 --> 00:14:31,336
 around GameController so the entire
+前后使用了单引号
 
 299
 00:14:31,336 --> 00:14:33,615
 message is one string of text.
+这样这段文字就可以成为一个完整的字符串文本
 
 300
 00:14:34,499 --> 00:14:36,568
 This is an insurance policy.
+这就是我们做的保险
 
 301
 00:14:36,568 --> 00:14:39,539
 With hope this line of code will never get called.
+虽然我们希望这段代码永远都不要被调用
 
 302
 00:14:40,122 --> 00:14:42,219
 If however something goes wrong
+然而如果一旦什么地方出了问题
 
 303
 00:14:42,219 --> 00:14:44,536
 and we accidentally break something
+或者我们意外的弄错了什么
 
 304
 00:14:44,536 --> 00:14:47,691
 and our game stops working or behaves badly
+我们的游戏不能正常运行或者
 
 305
 00:14:47,691 --> 00:14:50,455
 with messages like these in our console
+在控制台出现了这样的错误消息
 
 306
 00:14:50,455 --> 00:14:52,455
 we will have a place to start.
+我们就知道从哪下手来修正了
 
 307
 00:14:53,494 --> 00:14:56,328
 Save this script and return to Unity.
+保存脚本回到Unity
 
 308
 00:14:56,906 --> 00:14:59,445
 Let's setup our asteroid hazard.
+让我们设置一下我们的小行星
 
 309
 00:15:01,008 --> 00:15:03,795
 Select the Asteroid prefab game object
+选择小行星的预制件
 
 310
 00:15:03,795 --> 00:15:06,268
 and set the Score value to 10.
+把得分值设置为10
 
 311
 00:15:07,870 --> 00:15:09,994
 Below Score Value is the reference
+分数值下面是对GameController
 
 312
 00:15:09,994 --> 00:15:11,814
 to Game Controller.
+的引用
 
 313
 00:15:11,814 --> 00:15:14,234
 We can't set this in the Inspector.
+这个并不能通过查看器设定
 
 314
 00:15:15,005 --> 00:15:17,187
 If we cannot set this in the Inspector
+如果我们不能在查看器中设定
 
 315
 00:15:17,187 --> 00:15:19,366
 let's not see it in the Inspector.
+那么我们也别让它在查看器中显示出来
 
 316
 00:15:19,880 --> 00:15:22,791
 Open DestroyByContact for editing.
+打开DestroyByContact脚本并编辑
 
 317
 00:15:23,582 --> 00:15:26,628
 Change public to private
+把GameController的属性由
 
 318
 00:15:26,628 --> 00:15:28,628
 on the Game Controller reference.
+公有改成私有
 
 319
 00:15:30,440 --> 00:15:33,553
 Save this script and return to Unity.
+保存这个脚本回到Unity
 
 320
 00:15:34,777 --> 00:15:36,957
 Now we have no access to this property
+现在在查看器中看不到这个属性了
 
 321
 00:15:36,957 --> 00:15:38,957
 in the Inspector or from any other
+这个属性也无法被其他脚本使用
 
 322
 00:15:38,957 --> 00:15:40,957
 script, it is private.
+因为是私有的
 
 323
 00:15:41,927 --> 00:15:43,927
 Let's setup our Game Controller.
+让我们设置一下我们的GameController
 
 324
 00:15:44,427 --> 00:15:46,427
 Select Game Controller.
+选定GameController
 
 325
 00:15:46,817 --> 00:15:48,817
 Take note of Score.
+看一下这里的Score属性
 
 326
 00:15:49,497 --> 00:15:51,497
 Unlike the Game Controller reference on the
+跟小行星预制件引用GameController不太一样
 
 327
 00:15:51,497 --> 00:15:55,035
 Asteroid prefab we can set Score in the Inspector,
+我们可以在查看器里面设置这个Score属性
 
 328
 00:15:55,035 --> 00:15:56,745
 we just don't want to.
+知识我们不想这么干
 
 329
 00:15:57,300 --> 00:16:00,002
 Score is handled perfectly well in the script.
+Score已经被脚本处理的很好了
 
 330
 00:16:00,654 --> 00:16:02,806
 This property is set by the script on the
+这个属性是脚本在最开始的帧
 
 331
 00:16:02,806 --> 00:16:04,806
 first frame of the game so let's
+的时候就设定了的
 
 332
 00:16:04,806 --> 00:16:07,487
 set this one to private as well.
+所以我们把这个值也设置成私有的
 
 333
 00:16:08,719 --> 00:16:10,995
 Open the Game Controller for editing.
+打开GameController脚本编辑一下
 
 334
 00:16:12,655 --> 00:16:16,203
 Change score from public to private.
+把score由公有变成私有
 
 335
 00:16:17,407 --> 00:16:20,285
 Save this script and return to Unity.
+保存脚本回到Unity
 
 336
 00:16:21,578 --> 00:16:23,578
 We no longer see, not have access,
+现在看不到score
 
 337
 00:16:23,578 --> 00:16:25,578
 to score.
+并且也无法获得score了
 
 338
 00:16:25,578 --> 00:16:28,958
 Let's set our reference to our Score display.
+让我们设定一下score的显示
 
 339
 00:16:29,320 --> 00:16:31,570
 With GameController selected
+选定GameController
 
 340
 00:16:31,570 --> 00:16:34,411
 drag the Score Text game object
+把Score Text对象拖拽到
 
 341
 00:16:34,411 --> 00:16:36,411
 on to the Score Text property
+GameController组建的
 
 342
 00:16:36,411 --> 00:16:38,411
 on the Game Controller component.
+Score Text这个属性上
 
 343
 00:16:39,809 --> 00:16:42,099
 Save the scene and enter Play mode.
+保存场景进入到游戏模式
 
 344
 00:16:52,696 --> 00:16:54,696
 And now we score 10 points for each
+现在击毁每个小行星得10分
 
 345
 00:16:54,696 --> 00:16:57,240
 asteroid we destroy and the score is
+分数显示在
 
 346
 00:16:57,240 --> 00:16:59,240
 displayed in the upper left.
+左上角
 
 347
 00:16:59,974 --> 00:17:01,242
 Fantastic.
+非常棒
 
 348
 00:17:03,510 --> 00:17:06,089
 Next, in the penultimate assignment,
+接下来在倒数第二个任务中
 
 349
 00:17:06,089 --> 00:17:08,667
 we will learn how to break out of our infinite loop
+我们将学习如何中断无限循环
 
 350
 00:17:08,667 --> 00:17:10,150
 and end the game.
+并结束游戏

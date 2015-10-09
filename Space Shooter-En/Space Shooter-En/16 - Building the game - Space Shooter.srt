@@ -1,407 +1,509 @@
 1
 00:00:01,630 --> 00:00:03,375
 Our game is complete.
+我们的游戏已经做好了
 
 2
 00:00:03,375 --> 00:00:05,375
 Let's build a web player and deploy
+让我们把它生成为网页游戏
 
 3
 00:00:05,375 --> 00:00:07,375
 that web player on to the web.
+发布到网页上
 
 4
 00:00:08,345 --> 00:00:10,345
 Open the Build Settings window.
+打开构建设置窗口
 
 5
 00:00:11,909 --> 00:00:14,775
 The Build Settings has two main sections.
+游戏打包的设置主要有两块
 
 6
 00:00:15,137 --> 00:00:17,556
 The bottom part for setting the build target
+底部的部分为设置编译目标
 
 7
 00:00:17,556 --> 00:00:19,958
 and customising details for the build
+以及一些个性化的详细的设置
 
 8
 00:00:19,958 --> 00:00:21,958
 and the upper part for selecting the
+上不是选择打包
 
 9
 00:00:21,958 --> 00:00:23,958
 scenes to build in to the game.
+需要的场景
 
 10
 00:00:25,190 --> 00:00:27,647
 We do not need to include every scene in our
+我们生成游戏的时候不一定需要导入
 
 11
 00:00:27,647 --> 00:00:29,647
 project when we build our game.
+项目中全部的场景
 
 12
 00:00:30,271 --> 00:00:33,079
 We only need to select the scenes we want.
+我们只选定我们需要的场景
 
 13
 00:00:33,579 --> 00:00:35,901
 We can either drag the scenes we want
+我们可以通过吧项目视图中的场景
 
 14
 00:00:35,901 --> 00:00:37,901
 from our Project view and drop them
+拖拽到构建窗口内的上方窗口
 
 15
 00:00:37,901 --> 00:00:39,901
 in to the upper window
+来完成需要导入场景的选定
 
 16
 00:00:40,650 --> 00:00:43,177
 or we can click the Add Current button
+或者我们可以点选Add Current按钮
 
 17
 00:00:43,177 --> 00:00:45,177
 to add the current open scene to the
+这样我们目前打开的场景就会被加入到
 
 18
 00:00:45,177 --> 00:00:46,611
 build window.
+构建窗口
 
 19
 00:00:47,111 --> 00:00:49,626
 As a side note, we can build a game
+这里有一个小知识
 
 20
 00:00:49,626 --> 00:00:52,711
 with no scenes in the Scenes To Build window.
+如果构建窗口中没有场景我们是没办法构建游戏的
 
 21
 00:00:52,711 --> 00:00:55,439
 If we do this Unity will temporarily use
+如果我们这样操作了
 
 22
 00:00:55,439 --> 00:00:57,866
 the current open scene when building.
+Unity会暂时把当前打开的场景打包进游戏
 
 23
 00:00:59,044 --> 00:01:01,320
 Once we have selected the scenes to build
+一旦我们选好了需要打包的场景
 
 24
 00:01:01,320 --> 00:01:03,320
 it is always good practice to check our
+在执行打包操作前检查一下
 
 25
 00:01:03,320 --> 00:01:06,071
 player settings before we actually build the game.
+玩家设置是一个好习惯
 
 26
 00:01:06,571 --> 00:01:08,780
 For more information on player settings
+更多关于玩家设置的信息
 
 27
 00:01:08,780 --> 00:01:11,319
 please see the information linked below.
+请参考下方连接
 
 28
 00:01:12,426 --> 00:01:14,661
 When we are satisfied with our player settings
+当我们调整好了玩家设定
 
 29
 00:01:14,661 --> 00:01:16,661
 we can return to the Build Settings window
+我们可以回到构建设置窗口点选
 
 30
 00:01:16,661 --> 00:01:18,158
 and choose Build.
+Build
 
 31
 00:01:18,658 --> 00:01:20,658
 Unity will open a dialogue box
+Unity会打开一个对话框
 
 32
 00:01:20,658 --> 00:01:22,658
 prompting us for a name and location
+为打包命名和
 
 33
 00:01:22,658 --> 00:01:24,272
 for our new build.
+选择保存的位置
 
 34
 00:01:24,272 --> 00:01:26,272
 I like to keep the builds associated with
+我个人比较喜欢把这个打包
 
 35
 00:01:26,272 --> 00:01:29,637
 the project, so let's create a new folder
+跟这个项目放在一起
 
 36
 00:01:29,637 --> 00:01:31,343
 to hold our build.
+所以让我们新建一个文件夹来存放它
 
 37
 00:01:31,343 --> 00:01:33,343
 We will create this folder in the root of our
+我们会在项目的根层级新建一个文件夹
 
 38
 00:01:33,343 --> 00:01:35,647
 project along side the assets
+它与项目的资源和程序库
 
 39
 00:01:35,647 --> 00:01:38,281
 library and other default folders.
+以及其他默认文件夹并列
 
 40
 00:01:38,281 --> 00:01:40,281
 It is important to note that this new folder
+注意这个新文件夹
 
 41
 00:01:40,281 --> 00:01:42,281
 should not be placed inside any of
+请不要建在
 
 42
 00:01:42,281 --> 00:01:44,281
 the default folders.
+任何默认文件夹的内部
 
 43
 00:01:44,891 --> 00:01:46,533
 Create a new folder in our project
+新建一个新建文件夹
 
 44
 00:01:46,533 --> 00:01:48,533
 and call it Builds.
+命名为Builds
 
 45
 00:01:49,102 --> 00:01:50,566
 Save the folder.
+回车确认生成新文件夹
 
 46
 00:01:50,566 --> 00:01:52,677
 With the Builds folder selected
+在选定Builds 的情况下
 
 47
 00:01:52,677 --> 00:01:57,136
 let's name our build Space_Shooter.
+把我们的打包命名Space_Shooter
 
 48
 00:01:57,136 --> 00:01:59,385
 We use the underscore here in the name
+这里使用下划线作为名字的好处是
 
 49
 00:01:59,385 --> 00:02:01,385
 as we will be deploying to the web
+当这个程序发布到网上的时候
 
 50
 00:02:02,161 --> 00:02:03,924
 and this name will be part of the web
+这个名字可以直接作为游戏的网址
 
 51
 00:02:03,924 --> 00:02:06,634
 address or URL for the game.
+或者URL 
 
 52
 00:02:06,634 --> 00:02:08,634
 Spaces are not recommended in
+空格符并不推荐作为
 
 53
 00:02:08,634 --> 00:02:10,634
 a web address or URL.
+网址或者URL的一部分
 
 54
 00:02:10,634 --> 00:02:13,370
 So we should use an underscore, dash or
+所以我们如果作为网页程序使用的时候
 
 55
 00:02:13,370 --> 00:02:15,674
 other web friendly character instead of
+最好使用下划线或者破折号
 
 56
 00:02:15,674 --> 00:02:18,543
 spaces here when we are creating a web build.
+代替空格这样不容易出问题
 
 57
 00:02:19,720 --> 00:02:21,418
 It should be noted that we could,
+这里需要注意的是
 
 58
 00:02:21,418 --> 00:02:22,481
 if we chose to,
+如果我们需要的话
 
 59
 00:02:22,481 --> 00:02:25,253
 change the name of the HTML file to
+我们可以把HTML文件改名为
 
 60
 00:02:25,253 --> 00:02:28,339
 index.html if appropriate
+index.html
 
 61
 00:02:28,339 --> 00:02:30,534
 to shorten the length of the URL.
+这样URL可以更短一些
 
 62
 00:02:31,391 --> 00:02:34,476
 When we have named our build select Save.
+当命名完包的名称点击Save
 
 63
 00:02:35,846 --> 00:02:38,467
 Unity will now build our player.
+Unity会打包我们的程序
 
 64
 00:02:43,208 --> 00:02:44,878
 And when the build is done
+当打包结束的时候
 
 65
 00:02:44,878 --> 00:02:47,155
 Unity will open the target folder,
+Unity会自动打开目标文件夹
 
 66
 00:02:47,155 --> 00:02:49,321
 in this case our Builds folder,
+也就是保存我们打包的目录
 
 67
 00:02:49,321 --> 00:02:51,321
 revealing the built game.
+展示我们打包的游戏
 
 68
 00:02:52,249 --> 00:02:54,622
 We have built a web player.
+我们生成了一个网页游戏
 
 69
 00:02:54,622 --> 00:02:56,553
 Open the Space_Shooter folder.
+打开Space_Shooter文件夹
 
 70
 00:02:57,053 --> 00:02:59,808
 The web player comes in 2 parts.
+这个文件夹有2部分
 
 71
 00:02:59,808 --> 00:03:03,201
 A Unity 3D file, which contains the data
+一个是Unity 3D文件包含了游戏数据
 
 72
 00:03:03,201 --> 00:03:06,194
 and an HTML file which describes the page
+HTML 文件描述了
 
 73
 00:03:06,194 --> 00:03:08,669
 that will play the game data in a window.
+这个网页游戏的页面情况
 
 74
 00:03:09,915 --> 00:03:12,505
 If we look at the size of these 2 files
+如果我们注意一下这2个文件
 
 75
 00:03:12,505 --> 00:03:14,784
 we can see that the Unity 3D file is the
+我们会发现Unity 3D的文件
 
 76
 00:03:14,784 --> 00:03:18,152
 larger of the 2 as it contains the game data.
+更大一些,因为它保存了游戏的数据
 
 77
 00:03:19,191 --> 00:03:21,858
 If we select and open the HTML file
+如果我们点选并打开HTML文件
 
 78
 00:03:21,858 --> 00:03:24,584
 our operating system will load the HTML file
+我们的系统会把HTML文件
 
 79
 00:03:24,584 --> 00:03:26,584
 in to our default browser.
+加载到我们默认的浏览器中
 
 80
 00:03:30,869 --> 00:03:32,869
 And the game will play in the web page.
+这个游戏可以在网页上运行
 
 81
 00:03:34,696 --> 00:03:36,834
 We are playing this game locally.
+我们只是在本地运行这个游戏
 
 82
 00:03:36,834 --> 00:03:38,834
 To play this game globally we need to
+如果我们想在互联网上玩这个游戏
 
 83
 00:03:38,834 --> 00:03:41,113
 upload it to a web host of some sort.
+我们需要把它上传到网络上的服务器中
 
 84
 00:03:41,903 --> 00:03:44,356
 As an example I am going to upload this
+举个例子,我们将把这个文件
 
 85
 00:03:44,356 --> 00:03:47,629
 via an FTP client to an existing website.
+通过FTP 客户端上传到一个已有的网站上
 
 86
 00:03:48,612 --> 00:03:51,411
 Open an FTP client, select a destination
+打开一个FTP客户端
 
 87
 00:03:51,411 --> 00:03:54,090
 and upload both the HMTL and data files
+上传HMTL和数据文件
 
 88
 00:03:54,090 --> 00:03:55,783
 into the same directory.
+到同一个目录
 
 89
 00:03:56,341 --> 00:03:58,975
 In this case, for ease, I'm going to
+在这里为了方便
 
 90
 00:03:58,975 --> 00:04:01,839
 upload the entire folder containing both files.
+我把包含了2个文件的整个文件上传到服务器上
 
 91
 00:04:07,850 --> 00:04:10,224
 When the files are uploaded open a browser
+当文件上传完毕
 
 92
 00:04:10,224 --> 00:04:13,211
 and use the URL to open a new web page.
+打开使用URL打开一个新网页
 
 93
 00:04:14,222 --> 00:04:15,958
 The data will load from the web
+数据会从网上读取过来
 
 94
 00:04:15,958 --> 00:04:18,194
 and we're playing the game globally.
+这样我们就可在全球任何位置玩这个游戏了
 
 95
 00:04:18,194 --> 00:04:20,542
 Anyone anywhere in the world with access 
+任何人只要可以连接互联网
 
 96
 00:04:20,542 --> 00:04:22,542
 to the internet can play our game.
+都可以玩我们的这个游戏
 
 97
 00:04:25,901 --> 00:04:27,901
 Fantastic.
+棒极了
 
 98
 00:04:30,390 --> 00:04:32,390
 Thank you for taking these assignments,
+感谢您参与了这些课程
 
 99
 00:04:32,390 --> 00:04:34,390
 following along and making this game.
+一直跟随着制作这个游戏
 
 100
 00:04:34,890 --> 00:04:37,071
 Please check out the Learn section of Unity's
+请查看Unity网站的学习部分
 
 101
 00:04:37,071 --> 00:04:39,071
 website for more information,
+来获得更多的信息
 
 102
 00:04:39,071 --> 00:04:41,941
 tutorials, assignments and learning materials.
+例如教程，任务和学习资料.

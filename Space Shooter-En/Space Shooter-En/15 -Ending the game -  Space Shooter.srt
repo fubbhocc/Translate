@@ -401,616 +401,769 @@ and public GUIText gameOverText.
 81
 00:03:54,111 --> 00:03:56,166
 We will feed information to these labels
-
+我们将随着游戏的进行把相应信息
 
 82
 00:03:56,166 --> 00:03:58,166
 as the game progresses.
+反馈给这些文本标签
 
 83
 00:03:59,094 --> 00:04:01,452
 To control what we sent to these 2 labels
+为了控制何时发送和
 
 84
 00:04:01,452 --> 00:04:03,452
 and when we send it we will need
+发送什么给这些文本标签
 
 85
 00:04:03,452 --> 00:04:05,049
 2 related control flags,
+我们需要两个相关的控制标志
 
 86
 00:04:05,049 --> 00:04:07,379
 or 2 boolean variables.
+或者说是2个布尔变量
 
 87
 00:04:07,879 --> 00:04:12,450
 Let's write private bool for boolean gameOver
+让我们敲入private bool gameOver
 
 88
 00:04:13,337 --> 00:04:16,277
 and private bool restart.
+private bool restart作为控制标志
 
 89
 00:04:17,329 --> 00:04:19,440
 These true-false boolean flags will help
+这些只表示真假的布尔标志
 
 90
 00:04:19,440 --> 00:04:21,440
 us track when the game is over and
+将帮助我们追踪游戏何时结束
 
 91
 00:04:21,440 --> 00:04:23,824
 when it is okay to restart the game.
+和游戏什么时候可以再开始
 
 92
 00:04:24,437 --> 00:04:26,284
 We need to set the value for these at the
+我们需要在游戏开始的时候将
 
 93
 00:04:26,284 --> 00:04:27,714
 start of the game.
+这些标志初始化
 
 94
 00:04:27,714 --> 00:04:30,775
 So in Start write
+所以在Start函数中敲入
 
 95
 00:04:30,775 --> 00:04:35,629
 gameOver = false and restart = false.
+gameOver = false 和 restart = false.
 
 96
 00:04:36,088 --> 00:04:38,088
 We also need to set the starting text
+我们还需要在我们新文本标签中
 
 97
 00:04:38,088 --> 00:04:41,010
 on our new labels so let's write
+设置开始的文本内容
 
 98
 00:04:41,010 --> 00:04:46,190
 restartText.text = ""
+敲入restartText.text = ""
 
 99
 00:04:47,008 --> 00:04:50,104
 The same for gameOverText.text.
+gameOverText.text也这么写
 
 100
 00:04:50,535 --> 00:04:53,244
 Set this to 2 empty quotes as well.
+内容也是一对双引号内容是空
 
 101
 00:04:54,168 --> 00:04:56,029
 This means at the start of the game
+这意味着在游戏开始的时候
 
 102
 00:04:56,029 --> 00:04:58,029
 these 2 GUI text labels
+这2个GUI text标签的文本
 
 103
 00:04:58,029 --> 00:04:59,738
 will display nothing.
+什么也不会显示
 
 104
 00:05:00,238 --> 00:05:02,822
 These labels are effectively turned off.
+这些标签从功能上说是被关掉的
 
 105
 00:05:04,865 --> 00:05:07,346
 We need to change the state of our game
+我们需要在游戏结束的时候
 
 106
 00:05:07,346 --> 00:05:09,346
 and the content of these labels when
+更改游戏的状态
 
 107
 00:05:09,346 --> 00:05:11,038
 our game is over.
+并且变更文本标签的内容
 
 108
 00:05:11,038 --> 00:05:13,038
 Much like adding our score we need
+就像我们击毁小行星得分那样
 
 109
 00:05:13,038 --> 00:05:15,038
 to expose a function here
+这里我们也需要写一个函数
 
 110
 00:05:15,038 --> 00:05:17,425
 on our game controller for another object
+这个写在controller中的函数
 
 111
 00:05:17,425 --> 00:05:19,425
 to call when the game is over.
+会在游戏结束时被其他对象调用
 
 112
 00:05:19,828 --> 00:05:22,120
 Let's create a new public function we can
+让我们新建可以从当前脚本外调用的
 
 113
 00:05:22,120 --> 00:05:24,120
 call from outside this script.
+公有的函数
 
 114
 00:05:24,454 --> 00:05:27,766
 Write public void GameOver.
+敲入public void GameOver
 
 115
 00:05:28,266 --> 00:05:31,067
 Our function will need no parameters.
+这个函数不需要形参
 
 116
 00:05:31,067 --> 00:05:33,647
 It simply gets called to end the game.
+它只是在游戏结束的时候被调用
 
 117
 00:05:34,644 --> 00:05:37,631
 Our GameOver function is very simple.
+我们的GameOver 函数很简单
 
 118
 00:05:37,631 --> 00:05:41,962
 First we set our gameOverText.text to 
+首先设定gameOverText.text的内容为
 
 119
 00:05:41,962 --> 00:05:43,194
+Game Over!
 Game Over!
 
 120
 00:05:44,241 --> 00:05:47,391
 And then we set our GameOver flag to true.
+然后设定GameOver的标志变成真
 
 121
 00:05:48,720 --> 00:05:51,297
 Now we will use our Game Over flag
+现在我们要用这个Game Over标志
 
 122
 00:05:51,297 --> 00:05:53,297
 to break out of the infinite loop
+来中断我们
 
 123
 00:05:53,297 --> 00:05:55,297
 that spawns our hazards.
+生成小行星的无限循环
 
 124
 00:05:56,073 --> 00:05:58,073
 The spawn loop is a while loop.
+这个生成小行星的循环是一个while循环
 
 125
 00:05:58,421 --> 00:06:00,421
 The while loop will continue cycling
+这个while循环会不停的
 
 126
 00:06:00,421 --> 00:06:02,421
 through the code it holds until the
+循环执行它包含的代码直到
 
 127
 00:06:02,421 --> 00:06:04,967
 statement in the parenthesis is false.
+参数的状态变为假
 
 128
 00:06:05,322 --> 00:06:08,101
 We have set this literally to true
+这里我们当时直接设置成了真
 
 129
 00:06:08,101 --> 00:06:11,483
 so without help this loop will never end.
+因此如果没别的影响这个循环永远都不会结束
 
 130
 00:06:12,950 --> 00:06:15,458
 At the end of the loop, after we have waited
+在这个循环的末尾等待一波小行星
 
 131
 00:06:15,458 --> 00:06:18,013
 for our wave to clear, but before we loop back
+被清理干净但还没开始下一个
 
 132
 00:06:18,013 --> 00:06:20,013
 to the top of our block of code
+循环的位置我们添加新代码
 
 133
 00:06:20,013 --> 00:06:22,329
 add if gameOver.
+敲入if(gameOver)
 
 134
 00:06:22,898 --> 00:06:24,759
 And when written this way we are saying the
+当我们这么写的时候
 
 135
 00:06:24,759 --> 00:06:27,206
 same thing as if gameOver is
+它语法的意义与判断
 
 136
 00:06:27,206 --> 00:06:29,206
 the same as true
+gameOver是否是真相同
 
 137
 00:06:29,206 --> 00:06:32,048
 restartText.text equals
+敲入restartText.text =
 
 138
 00:06:32,048 --> 00:06:34,048
 Press R for restart.
+"Press 'R' for restart"
 
 139
 00:06:35,349 --> 00:06:37,349
 And again, within a string of text
+再强调一下
 
 140
 00:06:37,349 --> 00:06:39,474
 enclosed by double quotes
+双引号内的字符串文本
 
 141
 00:06:39,474 --> 00:06:43,086
 note that the R is enclosed by single quotes.
+中R两侧使用的是单引号
 
 142
 00:06:43,876 --> 00:06:46,249
 This sets our restart label.
+这些设定了我们重新开始标签的内容
 
 143
 00:06:46,249 --> 00:06:50,328
 Next set our restart boolean flag to true.
+下一步把重新开始的布尔标签设置成真
 
 144
 00:06:51,242 --> 00:06:54,384
 And lastly write break.
+最后写下break
 
 145
 00:06:54,384 --> 00:06:56,832
 This will break us out of our while loop.
+这个代码会中断我们的while循环
 
 146
 00:06:56,832 --> 00:06:58,832
 And as there is no more code to execute
+因为spawnWaves在这之后
 
 147
 00:06:58,832 --> 00:07:01,414
 in spawnWaves after the break
+没有需要执行的代码了
 
 148
 00:07:01,414 --> 00:07:04,301
 it will end the spawnWaves coroutine.
+那么这个spawnWaves 协程就会被结束
 
 149
 00:07:05,353 --> 00:07:07,465
 In our Restart Text label
+在我们的重新开始文本标签中
 
 150
 00:07:07,465 --> 00:07:09,465
 we have informed our player that they
+我们已经告知了玩家
 
 151
 00:07:09,465 --> 00:07:11,299
 can restart the game by pressing
+他们可以通过按R键
 
 152
 00:07:11,299 --> 00:07:12,802
 the R key.
+重新开始游戏
 
 153
 00:07:12,802 --> 00:07:14,802
 We will now write the code that allows
+我们现在要写代码
 
 154
 00:07:14,802 --> 00:07:16,802
 the player to do this.
+允许玩家重新开始游戏
 
 155
 00:07:17,965 --> 00:07:20,076
 To easily capture a key press
+为了更简单的捕捉按键
 
 156
 00:07:20,076 --> 00:07:22,666
 let's poll for it in update.
+让我们在update插入代码
 
 157
 00:07:23,280 --> 00:07:25,654
 Write void update
+敲入void update
 
 158
 00:07:25,654 --> 00:07:28,263
 and in the update function write
+在update函数中写下
 
 159
 00:07:28,263 --> 00:07:29,943
 if restart
+if(restart)
 
 160
 00:07:29,943 --> 00:07:32,811
 so if restart is true we look for our
+所以如果restart为真我们就查看
 
 161
 00:07:32,811 --> 00:07:38,905
 key press with if Input.GetKeyDown KeyCode.R
+按键的情况代码是if(Input.GetKeyDown KeyCode.R)
 
 162
 00:07:40,275 --> 00:07:42,275
 Now if restart is true and we get 
+如果restart的标志是真
 
 163
 00:07:42,275 --> 00:07:44,579
 the key press on the R key
+同时R键也被按下了
 
 164
 00:07:44,579 --> 00:07:46,844
 we reload this scene by using
+我们就把这个场景重新加载
 
 165
 00:07:46,844 --> 00:07:48,844
 Application.LoadLevel.
+代码是Application.LoadLevel
 
 166
 00:07:49,385 --> 00:07:52,050
 Application.LoadLevel loads the level
+Application.LoadLevel会重新载入
 
 167
 00:07:52,050 --> 00:07:55,493
 or scene file specified in the parenthesis.
+参数标明的场景
 
 168
 00:07:55,493 --> 00:07:57,743
 Instead of writing a string name
+我们这里直接填入
 
 169
 00:07:57,743 --> 00:08:00,787
 or using an index number for that scene
+Application.LoadedLevel来重新载入
 
 170
 00:08:00,787 --> 00:08:03,737
 we will simply use the currently loaded level
+当前场景而不使用索引数字
 
 171
 00:08:03,737 --> 00:08:06,960
 by using Application.LoadedLevel
+或者一个字符串名字
 
 172
 00:08:08,289 --> 00:08:10,289
 That's it for this script.
+这个脚本差不多完成了
 
 173
 00:08:10,289 --> 00:08:13,016
 Save this script and return to Unity.
+保存脚本回到Unity
 
 174
 00:08:14,888 --> 00:08:16,888
 We need to set up our new references
+我们需要把刚编辑的GameController
 
 175
 00:08:16,888 --> 00:08:19,357
 that we have written on GameController.
+中的引用配置一下
 
 176
 00:08:19,830 --> 00:08:21,830
 With GameController selected
+选定GameController
 
 177
 00:08:21,830 --> 00:08:24,548
 drag the RestartText game object
+把RestartText对象
 
 178
 00:08:24,548 --> 00:08:26,965
 on to the Restart Text slot
+拖拽到GameController组件的
 
 179
 00:08:26,965 --> 00:08:28,965
 on the GameController component.
+Restart Text槽
 
 180
 00:08:30,100 --> 00:08:32,735
 Next drag the GameOver text
+然后把GameOver text对象
 
 181
 00:08:32,735 --> 00:08:35,457
 game object on to the Game Over text
+也拖拽到GameController组件的
 
 182
 00:08:35,457 --> 00:08:38,444
 slot on the GameController component.
+Game Over槽
 
 183
 00:08:40,242 --> 00:08:42,626
 We are now done with our game controller.
+现在我们的游戏控制器完成了
 
 184
 00:08:43,515 --> 00:08:45,919
 To end the game we need to call Game Over
+为了结束游戏我们需要完成
 
 185
 00:08:45,919 --> 00:08:47,919
 on Game Controller when the player
+当玩家被击毁后对Game Over
 
 186
 00:08:47,919 --> 00:08:49,149
 is destroyed.
+的调用
 
 187
 00:08:49,649 --> 00:08:51,470
 We could try to detect this on the
+我们可以在玩家对象上
 
 188
 00:08:51,470 --> 00:08:53,002
 player game object,
+做这个检测
 
 189
 00:08:53,002 --> 00:08:56,042
 but we have already written this code somewhere else.
+但是这个功能代码其实已经在其他地方写过了
 
 190
 00:08:56,652 --> 00:08:59,208
 Our AsteroidHazards already detect
+我们的小行星检测过
 
 191
 00:08:59,208 --> 00:09:01,347
 collisions with our player.
+它与玩家的碰撞
 
 192
 00:09:01,347 --> 00:09:04,390
 and that collision destroys the player game object.
+这个碰撞会销毁玩家飞船
 
 193
 00:09:05,214 --> 00:09:08,994
 Open the DestroyByContact script for editing.
+打开DestroyByContact 脚本并编辑
 
 194
 00:09:10,585 --> 00:09:12,875
 In our DestroyByContact code
+在DestroyByContact的代码中
 
 195
 00:09:12,875 --> 00:09:18,230
 we detect if other.tag is the same as Player.
+我们检测other.tag是否为Player
 
 196
 00:09:18,675 --> 00:09:22,100
 Then before we destroy the player game object
+在我们销毁玩家对象之前
 
 197
 00:09:22,100 --> 00:09:24,795
 we instantiate the player explosion.
+我们实例化了玩家对象的爆炸
 
 198
 00:09:25,526 --> 00:09:27,526
 After the line where we spawn the player 
+在生成玩家爆炸的代码后面
 
 199
 00:09:27,526 --> 00:09:30,605
 explosion write gameController,
+写下代码gameController
 
 200
 00:09:30,605 --> 00:09:32,605
 which is the variable holding the reference
+这个参数保存了对
 
 201
 00:09:32,605 --> 00:09:34,729
 to our game controller instance,
+gameController实例的引用
 
 202
 00:09:34,729 --> 00:09:37,930
 and with the dot call the GameOver function
+然后使用点语法我们调用了
 
 203
 00:09:37,930 --> 00:09:39,930
 on GameController.
+GameController的GameOver函数
 
 204
 00:09:40,430 --> 00:09:42,961
 Now when we destroy the player game object
+现在当玩家飞船被击毁的时候
 
 205
 00:09:42,961 --> 00:09:44,961
 our game controller is told that the
+我们的游戏控制器会被告知
 
 206
 00:09:44,961 --> 00:09:46,395
 game is over.
+游戏已经结束了
 
 207
 00:09:46,395 --> 00:09:49,118
 Save this script and return to Unity.
+保存脚本回到Unity
 
 208
 00:09:50,774 --> 00:09:53,455
 Save the scene and enter Play mode.
+保存场景进入游戏模式
 
 209
 00:10:01,547 --> 00:10:03,547
 When the player is destroyed we see the
+当玩家飞船被击毁
 
 210
 00:10:03,547 --> 00:10:05,005
 Game Over label.
+我们可以看到游戏结束的文本标签
 
 211
 00:10:05,005 --> 00:10:07,005
 When the current wave clears the screen
+当目前屏幕上的小行星被清除后
 
 212
 00:10:07,005 --> 00:10:09,453
 we can restart by pressing the R key.
+我们可以按R键重新开始游戏
 
 213
 00:10:10,030 --> 00:10:12,030
 And we're playing again.
+我们可以再玩一次
 
 214
 00:10:15,320 --> 00:10:18,456
 Note that the game doesn't instantly restart.
+注意一下游戏不是马上重新开始的
 
 215
 00:10:18,456 --> 00:10:20,456
 Nor can we restart the level for a few moments
+我们得等一会游戏才能重新开始
 
 216
 00:10:20,456 --> 00:10:23,188
 while we wait for the screen to clear.
+我们等待屏幕被上的小行星飞出屏幕
 
 217
 00:10:23,188 --> 00:10:25,188
 This gives the player a clear sense that
+这样就可以给玩家一个明显的感觉
 
 218
 00:10:25,188 --> 00:10:27,796
 the game is over before restarting the level.
+游戏已经结束我们可以重新开始
 
 219
 00:10:29,276 --> 00:10:31,801
 Make sure that we have exited Play mode.
+先退出游戏模式
 
 220
 00:10:33,088 --> 00:10:35,199
 The last step in this assignment is to add
+本章节的最后一个步骤是
 
 221
 00:10:35,199 --> 00:10:37,680
 a little more style to our GUI text labels.
+给我们的文本增加一些样式
 
 222
 00:10:38,180 --> 00:10:40,881
 We will be using multi-object editing.
+我们会使用到多对象编辑
 
 223
 00:10:40,881 --> 00:10:44,190
 Select both Restart Text and Score Text.
+选择Restart Text和Score Text文本
 
 224
 00:10:44,759 --> 00:10:47,398
 These are the labels in the upper corners
+这些都是屏幕上方角落的文本
 
 225
 00:10:47,398 --> 00:10:49,968
 and change their font size to 20.
+把他们的字体大小调整到20
 
 226
 00:10:50,730 --> 00:10:53,120
 Next select the Game Over text
+然后选择Game Over文本
 
 227
 00:10:53,120 --> 00:10:56,091
 and set it's font size to 25.
+把它的字体大小设置为25
 
 228
 00:10:56,091 --> 00:10:58,631
 This will make these labels easier to read.
+这样这些标签就更看着就更舒服了
 
 229
 00:10:59,407 --> 00:11:01,908
 Save the scene and enter Play mode.
+保存场景进入游戏模式
 
 230
 00:11:25,208 --> 00:11:26,614
 Fantastic.
+很棒
 
 231
 00:11:27,114 --> 00:11:28,838
 Our game is complete.
+我们的游戏已经完成
 
 232
 00:11:28,838 --> 00:11:30,838
 In the last assignment we will build the
+在最后的章节中
 
 233
 00:11:30,838 --> 00:11:32,767
 game as a web player and deploy it
+我们会把这个游戏作为网页游戏生成
 
 234
 00:11:32,767 --> 00:11:34,767
 to the web to play.
+然后把他们发布到网页上
